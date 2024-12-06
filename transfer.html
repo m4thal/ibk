@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./res/ibk-com.css">
+    <script src="./res/jquery-3.6.4.min.js"></script>
+    <title>송금</title>
+    <style>
+        .container .page-wrap{padding:0}
+        .transfer-box {position:relative}
+        .transfer-box a{position:absolute;top:10px;left:15px;width:35px;height:35px;}
+        /* .toggle-tab {margin-top:20px} */
+        .btqr {position:absolute;right:102px;width:64px;height:32px}
+        .btqr img {width:100%}
+        .btqr2 {display:block;position:absolute;right:20px;width:74px;height:32px}
+        .btqr2 img {width:100%}
+        .collection-wrap{position:relative;display: flex;justify-content:flex-start;padding:0 20px;margin-top:20px}
+        .tsearch {position:relative;}
+        .tsearch a {position:absolute;top:21%;left:20px;right:20px;height:38px;}
+        
+        .gray-box-wrap{position:absolute;top:44px;width:100%;}
+        .tab-panel.summary{position:relative;margin:0 20px }
+        .tab-panel.summary .gray-box-wrap > .box{position:relative;display: flex;width:100%;justify-content: space-between;align-items: center;height:36px;margin-bottom:24px;}
+        .tab-panel.summary .gray-box-wrap .box a{display:block;height:100%;width:90%;}
+        .tab-panel.summary .gray-box-wrap .box span{display:block;height:100%;width:90%;}
+        .tab-panel.summary .gray-box-wrap .box i.star{width: 20px; height: 20px; background: url(./images/menu/star.png) no-repeat center / contain; cursor: pointer;}
+        .tab-panel.summary .gray-box-wrap .box i.star.on{background: url(./images/menu/star-on.png) no-repeat center / contain;}
+        
+        .img-wrap {display:block !important;} 
+        .img-wrap.img {margin-top:24px}
+        .img-wrap.img2 a {position:absolute;width:100%;top:-10px;height:52px}
+
+         /* 팝업 */
+        .pop{position:fixed;bottom:-100%;left:50%;transform:translateX(-50%);width:375px;height:100vh;z-index:100;background:rgba(0,0,0,.65);}
+        .pop.on{bottom:0;display:flex !important; align-items: flex-end;}
+        .pop.full.on {display:block !important;background:#fff;}
+        .pop-close {position:absolute;top:20px;right:20px;width:24px;height:24px}
+        .pop.full .img1 {}
+        .pop.full .img2 {position:fixed; bottom:0}
+    
+       
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="page-wrap">
+            <div class="transfer-box">
+                <img src="./images/transfer/transfer-tit.jpg" alt="">
+                <a href="./index.html"></a>
+            </div>
+            <div class="collection-wrap">
+                <div class="toggle-tab ui-tab">
+                    <div class="active">
+                        <a href="#tab1">계좌</a>
+                    </div>
+                    <div>
+                        <a href="#tab2">연락처</a>
+                    </div>
+                </div>
+                <a href="./qr.html" class="btqr"><img src="./images/transfer/transfer-qr.jpg" alt=""></a>
+                <span class="btqr2"><img src="./images/transfer/transfer-voice.jpg" alt=""></span>
+            </div>
+            <div class="tsearch">
+                <a href="#pop1" class="pop-open"></a>
+                <img src="./images/transfer/transfer-search.jpg" alt="">
+            </div>
+            <div id="tab1" class="tab-panel summary active">
+                <div class="gray-box-wrap">
+                    <div class="box">
+                        <a href="./transfer2.html"></a>
+                        <i class="star on" aria-label="별"></i>
+                    </div>
+                    <div class="box">
+                        <span></span>
+                        <i class="star" aria-label="별"></i>
+                    </div>
+                </div>
+                <img src="./images/transfer/transfer-img1.png" alt="">
+                <div class="img-wrap img">
+                    <img src="./images/transfer/transfer-img2.jpg" alt="">
+                </div>
+            </div>
+            <div id="tab2" class="tab-panel summary">
+                <div class="img-wrap img2">
+                    <a href="./transfer2.html"></a>
+                    <img src="./images/transfer/transfer-img3.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pop full" id="pop1">
+        <div class="img1"><img src="./images/transfer/transfer-fimg1-1.jpg" alt=""></div>
+        <div class="img2"><img src="./images/transfer/transfer-fimg1-2.jpg" alt=""></div>
+        <a href="#" class="pop-close"><img src="./images/ai/icon_close.png" alt=""></a>
+    </div>
+    <script src="./res/ibk-com.js"></script>
+    <script>
+        // 즐겨찾기 on/off
+        const starButton = document.querySelectorAll('.star');
+        starButton.forEach( function(El){
+            El.addEventListener('click', function() {
+                if (El.classList.contains('on')) {
+                    El.classList.remove('on');
+                } else {
+                    El.classList.add('on');
+                }
+            })
+        });
+        
+        var popUI = function(){
+            $(document).on('click','.pop-open',function(e) {
+                $this = $(this);
+                e.preventDefault();
+                $('#pop1').addClass('on');
+                $('#pop2').removeClass('on');
+                $('#pop3').removeClass('on');
+                $('#pop4').removeClass('on') ;
+                $('body').css('overflow','hidden');
+            });
+            $(document).on('click','.pop-open2',function(e) {
+                $this = $(this);
+                e.preventDefault();
+                $('#pop1').removeClass('on');
+                $('#pop2').addClass('on');
+                $('#pop3').removeClass('on');
+                $('#pop4').removeClass('on');
+                $('body').css('overflow','hidden');
+            });
+            $(document).on('click','.pop-open3',function(e) {
+                $this = $(this);
+                e.preventDefault();
+                $('#pop1').removeClass('on');
+                $('#pop2').removeClass('on');
+                $('#pop3').addClass('on');
+                $('#pop4').removeClass('on');
+                $('body').css('overflow','hidden');
+            });
+            $(document).on('click','.pop-open4',function(e) {
+                $this = $(this);
+                e.preventDefault();
+                console.log('aaa');
+                $('#pop1').removeClass('on');
+                $('#pop2').removeClass('on');
+                $('#pop3').removeClass('on');
+                $('#pop4').addClass('on');
+                $('body').css('overflow','hidden');
+            });
+            $(document).on('click','.pop-close',function(e) {
+                $this = $(this);
+                e.preventDefault();
+                $('.pop').removeClass('on');
+                $('body').css('overflow','visible');
+            });
+        }
+        popUI();
+       
+    </script>
+</body>
+</html>

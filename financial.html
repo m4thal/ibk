@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./res/ibk-com.css">
+    <script src="./res/jquery-3.6.4.min.js"></script>
+    <title>금융관계도</title>
+    <style>
+        .container .page-wrap{padding: 20px 20px 70px;}
+        .financial-box{position: relative;margin: -16px -20px 0;}
+        .financial-box a{position: absolute; top: 10px; left: 15px; width:35px; height: 35px;}
+        .financial-tab-wrap{display: flex;justify-content: flex-end;align-items: center;margin:22px 0;}
+        /* .financial-tab-wrap .txt{color: #787878; font-size: 15px;}
+        .financial-tab-wrap .txt span{color: #1D74E8; font-weight: 700;} */
+        .financial-tab-wrap ul{display: flex;}
+        .financial-tab-wrap ul li:nth-child(1){ margin-right: 10px;}
+        .financial-tab-wrap ul li a{display: block; color: #D8D8D8; font-size: 14px;}
+        .financial-tab-wrap ul li.active a{color: #333;}
+        .financial-tab-wrap ul li a::before{ content: ""; display: inline-block; width: 20px; height: 20px; vertical-align: sub; margin-right: 4px;}
+        .financial-tab-wrap ul li a.bangsa::before{content: "";background: url(./images/financial/bangsa-icon.png) no-repeat; background-size: 100% auto;}
+        .financial-tab-wrap ul li.active a.bangsa::before{content: ""; background: url(./images/financial/bangsa-on-icon.png) no-repeat;  background-size: 100% auto;}
+        .financial-tab-wrap ul li a.list::before{content: "";background: url(./images/financial/list-icon.png) no-repeat;background-size: 100% auto;}
+        .financial-tab-wrap ul li.active a.list::before{content: ""; background: url(./images/financial/list-icon-on.png) no-repeat;background-size: 100% auto;}
+        /* .finance-btn{display: flex;padding: 18px 0px;justify-content: center;align-items: center; background-color: #1D74E8; border-radius: 10px; color: #fff; font-size: 17px; font-weight: 700;line-height: 21px; margin-top: 90px;} */
+        /* .finance-btn{position: fixed;bottom: 0;width: 375px;} */
+        /* 리스트형 */
+        #tab2{margin-top: 42px;}
+        .financial-accordion {padding: 16px 12px; background-color: #F5F5F5; border-radius: 12px; margin-bottom: 12px;}
+        .financial-accordion h2{display: flex; align-items: center;font-size: 16px; font-weight: 700; line-height: 20px;}
+        .financial-accordion h2 span{margin-left: 4px; font-weight: 400;}
+        .financial-accordion h2 a{position: relative; font-weight: 400; color: #787878; margin-left: auto; margin-right: 30px;}
+        .financial-accordion h2 a::after{content: ""; position: absolute; right: -20px;top: 50%;transform: translateY(-50%)rotate(180deg);; width: 14px; height: 14px; background: url(./images/financial/icon-up.png) no-repeat;}
+        .financial-accordion h2 a.open::after{transform: translateY(-50%);}
+        .financial-accordion h2 a span{color: #1D74E8; font-weight: 700;}
+        .financial-accordion h2::before{content: ""; display: inline-block; width: 28px; height: 28px; margin-right: 8px;}
+        .financial-accordion h2.children::before{ background: url(./images/financial/children.png) no-repeat;}
+        .financial-accordion h2.mother::before{ background: url(./images/financial/mother.png) no-repeat center / contain;}
+        .financial-accordion h2.profile::before{ background: url(./images/financial/profile.png) no-repeat;}
+        .invite-btn{display: flex;height: 52px;padding: 18px 0px;justify-content: center;align-items: center; border-radius: 10px; background-color: #E8F4FF; font-weight: 700; color: #004F9D;}
+        
+        /* 방사형 */
+        /* #tab1{margin: 0 -20px;} */
+        .wrap {max-width: 375px;height: 480px;margin: 0 auto; position: relative;}
+        .hidden {overflow: hidden;width: 100%;height: 480px;position: relative;}
+        .move-wrap {position: absolute;width: 100%;height: 480px;overflow: hidden; /* overflow-x, overflow-y 제거하고 한번에 설정 */top: 50%;left: 50%;transform: translate(-50%, -50%);}
+        .move-wrap {transition: all 0.7s ease;}
+        .move-box {position: absolute;width: 100%;height: 100%;border-radius: 50%;display: flex;justify-content: center;align-items: center;background: url(./images/financial/bg.png) no-repeat center / contain;top: -60px; left: 0;transition: top 0.4s ease, left 0.4s ease; }
+        .num {position: absolute;width: 50px;height: 50px;border-radius: 50%;cursor: pointer;transition: transform 0.3s ease; /* transform 속성에 대한 부드러운 전환 효과 */}
+        .num a {position: relative; display: inline-block;width: 100%;height: 100%;}
+        .num span{ display: block;font-size: 14px;font-weight: 500;text-align: center;margin-top: -5px; white-space: nowrap;}
+        .num.num1 {top: 17%; left: 14%; background: url(./images/financial/father.png) no-repeat center / contain;}
+        /*.num.num2 {top: 45%;left: 15%;width: 70px;height: 70px; background: url(./images/financial/invitation.png) no-repeat center / contain;} 초대하기 */
+        .num.num3 {top: 45%; left: 43%;  background: url(./images/financial/me.png) no-repeat; box-sizing: content-box;}
+        .num.num4 {top: 27%; left: 59%; background: url(./images/financial/wife.png) no-repeat center / contain}
+        /* .num.num4.sec{top: 45px; left: 260px; width: 30px; height: 30px; background: url(./images/financial/user.png) no-repeat center / contain} 지인 */
+        .num.num5 {top: 59.5%; left: 77.5%; background: url(./images/financial/mather1.png) no-repeat center / contain}
+        .num.num6 {top: 44%; left: 84%; background: url(./images/financial/brother.png) no-repeat center / contain}
+        .num.num7 {top: 53%; left: 15%; background: url(./images/financial/son1.png) no-repeat center / contain}
+        .num.num8 {top: 67.5%; left: 36%; background: url(./images/financial/son2.png) no-repeat center / contain}
+        .sub-box{opacity: 0;transition: 1s ease;}
+        /* .line{position: absolute;width: 30px;height: 1px;background: #ECF2F8;}
+        .line.line2{top:50px;left:45px;transform:rotate(22deg);}
+        .line.line3{top:65px;left:28px;transform:rotate(63deg);} 
+        .sub-num{position:absolute;width:20px;height:20px;background: url(./images/financial/user.png) no-repeat center / contain;border-radius:50%;}
+        .sub-num.sub-num2{top:70px;left:45px;}
+        .sub-num.sub-num3{top: 44px;left: 70px;} 지인 */
+        
+        /* 팝업 */
+        .pop{position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 375px; height: 100vh; display: none; transition: all 0.3s;}
+        .pop.on{display: block;}
+        .pop1 *{position: absolute;}
+        .pop1 a:nth-of-type(1){width:40px;height:40px;bottom: 348px; right: 12px;z-index: 10;} 
+        .pop1 a:nth-of-type(2){width: 100%;height: 57px;bottom: 45px; z-index: 10;}
+        .botton-pop{width: 375px;height: 417px;background: url(./images/financial/pop1.png) no-repeat;background-size: 375px auto; bottom: -100%;transition: all .3s ease;}
+        .reset-btn{position: absolute; top: 20px; left: 20px; width: 98px; height: 38px; background: url(./images/financial/reset-btn.png) no-repeat center / contain; z-index: 20; display: none;}
+        /* .pop2 article{position: absolute;width: 100%;bottom: 0;  background: #FFF;border-radius: 20px 20px 0px 0px;box-shadow: 0px -4px 8.3px 0px rgba(0, 0, 0, 0.12); padding: 25px 20px 46px;}
+        .pop2 article .header{position: relative; display: flex;align-items: center; margin-bottom: 20px;}
+        .pop2 article .header input{width: 20px; height: 20px;appearance: none; position: absolute; z-index: 1;cursor: pointer;}
+        .pop2 article .header input[type="checkbox"] + i{width: 20px; height: 20px; position: absolute;top: 50%; left: 0; transform: translateY(-50%); background: url(./images/financial/btn.png) no-repeat;background-size: contain; }
+        .pop2 article .header input[type="checkbox"]:checked  + i{ background: url(./images/financial/btn-on.png);background-size: contain;}
+        .pop2 article .header h2{color: #787878; margin-left: 24px;}
+        .pop2 article .header strong{font-size: 15px;color: #1D74E8;}
+        .pop2 article .header a{width: 24px;height: 24px;margin-left: auto; background: url(./images/financial/close-icon.png) no-repeat; background-size: 100% auto;}
+        .pop2 article .content{min-height: 264px;}
+        .pop2 article .content > div{ position: relative; padding: 12px 0; border-bottom: 1px solid #F7F7F7;}
+        .pop2 article .content > div:last-of-type{border-bottom: 0;}
+        .pop2 article .content > div img{width: 28px;}
+        .pop2 article .content > div input{width: 24px; height: 24px;appearance: none; position: absolute; z-index: 1;}
+        .pop2 article .content > div input[type="checkbox"] + i{width: 24px; height: 24px; position: absolute;top: 50%; right: 0; transform: translateY(-50%); background: url(./images/financial/btn.png) no-repeat;background-size: contain; cursor: pointer;}
+        .pop2 article .content > div input[type="checkbox"]:checked  + i{ background: url(./images/financial/btn-on.png);background-size: contain;}
+        .pop2 article .footer{margin-top: 35px;}
+        .pop2 article .footer button{display: flex; width: 100%;padding: 18px 0px;justify-content: center;align-items: center;color: #fff; background-color: #1D74E8; border-radius: 10px;}
+
+        .pop3{position: fixed;top: 50%;left: 50%;transform: translate(-50%, -50%);width: 375px;height: 100vh;background: rgba(0, 0, 0, 0.65); display: none;}
+        .pop3 img{position: relative;top: 50%;left: 50%;transform: translate(-50%, -50%); padding: 0 20px;}
+        .pop3 a{position: absolute;width: 135px;height: 52px;bottom: 30%;left: 13%;} */
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="page-wrap">
+            <div class="financial-box">
+                <img src="./images/financial/financial-tit.png" alt="">
+                <a href="./index.html"></a>
+                <img src="./images/financial/banner.png" alt="">
+            </div>
+            <div class="financial-tab-wrap">
+                <!-- <div class="txt">나와 연결된 인원 : <span>6명</span></div> -->
+                <ul class="ui-tab">
+                    <li  class="active"><a href="#tab1" class="bangsa">방사형</a></li>
+                    <li><a href="#tab2" class="list">리스트형</a></li>
+                </ul>
+            </div>
+            <div id="tab1" class="tab-panel active">
+                <div class="wrap">
+                    <div class="hidden">
+                        <div class="move-wrap"><!-- 배경 밀리는부분 -->
+                            <div class="move-box">
+                                <div class="num num1"><a href="#none"></a><span>아버지</span></div>
+                                <!-- <div class="num num2"><a href="#none" onclick="$('.pop2').addClass('on')"></a></div> 초대하기 -->
+                                <div class="num num3 this"><a href="#none"></a></div>
+                                <div class="num num4"><a href="#none"></a><span>아내</span></div>
+                                <!-- <div class="num num4 sec"><a href="#none"></a><span>지인</span></div> 지인 -->
+                                <div class="num num5" >
+                                    <a href="#none" onclick="$('.pop1').addClass('on').find('.botton-pop').stop().animate({bottom : 0},300 )">
+                                        <div class="sub-box">
+                                            <span class="line line2"></span>
+                                            <span class="line line3"></span>
+                                            <div class="sub-num sub-num2"></div>
+                                            <div class="sub-num sub-num3"></div>
+                                        </div>
+                                    </a>
+                                    <span>어머니</span>
+                                </div>
+                                <!-- <div class="num num6"><a href="#none"></a><span>어머니</span></div> -->
+                                <div class="num num7"><a href="#none"></a><span>자녀</span></div>
+                                <div class="num num8"><a href="#none"></a><span>자녀</span></div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <a href="#none" class="reset-btn" onclick="$('.pop1').removeClass('on');$('.botton-pop').animate({bottom:-100 + '%'},700);$('.move-box').stop().animate({top:-60, left:0},300).css('transform','scale(1)'); $('.num').css({'border':'0', 'transform': 'scale(1)'});$(this).css('display','none');"></a>
+                </div>
+            </div>
+            <div id="tab2" class="tab-panel">
+                <div class="accordion financial-accordion">
+                    <h2 class="mother">아내<span>성춘향</span><a href="#none" class="folding-btn open" role="button">연결 금융<span>4</span></a></h2>
+                    <div class="folding-panel">
+                        <div class="mgt15">
+                            <img src="./images/financial/txt.png" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion financial-accordion">
+                    <h2 class="children">자녀<span>기미래</span><a href="#none" class="folding-btn open" role="button">연결 금융<span>3</span></a></h2>
+                    <div class="folding-panel">
+                        <div class="mgt15">
+                            <img src="./images/financial/txt2.png" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion financial-accordion">
+                    <h2 class="profile">누나<span>기사랑</span><a href="#none" class="folding-btn" role="button">연결 금융<span>1</span></a></h2>
+                    <div class="folding-panel">
+                       
+                    </div>
+                </div>
+                <div class="accordion financial-accordion">
+                    <h2 class="profile">어머니<span>홍수정</span><a href="#none" class="folding-btn" role="button">연결 금융<span>1</span></a></h2>
+                    <div class="folding-panel">
+                       
+                    </div>
+                </div>
+                <div class="accordion financial-accordion">
+                    <h2 class="profile">아버지<span>기운센</span><a href="#none" class="folding-btn" role="button">연결 금융<span>1</span></a></h2>
+                    <div class="folding-panel">
+                       
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <div class="pop pop1">
+        <a href="#none" onclick="$('.pop1').removeClass('on').find('.botton-pop').stop().animate({bottom:-100 + '%'},700);$('.num3').click();$('.reset-btn').css('display','none');"></a>
+        <div class="botton-pop"></div>
+        <a href="#none" onclick="$('.pop1').removeClass('on').find('.botton-pop').stop().animate({bottom:-100 + '%'},700);$('.num3').click();$('.reset-btn').css('display','none');"></a>
+    </div>
+    <script src="./res/ibk-com.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+            let numElements = document.querySelectorAll('.num');
+            let moveBox = document.querySelector('.move-box');
+            const end = document.querySelector('html').scrollHeight;
+            const resetBtn = document.querySelector('.reset-btn');
+            numElements.forEach(function(element) {
+                element.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    // 모든 num 요소 원래 사이즈
+                    numElements.forEach(function(num) {
+                        num.style.transform = 'scale(1)';
+                        num.style.border = '0';
+                    });
+                    // 클릭된 num 요소의 위치를 move-box의 정중앙으로 이동
+                    let rect = moveBox.getBoundingClientRect();
+                    let targetRect = this.getBoundingClientRect();
+                    let moveX = rect.left + rect.width / 2 - (targetRect.left + targetRect.width / 2);
+                    let moveY = rect.top + rect.height / 2 - (targetRect.top + targetRect.height / 2);
+
+                    window.scrollTo({ top: end, behavior: 'smooth' }); // 클릭시 HTML 최하단으로 이동 
+                    
+                    moveBox.style.top = moveY + -80 + 'px';
+                    moveBox.style.left = moveX + 'px';
+                    this.style.transform = 'scale(1.3)';
+                    this.style.border = '3px solid rgb(58, 146, 233)';
+                    
+                    setTimeout( function(){
+                        moveBox.style.transform = 'scale(1.1)';
+                        moveBox.style.transition = '.8s';
+                    },300)
+
+                    document.querySelector('.sub-box').style.opacity = '1';   
+                    if(this.classList.contains('this') ){ // 나 클릭시 
+                        this.style.transform = 'scale(1)';
+                            setTimeout( function(){
+                                moveBox.style.transform = 'scale(1)';
+                        },350)
+                        
+                    }
+                    if(this.classList.contains('num5') ){ // 매형 클릭시, 2024-08-23 어머니로 변경
+                        moveBox.style.top = moveY + -170 + 'px';
+                        moveBox.style.left = moveX + 30 + 'px';
+                        moveBox.style.transition = '0.8s';
+                        setTimeout( function(){
+                            resetBtn.style.display = 'block';
+                    },350)
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./res/ibk-com.css">
+    <link rel="stylesheet" href="./res/swiper-bundle.min.css" />
+    <script src="./res/swiper-bundle.min.js"></script>
+    <script src="./res/jquery-3.6.4.min.js"></script>
+    <title>AI 금융비서</title>
+    <style>
+        .container.ai {background:linear-gradient(0deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.25) 100%), #114287;}
+        .container.ai .page-wrap {padding:0 0 124px 0;}
+        .img-wrap {position:relative;}
+        .img-wrap.set a {position:absolute;top:6%;right:4%;width:10%;height:22%;z-index:1;}
+        .checkbox {position:absolute;top:10.3%;right:40px;width: 28px; height: 28px;}
+        .checkbox input{width: 28px; height: 28px;appearance: none; position: absolute; z-index: 1;}
+        .checkbox input[type="checkbox"] + i{width: 28px; height: 28px; position: absolute;top: 50%; right: 0; transform: translateY(-50%); background: url(./images/ai/checkbox_off.png) no-repeat;background-size: contain; cursor: pointer;}
+        .checkbox input[type="checkbox"]:checked  + i{ background: url(./images/ai/checkbox_on.png);background-size: contain;}
+
+        .tab_menu{position:relative;width:100%;padding:0 20px}
+        .ai .tab_menu .menu_list{position:absolute;display:block;white-space:nowrap;left:20px;box-sizing:border-box;z-index:5}
+        .ai .tab_menu .menu_list li{display:inline-block;width:auto;height:100%;}
+        .ai .tab_menu .menu_list li + li{margin-left:2px;}
+        .ai .tab_menu .menu_list .tab_btn{position:relative;display:inline-block;width:108px;height:44px;padding:12px 0;border-radius:12px;font-size:15px;font-weight:400;line-height:20px;color:rgba(255,255,255,.8);background:rgba(255, 255, 255, 0.20);text-align:center;z-index:10}
+        .ai .tab_menu .menu_list li.active .tab_btn{color:#333;background:none;}
+        .ai .ico-plus {display:inline-block;margin-top:1px;width:18px;height:18px}
+        .ai .tab_contents .cont{display:none;z-index:0;margin:-6px}
+        .ai .tab_contents .cont.active{display:block;}
+        .ai .tab_contents .top_conts img {margin-top:-6px}
+        .ai .tab_btn.last {position:absolute;top:0;right:20px;display:inline-block;width:108px;height:44px;padding:12px 0;border-radius:12px;font-size:15px;font-weight:400;line-height:20px;color:rgba(255,255,255,.8);background:rgba(255, 255, 255, 0.20);text-align:center;z-index:10}
+        
+        .ai .tab2 {position:relative;padding:0;overflow:hidden}
+        .ai .tab2 .tab_conts {position:relative}
+        .ai .tab2 .tab_conts .cont {margin:0}
+        .ai .tab2 .menu_list li {position:absolute;width:auto;z-index:10}
+        .ai .tab2 .menu_list li:first-child {top:27px;right:80px;height:69px;width:65px;}
+        .ai .tab2 .menu_list li.active:first-child {top:27px;right:80px;height:69px;width:65px;}
+        .ai .tab2 .menu_list li:nth-child(2) {top:96px;right:40px;height:69px;width:65px;}
+        .ai .tab2 .menu_list li.active:nth-child(2) {top:74px;right:40px;height:69px;width:65px;}
+        .ai .tab2 .menu_list .tab_btn {width:100%}
+        .ai .tab2 .menu_list {left:auto;width:100%}
+        .ai .tab2 .tab_conts .cont{display:none;z-index:0;}
+        .ai .tab2 .tab_conts .cont.active{display:block;}
+
+
+        .ai .accordion {position:relative; margin:0 20px;border-radius:12px;height:58px;background: rgba(255, 255, 255, 0.20);color:#fff;box-sizing: border-box;}
+        .ai .accordion a {position:relative;display:block;font-size:16px;font-weight:400;line-height:58px;padding:0 12px;width:100%;box-sizing: border-box;}
+        .ai .accordion a span {position:absolute;right:12px;top:50%;transform: translateY(-50%);width:14px;height:14px}
+        .ai .accordion p {position:relative;display:block;font-size:16px;font-weight:400;line-height:58px;padding:0 12px;width:100%;box-sizing: border-box;}
+        .ai .accordion p span {position:absolute;right:12px;top:50%;transform: translateY(-50%);width:14px;height:14px}
+        /* .ai .accordion .folding-btn.open + .folding-panel {margin-top:-58px} */
+        .ai .accordion .folding-panel {display:none;}
+        .ai .accordion .folding-panel div {opacity:0}
+        .ai .accordion .folding-panel .close {position:absolute;top:2%;right:6%;width:10%;height:12%;z-index:5}
+        .ai .accordion.on {height:100%}
+        .ai .accordion.on a {display:none;z-index:-1;opacity:0}
+        .ai .accordion.on .folding-panel {position:relative;}
+        .ai .accordion.on .folding-panel div {opacity:1}
+        .ai .accordion  +  .accordion {margin-top:16px}
+        .ai .accordion:last-child {margin-bottom:50px}
+        .mike {position:sticky;bottom:124px;left:0;margin-left:20px;margin-right:20px}
+        .mike a {display:flex;color:#fff;height:60px;padding:0 18px 0;font-size:16px;font-weight:400;line-height:20px;background: rgba(29, 116, 232, 0.50);border-radius:30px;-webkit-backdrop-filter: blur(12.5px);backdrop-filter: blur(12.5px);align-items: center;justify-content: space-between}
+        .mike a .icon {display:inline-block;width:24px;height:24px}
+        .mike.on .txt {display:none}
+        .mike.on {width:60px;height:60px;left:100%}
+         /* 팝업 */
+        .pop{position: fixed; bottom: -100%; left: 50%; transform: translateX(-50%); width: 376px; height: 100vh;z-index:100;background:rgba(0,0,0,.65);}
+        .pop.on{bottom:0;display:flex !important; align-items: flex-end;}
+        .pop.off{bottom:-100%}
+        .pop .img {margin:20px -20px 0}
+        .pop .swiper.tab-btn{position:relative;cursor:pointer;box-sizing:border-box;letter-spacing:0;margin:0 -20px}
+        .pop .swiper.tab-btn::-webkit-scrollbar{display:none;}
+        .pop .swiper.tab-btn .swiper-wrapper{position:relative;display:flex;white-space:nowrap;box-sizing:border-box;font-size:0;overflow-x:visible;-webkit-overflow-scrolling:touch;}
+        .pop .swiper.tab-btn .swiper-slide{width:auto;padding:8px 12px;box-sizing:border-box;border-radius:15px;font-size:13px;font-weight:500;line-height:15px;color:#3B41ED;background-color:#fff;}
+        .pop .mike2 {display:block;margin-top:24px}
+        .pop .mike2 {display:flex;color:#fff;height:60px;padding:0 20px 0;font-size:16px;font-weight:400;line-height:20px;background:#5765FF;border-radius:30px;-webkit-backdrop-filter: blur(12.5px);backdrop-filter: blur(12.5px);align-items: center;justify-content: space-between}
+        .pop .mike2 .icon {display:inline-block;width:24px;height:24px;vertical-align:middle;cursor:pointer}
+        .pop .mike2 .arr {display:inline-block;width:36px;height:36px;background:url(./images/ai/aiup-off.png) no-repeat;background-sizE:36px 36px;vertical-align:middle;margin-left:12px}
+        .pop .mike2.on .arr {width:36px;height:36px;background:url(./images/ai/aiup-on.png) no-repeat;background-sizE:36px 36px;vertical-align:middle;margin-left:12px;}
+        .pop .mike2 .placeholder {vertical-align:center;line-height:60px;color:rgba(255,255,255,.7)}
+        .typing-txt {display:none;color:transparent}
+        .typing {display:none;animation-duration:0.5s;animation-iteration-count:infinite;}
+        .typing.on {display:block;white-space:nowrap;animation:blink-caret 0.7s step-end infinite;}
+        @keyframes blink-caret {
+            from, to { border-color:transparent;}
+        }
+        .pop .list {display:none;}
+        .pop .list li img{border-radius:12px}
+        .pop .list li + li {margin-top:12px}
+        .pop .list.on {display:block;}
+        .pop .list.on li {transform: translateY(0);}
+        .pop .list li.img1 {animation: fadeIn 1s forwards;transform: translateY(100%);opacity: 0;}
+        .pop .list li.img2 {animation: fadeIn 1s forwards;animation-delay:.7s;transform: translateY(100%);opacity: 0;}
+        .pop .list li.img3 {animation: fadeIn 1s forwards;animation-delay:1.2s;transform: translateY(100%);opacity: 0;}
+        .pop .list li.img4 {animation: fadeIn 1s forwards;animation-delay:1.7s;transform: translateY(100%);opacity: 0;}
+        .pop .list li.img5 {animation: fadeIn 1s forwards;animation-delay:2.2s;transform: translateY(100%);opacity: 0;}
+        .pop .list.on li.img1 {transform: translateY(0);}
+        .pop .list.on li.img2 {transform: translateY(0);}
+        .pop .list.on li.img3 {transform: translateY(0);}
+        .pop .list.on li.img4 {transform: translateY(0);}
+        .pop .list.on li.img5 {transform: translateY(0);}
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+        .pop article {transform: translateY(100%);transition: all 0.5s ease;border-radius:12px 12px 0px 0px;background:linear-gradient(92deg, #EBF5FF 38.68%, #DCEEFF 100%);width:100%;max-height: 100%;padding:20px 20px 0;box-sizing:border-box}
+        .pop.on article {transform: translateY(0);transition: all 0.5s ease;}
+        #pop2 article {position:relative;transform:none;height:598px}
+        .pop-txt {display:block;text-align:center;padding:140px 89px 0 89px;animation:fadeimg 1.3s forwards;}
+        .pop-txt img {width:100%}
+        .txt2 {position:absolute;text-align:center;top:160px;left:0;height:39px;width:100%;transition:all .4s;}
+        .txt2.on {display:block;top:364px;transition:all .4s;overflow:hidden;height:46px;}
+        .txt2.on .typing2 {font-size:16px;font-weight:700;line-height:20px;}
+        .typing2 {position:relative;white-space:nowrap;animation-name:blink-caret2;font-size:33px;font-weight:700;line-height:39px;text-align:center;color:#3B41ED}
+        @keyframes blink-caret2 {
+            0% {border-color:transparent}
+            10% {border-color:transparent}
+            100% {border-color:transparent}
+        }
+        .txt2.on + .list {display:block;}
+        #pop2 .list.on li.img1 {transform: translateY(0);}
+        #pop2 .list.on li.img2 {transform: translateY(0);}
+        #pop2 .list.on li.img3 {transform: translateY(0);}
+        #pop2 .list.on li.img4 {transform: translateY(0);}
+        #pop2 .list.on li.img5 {transform: translateY(0);}
+        #pop2 .list {position:absolute;top:56px;left:20px;right:20px;height:39px;} 
+        #pop2 .list.on.on2 li.img1,
+        #pop2 .list.on.on2 li.img3,
+        #pop2 .list.on.on2 li.img4 {display:none}
+        #pop2 .list.on.on2 {top:272px;animation-delay:1.2s;}
+        #pop2 .sound {position:absolute;transform:translateX(-50%);left:50%;bottom:24px;width:160px;height:160px;}
+        #pop2 .sound .round {display:flex;border-radius:50%;width:100%;height:100%}
+        #pop2 .sound .round1 {position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);display:block;width:85px;height:85px;border-radius:50%;z-index:5}
+        #pop2 .sound .round1 img {width:100%;}
+        #pop2 .sound .round2 {position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);display:block;border-radius:50%;z-index:4;background:linear-gradient(113deg, #5765FF37.75%, #1D74E879.29%);animation: scale1 1s linear infinite;-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);}
+        #pop2 .sound .round3 {position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);display:block;width:131px;height:131px;border-radius:50%;z-index:3;background:linear-gradient(113deg, #5765FF37.75%, #1D74E879.29%);animation: scale2 1s linear infinite;backdrop-filter:blur(5px);}
+        @keyframes scale1 {
+            0% {width:101px;height:101px;opacity:.4}
+            100% {width:131px;height:131px;opacity:.2;}
+        }
+        @keyframes scale2 {
+            0% {width:131px;height:131px;opacity:.15}
+            100% {width:160px;height:160px;opacity:0;}
+        }
+        .pop-close {position:absolute;top:20px;right:20px;width:24px;height:24px}
+        /* .pop3{position: fixed;top: 50%;left: 50%;transform: translate(-50%, -50%);width: 375px;height: 100vh;background: rgba(0, 0, 0, 0.65); display: none;} */
+        #pop3 article {position:relative;transform:none;height:598px;padding:0}
+        #pop3.on .press {position:absolute;top:144px;left:77px;}
+        #pop3.on .press ul {width:220px;height:20px;}
+        #pop3.on .press ul li {float:left;width:20px;height:20px;border-radius:50%;opacity: 0;animation:slideIn 2s .5s forwards;}
+        #pop3.on .press ul li + li {margin-left:20px}        
+        #pop3.on .press li:nth-child(1) {animation-delay:.1s;background:#5765FF}
+        #pop3.on .press li:nth-child(2) {animation-delay:.4s;background:#5765FF}
+        #pop3.on .press li:nth-child(3) {animation-delay:.8s;background:#5765FF}
+        #pop3.on .press li:nth-child(4) {animation-delay:1.2s;background:#5765FF}
+        #pop3.on .press li:nth-child(5) {animation-delay:1.6s;background:#5765FF}
+        #pop3.on .press li:nth-child(6) {animation-delay:2s;background:#5765FF}
+        @keyframes slideIn {
+            from {opacity: 1; }
+            to {opacity: 1; }
+        }
+        #pop3.on .pop4-bt {position:absolute;top:236px;left:20px;right:20px;height:54px;}
+        #pop4.on{ align-items:center;padding:0 28px}
+        #pop4.on .pop-close {position:absolute;top:79%;right:20px;left:20px;width:auto;height:58px;}
+    </style>
+</head>
+<body>
+    <div class="container type ai">
+       
+        <div class="page-wrap ai">
+            <div class="img-wrap set">
+                <!-- <a href="ai-set.html"></a> -->
+                <img src="./images/ai/ai-img1.jpg" alt=""> 
+            </div>
+            <div class="tab_menu">
+                <ul class="menu_list">
+                    <li class="active">
+                        <a href="#tab-1" class="tab_btn">함께걷기</a>
+                    </li>
+                    <li>
+                        <a href="#tab-2" class="tab_btn">환율정보</a>
+                    </li>
+                </ul>
+                <div class="tab_contents">
+                    <div id="tab-1" class="cont active">
+                        <div class="top_conts">
+                            <img src="./images/ai/ai-tab1.png" alt="">
+                        </div>
+                    </div>
+                    <div id="tab-2" class="cont">
+                        <div class="top_conts">
+                            <img src="./images/ai/ai-tab2.png" alt="">
+                        </div>   
+                    </div>
+                </div>
+                <div class="tab_btn last"><img src="./images/ai/ico-plus.png" alt="" class="ico-plus"></div>
+            </div>
+            <div class="img-wrap">
+                <div class="checkbox">
+                    <label for="check1">
+                        <input type="checkbox" id="check1">
+                        <i></i>
+                    </label>
+                </div>
+                <img src="./images/ai/ai-img2.jpg" alt="">
+                <img src="./images/ai/ai-img3.jpg" alt=""> 
+            </div>
+            <div class="img-wrap">
+                <div class="tab2">
+                    <ul class="menu_list">
+                        <li class="active"><a href="#tab2-1" class="tab_btn"></a></li>
+                        <li><a href="#tab2-2" class="tab_btn"></a></li>
+                    </ul>
+                    <div class="tab_conts">
+                        <div id="tab2-1" class="cont active">
+                            <img src="./images/ai/ai-img3-1.jpg" alt="">
+                        </div>
+                        <div id="tab2-2" class="cont">
+                            <img src="./images/ai/ai-img3-2.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="img-wrap"> 
+                <img src="./images/ai/ai-img7.jpg" alt="">
+                <img src="./images/ai/ai-img8.jpg" alt="">
+            </div>
+            <div class="accordion">
+                <a href="#none" class="folding-btn">환전 이벤트 [~9/30]<span><img src="./images/ai/ai-acco-arr.png" alt=""></span></a>
+                <div class="folding-panel">
+                   <div><img src="./images/ai/ai-img6.png" alt=""></div> 
+                </div>    
+            </div>
+            <div class="accordion">
+                <p class="folding-btn">급여일 [7/10]<span><img src="./images/ai/ai-acco-arr.png" alt=""></span></p> 
+            </div>
+            <div class="accordion">
+                <p class="folding-btn">예금 만기 [7/21]<span><img src="./images/ai/ai-acco-arr.png" alt=""></span></p>
+            </div>
+            <!-- <div class="img-wrap">
+                <img src="./images/ai/ai-img4.jpg" alt=""> 
+            </div> -->
+        </div>
+        <div class="mike">
+            <a href="#pop1" class="pop-open"><span class="txt">궁금한 것이 있나요?</span><span class="icon"><img src="./images/ai/ico-mike.png" alt=""></span></a>
+        </div>
+        <nav>
+            <ul>
+                <li>
+                    <a id="home" href="./index.html">
+                        <i aria-label="홈 탭" class="home"></i>
+                        <span>홈</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./asset-1.html">
+                        <i aria-label="자산 탭" class="assets"></i>
+                        <span>자산</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./ai.html">
+                        <i aria-label="AI 탭" class="ai on"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="./product.html">
+                        <i aria-label="상품 탭" class="goods"></i>
+                        <span>상품</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./lounge.html">
+                        <i aria-label="라운지 탭" class="lounge"></i>
+                        <span>라운지</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="pop" id="pop1">
+        <article> 
+            <div class="section sec1">
+                <div class="swiper tab-btn">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">외화환전</div>
+                        <div class="swiper-slide">적금 200,000원 이체</div>
+                        <div class="swiper-slide">자동이체</div>
+                        <div class="swiper-slide">공과금 납부</div>
+                    </div>
+                </div>
+                <div class="list">
+                    <ul>
+                        <li class="img1"><img src="./images/ai/ai-list1.jpg" alt=""></li>
+                        <li class="img2"><img src="./images/ai/ai-list2.jpg" alt=""></li>
+                        <li class="img3"><img src="./images/ai/ai-list3.jpg" alt=""></li>
+                        <li class="img4"><img src="./images/ai/ai-list4.jpg" alt=""></li>
+                    </ul>
+                </div>
+                <div class="mike2">
+                    <a href="#" class="txt" id="startTyping">
+                        <span class="placeholder">궁금한 것이 있나요?</span>
+                        <span class="typing"></span>
+                    </a>
+                    <div>
+                        <a haref="#pop2" class="icon pop-open2"><img src="./images/ai/ico-mike.png" alt=""></a>
+                        <span class="arr"></span>
+                    </div>
+                </div>
+                <div class="img"><img src="./images/ai/ai-key.jpg" alt=""></div>
+            </div>
+        </article>
+    </div>
+
+    <div class="pop" id="pop2">
+        <article>  
+            <div class="pop-txt"><img src="./images/ai/ai-txt.png" alt=""></div>
+            <div class="txt2">
+                <span class="typing2"></span>
+            </div>
+            <div class="list">
+                <ul>
+                    <li class="img1"><img src="./images/ai/ai-list1.jpg" alt=""></li>
+                    <li class="img2"><a href="#pop3" class="pop-open3"><img src="./images/ai/ai-list2.jpg" alt=""></a></li>
+                    <li class="img3"><img src="./images/ai/ai-list3.jpg" alt=""></li>
+                    <li class="img4"><img src="./images/ai/ai-list4.jpg" alt=""></li>
+                </ul>
+            </div>
+            <div class="sound">
+                <a href="#" class="round" id="sBtn">
+                    <span class="round1"><img src="./images/ai/ai_sound.png" alt=""></span>
+                    <span class="round2"></span>
+                    <span class="round3"></span>
+                </a>
+            </div>
+            <a href="#" class="pop-close"><img src="./images/ai/icon_close.png" alt=""></a>
+        </article>
+    </div>
+
+    <div class="pop" id="pop3">
+        <article>  
+            <div class="img-wrap">
+                <div class="press">
+                    <ul>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </div>
+                <a href="#pop4" class="pop-open4 pop4-bt"></a>
+                <img src="./images/ai/ai-pop-pass.png" alt="">
+            </div> 
+            <a href="#" class="pop-close"><img src="./images/ai/icon_close.png" alt=""></a>
+        </article>
+    </div>
+    <div class="pop" id="pop4">
+        <div class="img-wrap">
+            <img src="./images/ai/ai-pop-finish.png" alt="">
+            <a href="#" class="pop-close"></a>
+        </div>
+    </div>
+
+    <script src="./res/ibk-com.js"></script>
+    <script>
+
+ 
+    // window.onload = () => {
+    //     // 상단 탭 메뉴
+    //     const tabMenu = document.querySelectorAll(".tab_menu ul li");
+    //     const tabContent = document.querySelectorAll(".tab_contents .cont");
+
+    //     tabMenu.forEach((item, index) => {
+    //         item.addEventListener("click", (e) => {
+    //             e.preventDefault(); // a
+    //             tabContent.forEach((content) => {
+    //                 content.classList.remove("active");
+    //             });
+    //             tabMenu.forEach((content) => {
+    //                 content.classList.remove("active");
+    //             });
+
+    //             tabMenu[index].classList.add("active");
+    //             tabContent[index].classList.add("active");
+    //         });
+    //     });
+
+    // } 
+    window.onload = () => {
+       
+       
+    }   
+    $(function(){
+        accordion();
+        mikebt();
+        popUI();
+        tab1();
+        tab2();
+    });
+    function tab1() {
+        const tabMenu = document.querySelectorAll(".tab_menu ul li");
+        const tabContent = document.querySelectorAll(".tab_contents .cont");
+
+        tabMenu.forEach((item, index) => {
+            item.addEventListener("click", (e) => {
+                e.preventDefault(); // a
+                tabContent.forEach((content) => {
+                    content.classList.remove("active");
+                });
+                tabMenu.forEach((content) => {
+                    content.classList.remove("active");
+                });
+
+                tabMenu[index].classList.add("active");
+                tabContent[index].classList.add("active");
+            });
+        });
+    }
+    function tab2() {
+        const tab2 = document.querySelectorAll(".tab2 ul li");
+        const tabCont2 = document.querySelectorAll(".tab_conts .cont");
+
+        tab2.forEach((item, index) => {
+            item.addEventListener("click", (e) => {
+                e.preventDefault(); // a
+                tabCont2.forEach((content) => {
+                    content.classList.remove("active");
+                });
+                tab2.forEach((content) => {
+                    content.classList.remove("active");
+                });
+
+                tab2[index].classList.add("active");
+                tabCont2[index].classList.add("active");
+            });
+        });
+    }
+    function accordion() {
+        $('.accordion').on('click', function (e) {
+        e.preventDefault();
+        if ($(this).hasClass('on')) {
+            $(this).removeClass('on');
+            $(this).closest('.accordion').find('.folding-panel').stop().slideUp(300);
+        } else {
+            $(this).addClass('on');
+            $(this).closest('.accordion').find('.folding-panel').stop().slideDown(300);
+        }
+        });
+    }
+   
+    function mikebt(){
+        $(window).scroll(function(){          
+            if($(this).scrollTop() > 50){$(".mike").addClass('on')}           
+            else{$(".mike").removeClass('on');}
+        });
+    }
+   
+
+    var popUI = function(){
+        $(document).on('click','.pop-open',function(e) {
+            $this = $(this);
+            e.preventDefault();
+            $('#pop1').addClass('on');
+            $('#pop2').removeClass('on');
+            $('#pop3').removeClass('on');
+            $('#pop4').removeClass('on');
+            $('body').css('overflow','hidden');
+        });
+        $(document).on('click','.pop-open2',function(e) {
+            $this = $(this);
+            e.preventDefault();
+            $('#pop1').removeClass('on');
+            $('#pop2').addClass('on');
+            $('#pop3').removeClass('on');
+            $('#pop4').removeClass('on');
+            $('body').css('overflow','hidden');
+        });
+        $(document).on('click','.pop-open3',function(e) {
+            $this = $(this);
+            e.preventDefault();
+            $('#pop1').removeClass('on');
+            $('#pop2').removeClass('on');
+            $('#pop3').addClass('on');
+            $('#pop4').removeClass('on');
+            $('body').css('overflow','hidden');
+        });
+        $(document).on('click','.pop-open4',function(e) {
+            $this = $(this);
+            e.preventDefault();
+
+            $('#pop1').removeClass('on');
+            $('#pop2').removeClass('on');
+            $('#pop3').removeClass('on');
+            $('#pop4').addClass('on');
+            $('body').css('overflow','hidden');
+        });
+        $(document).on('click','.pop-close',function(e) {
+            $this = $(this);
+            //e.preventDefault();
+            $('.pop').removeClass('on');
+            $('body').css('overflow','visible');
+        });
+        $(document).on('click','.mike2 > .txt',function(e) {
+            $this = $(this);
+            e.preventDefault();
+            $(this).find('.placeholder').css('display','none');
+            $(this).find('.typing').addClass('on');
+            $(this).parents('.mike2').addClass('on')
+	    });
+    }
+   
+
+    const swiperTab = new Swiper('.tab-btn', {
+        slidesPerView: 'auto',
+        freeMode: true,
+        grabCursor: true,
+        spaceBetween: 8,
+        slidesOffsetBefore: 20
+       
+    });
+
+    function typingTxt() {
+        const content = "내가 최근에 이체했던";
+        const text = document.querySelector(".typing");
+        let i = 0;
+        const speed = 80;
+
+        function typing(){
+            if (i < content.length) {
+                    text.innerHTML += content.charAt(i);
+                    i++;
+                    setTimeout(typing, speed);
+            } else {
+                $('.swiper').css('display', 'none') 
+                $('#pop1 .list').addClass('on')
+            }
+        }
+        typing(); // 타이핑 효과 시작
+    }
+    $('#startTyping').on('click', function(e) {
+        e.preventDefault(); // 기본 링크 동작 방지
+        const $text = $('.typing');
+        if ($text.text() === "") { // 텍스트가 비어있을 때만 타이핑 효과 시작
+            typingTxt();
+        }
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+        function typingTxt2() {
+            const content = "내가 최근에 이체했던";
+            const additionalContent = " 홍수정에게<br> 같은 금액으로 이체해줘<br>";
+            const text = document.querySelector('.typing2');
+            const container = document.querySelector('.txt2');
+            let i = 0;
+            const speed = 80;
+
+            function typing2() {
+                if (i < content.length) {
+                    text.innerHTML += content.charAt(i);
+                    i++;
+                    setTimeout(typing2, speed);
+                    $('.pop-txt').css('display','none')
+                } else {
+                    i = 0;  // 인덱스 리셋
+                    container.classList.add('on'); 
+                    $('#pop2 .list').addClass('on');
+                    setTimeout(typingAdditional, 2200);
+                }
+            }
+
+            function typingAdditional() {
+                if (i < additionalContent.length) {
+                    if (additionalContent.charAt(i) === '<') {
+                        const tagEnd = additionalContent.indexOf('>', i);
+                        if (tagEnd !== -1) {
+                            text.innerHTML += additionalContent.slice(i, tagEnd + 1);
+                            i = tagEnd + 1;
+                        }
+                    } else {
+                        text.innerHTML += additionalContent.charAt(i);
+                        i++;
+                    }
+                    setTimeout(typingAdditional, speed);
+                } else {
+                    $('#pop2 .list').addClass('on2'); // 타이핑이 끝나면 클래스 추가
+                }
+            }
+            typing2();  // 타이핑 애니메이션 시작
+        }
+
+        const sBtn = document.getElementById('sBtn');
+        sBtn.addEventListener('click', typingTxt2);
+    }); 
+
+   
+    
+    </script>
+  
+</body>
+</html>

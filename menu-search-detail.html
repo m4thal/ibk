@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./res/ibk-com.css">
+    <script src="./res/jquery-3.6.4.min.js"></script>
+    <title>전체메뉴 - 키워드검색결과</title>
+    <style>
+        .page-wrap.search-detail{padding: 0 20px 150px;}
+        hr{border:1px solid #E5E8EC;margin: 40px -20px;}
+        .move{position: relative; margin: 0 -20px;}
+        .move a{position: absolute;width: 40px;height: 40px;top: 15px;left: 10px;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="page-wrap search-detail">
+             <div class="move">
+                <img src="./images/menu/apppbar2.png" alt="">
+                <a href="./menu-search.html" role="button"></a>
+             </div>
+
+             <div>
+                <img src="./images/menu/tit6.png" alt="">
+             </div>
+             <div class="mgt12">
+                <img src="./images/menu/txt1.png" alt="">
+             </div>
+             <hr>
+             <div>
+                <img src="./images/menu/tit7.png" alt="">
+             </div>
+             <div class="mgt12">
+                <img src="./images/menu/txt2.png" alt="">
+             </div>
+        </div>
+    </div>
+    <script src="./res/ibk-com.js"></script>
+    <script>
+        // 버튼 요소를 가져옵니다.
+        const checkeddButton = document.querySelectorAll('input');
+        // 클릭 이벤트 리스너를 추가합니다.
+        checkeddButton.forEach( function(El){
+            El.addEventListener('change', function(e) {
+                if(!e.target === El.checked ){
+                    El.parentElement.style.background = '#F7F7F7';
+                    El.parentElement.style.color = '#333';
+            }else{
+                El.parentElement.style.background = '#F0F6FF';
+                El.parentElement.style.color = '#0F53A8';
+            }
+            })
+        });
+    </script>
+</body>
+</html>
