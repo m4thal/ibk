@@ -10,17 +10,32 @@
     </head>
     <body>
         <div class="container">
-            <div id="animContainer" style="border:1px solid red;width:100px;height:100px"></div>
+            <div id="alram" style="border:1px solid red;width:100px;height:100px"></div>
+            <div id="box" style="border:1px solid red;width:100px;height:100px"></div>
+            <div id="button" style="border:1px solid red;width:100px;height:100px"></div>
         </div>
     </body>
     <script>
-        let anmation = bodymovin.loadAnimation({
-            container : document.getElementById('animContainer'),
+        let lottieAni1 = bodymovin.loadAnimation({
+            container : document.getElementById('alram'),
+            renderer : 'svg',
+            loop : false,
+            autoplay : true,
+            path: './images/alram.json' 
+        })
+        let lottieAni2 = bodymovin.loadAnimation({
+            container : document.getElementById('box'),
             renderer : 'svg',
             loop : true,
             autoplay : true,
             path: './images/box.json' 
-        });​
+        })
+        let lottieAni3 = bodymovin.loadAnimation({
+            container : document.getElementById('button'),
+            renderer : 'svg',
+            loop : true,
+            autoplay : true,
+            path: './images/button.json' 
+        })
     </script>
 </html>
-   
