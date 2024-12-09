@@ -46,8 +46,7 @@ body{height:100vh;font-size:1.6rem; font-family:'Pretendard', sans-serif; line-h
 
 /* 하단 메인 네비게이션 */
 .bottom_nav{position:fixed;bottom: 0;;max-width:375px;height:114px;background:#fff;border-radius: 20px 20px 0 0;border-top:1px solid #e1e3ea; z-index: 100;box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.20);}
-.bottom_nav.type2 {position:fixed;bottom: 0;width:100%; height:98px;border-radius:32px 32px 0 0;box-shadow:none; }
-
+.bottom_nav.type2 {position:fixed;bottom:0;width:100%;height:98px;border-radius:32px 32px 0 0;box-shadow:none}
 .bottom_nav .nav_wrap {position:relative}
 .bottom_nav .nav_wrap:after {content:'';display:block;width:100%;height:34px;background:url(../images/bottom_bar.png) no-repeat center bottom;background-size:100% 34px}
 .bottom_nav .nav_wrap img {vertical-align:top}
