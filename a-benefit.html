@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./res/ibk-com.css">
+        <script src="./res/jquery-3.6.4.min.js"></script>
+        <script src="./res/lottie.min.js"></script>
+        <title>혜택</title>
+
+        <style>
+            .myPoints{position:relative;padding:20px 20px 44px 20px;}
+            .myPoints::before{content:"";position:absolute;top:0;left:0;right:0;bottom:0;width:100%;height:100%;background:url("./images/A/benefit/linearBg.png") 0 0 / 100%;z-index:-1;}
+            .myPoints .nums{position:absolute;top:57px;font-size:33px;font-weight:700;line-height:39px;color:#1D74E8;}
+            .myPoints .img_box{margin-top:28px;box-shadow:0px 0px 12px 0px rgba(0, 0, 0, 0.08);border-radius:12px;}
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <img src="./images/header.png" alt="">
+            </header>
+            <div class="top_menu">
+                <img src="./images/A/benefit/gnb_sub.png" alt="">
+            </div>
+            <div class="contents">
+
+                <div class="myPoints">
+                    <img src="./images/A/benefit/myPoints01.png" alt="" style="width:172px;height:99px">
+                    <div class="nums" data-count="23450" data-delay="300">23,450<span class="one">P</span></div>
+                    <img class="img_box" src="./images/A/benefit/myPoints02.png" alt=""">
+                </div>
+
+            </div>
+        </div>
+    </body> 
+    <script>
+        //숫자 카운트 애니메이션
+        function count() {
+            $('.nums').each(function() {
+            const   $this = $(this),
+                    countTo = $this.attr('data-count');
+                    countDelay = $this.attr('data-dealy'),
+                    delaySeconds = parseInt(countDelay) || 0; //변수에서 얻은 값을 정수로 변환하고, 이 변환이 실패할 경우 또는 값이 없을 경우 0을 반환
+                    setTimeout(function() {
+                        $({
+                            countNum: $this.text()
+                        }).animate({
+                            countNum: countTo
+                        }, {
+                            duration: 500,
+                            easing: 'linear',
+                            step: function() {
+                                $this.text(Math.floor(this.countNum));
+                            },
+                            complete: function() {
+                                $this.text(this.countNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')).append('<span class="one">P</span>');
+                                // 3자리 마다 콤마 표시 적용
+                            }
+                        });
+                    }, delaySeconds); 
+
+                });
+        }
+        count();
+    </script>
+</html>
