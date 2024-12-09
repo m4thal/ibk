@@ -6,13 +6,68 @@
         <link rel="stylesheet" href="./res/ibk-com.css">
         <script src="./res/jquery-3.6.4.min.js"></script>
         <script src="./res/lottie.min.js"></script>
+        <script src="./res/ibk-com.js"></script>
         <title>홈</title>
+
+        <style>
+            .container{background-color: #DDE8F4;}
+            .page_wrap{padding:10px 20px 0px;}
+            .alram_box{display:flex;align-items:center;justify-content:space-between;}
+            .alram_box .txt_class img{width:78px;}
+            .alram_box .svg_wrap{display:flex;}
+            .banner_wrap{position:relative;margin-top:32px; overflow: hidden; opacity: 0; animation: banner 1s 0.5s ease-out forwards; transition: 0.5s;}
+            .banner_wrap .play{position:absolute; transition: 0.3s;} 
+            .banner_wrap .play.play1{width:296px;top:14px;left:-180px; animation: txt 0.6s 1s cubic-bezier(0, 0, 0.58, 1) forwards;}
+            .banner_wrap .play.play2{width:46px;top:18px;right:28px; margin-right: -90px; animation: play 0.5s 1s forwards; transition: 0.5s;}
+            .banner_wrap .play.play3{width:15px;top:49px;right:23px; transform: scale(0);opacity: 0; animation: opacity 0.4s 1.5s cubic-bezier(0.075, 0.82, 0.165, 0.5) forwards;}
+            .banner_wrap .play.play4{width:13px;top:38px;right:24px;margin-top: -30px; opacity: 0; animation: opacityTop 9s 1.9s ease infinite;}
+            .banner_wrap .play.play5{width:13px;top:25px;right:19px;margin-top: -30px; opacity: 0; animation: opacityTop 9s 1.9s ease infinite;}
+            .banner_wrap .play.play6{width:17px;top:15px;right:73px; transform: scale(0);opacity: 0; animation: opacity 0.4s 1.6s cubic-bezier(0.075, 0.82, 0.165, 0.5) forwards;}
+            @keyframes banner{
+                0%{opacity:0;}
+                100%{opacity:1;}
+            }
+            @keyframes txt{
+                0%{left: -180px;}
+                100%{left: 20px;}
+            }
+            @keyframes play{
+                0%{margin-right: -90px; transforms: scale(0);}
+                100%{margin-right: 0; transforms: scale(1);}
+            }
+            @keyframes opacity{
+                100%{opacity: 1;transform: scale(1)}
+            }
+            @keyframes opacityTop{
+                0%,50%,100%{margin-top: -30px; opacity: 0; transform: rotate(12deg);}
+                5%,45%,55%,95%{margin-top: 0px; opacity: 1;transform: rotate(0deg);}
+            }
+        </style>
     </head>
     <body>
         <div class="container">
-            <div id="alram" style="border:1px solid red;width:100px;height:100px"></div>
-            <div id="box" style="border:1px solid red;width:100px;height:100px"></div>
-            <div id="button" style="border:1px solid red;width:100px;height:100px"></div>
+            <div class="page_wrap">
+                <div class="alram_box">
+                    <div class="txt_class">
+                        <img src="./images/A/home/txt.png" alt="">
+                    </div>
+                    <div class="svg_wrap">
+                        <div id="alram" style="width:28px;height:28px;margin-right:16px;"></div>
+                        <div id="box" style="width:28px;height:28px;margin-right:16px;"></div>
+                        <img src="./images/A/home/menu.png" alt="" style="width:28px;height:28px;">
+                        <!-- <div id="button" style="border:1px solid red;width:50px;height:50px"></div> -->
+                    </div>
+                </div>
+                <div class="banner_wrap">
+                    <img src="./images/A/home/banner.png" alt="">
+                    <img src="./images/A/home/txt1.png" alt="" class="play play1">
+                    <img src="./images/A/home/graph.png" alt="" class="play play2">
+                    <img src="./images/A/home/coin.png" alt="" class="play play3">
+                    <img src="./images/A/home/coin1.png" alt="" class="play play4">
+                    <img src="./images/A/home/coin2.png" alt="" class="play play5">
+                    <img src="./images/A/home/checked.png" alt="" class="play play6">
+                </div>
+            </div>
             <div class="bottom_nav">
                 <ul>
                     <li class="home on">
