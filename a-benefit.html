@@ -5,43 +5,59 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./res/ibk-com.css">
         <script src="./res/jquery-3.6.4.min.js"></script>
-        <script src="./res/lottie.min.js"></script>
+        <script src="./res/ibk-com.js"></script>
         <title>혜택</title>
 
+        <!-- css style -->
         <style>
-            .myPoints{position:relative;padding:20px 20px 44px 20px;}
-            .myPoints::before{content:"";position:absolute;top:0;left:0;right:0;bottom:0;width:100%;height:100%;background:url("./images/A/benefit/linearBg.png") 0 0 / 100%;z-index:-1;}
-            .myPoints .nums{position:absolute;top:57px;font-size:33px;font-weight:700;line-height:39px;color:#1D74E8;}
-            .myPoints .img_box{margin-top:28px;box-shadow:0px 0px 12px 0px rgba(0, 0, 0, 0.08);border-radius:12px;}
+            .content-1{position:relative;padding:20px 0 36px}
+            .content-1::before{content:"";position:absolute;top:0;left:0;right:0;bottom:0;width:100%;height:100%;background:url("./images/A/benefit/linearBg.png") 0 0 / 100%;z-index:-1;}
+            .content-1 .myPoints{padding:0 20px 44px 20px;}
+            .content-1 .myPoints .pointNumb{position:absolute;top:57px;font-size:33px;font-weight:700;line-height:39px;color:#1D74E8;}
+            .content-1 .myPoints .shadow_box{margin-top:28px;box-shadow:0px 0px 12px 0px rgba(0, 0, 0, 0.08);border-radius:12px;}
+            .content-3{padding:36px 20px;background:#ECF4FF;}
+            .content-4{padding-top:36px;background:#fff;}
         </style>
+        <!-- // css style -->
+        
     </head>
     <body>
         <div class="container">
-            <header>
-                <img src="./images/header.png" alt="">
-            </header>
             <div class="top_menu">
                 <img src="./images/A/benefit/gnb_sub.png" alt="">
             </div>
+            <!-- contents -->
             <div class="contents">
-
-                <div class="myPoints">
-                    <img src="./images/A/benefit/myPoints01.png" alt="" style="width:172px;height:99px">
-                    <div class="nums" data-count="23450" data-delay="300">23,450<span class="one">P</span></div>
-                    <img class="img_box" src="./images/A/benefit/myPoints02.png" alt=""">
+                <div class="content-1">
+                    <div class="myPoints">
+                        <img src="./images/A/benefit/myPoints01.png" style="width:172px;height:99px">
+                        <div class="pointNumb" data-count="23450" data-delay="300">23,450<span class="one">P</span></div>
+                        <img class="shadow_box" src="./images/A/benefit/myPoints02.png" alt=""">
+                    </div>
+                    <img src="./images/A/benefit/eventCont.png" style="margin-left:20px">
                 </div>
-
+                <div class="content-2">
+                    <img src="./images/A/benefit/gameCont.png">
+                </div>
+                <div class="content-3">
+                    <img src="./images/A/benefit/missionCont.png">
+                </div>
+                <div class="content-4">
+                    <img src="./images/A/benefit/allBenefits01.png" style="padding-left:20px;">
+                    <img src="./images/A/benefit/allBenefits02.png" style="padding:24px 20px 99px 20px">
+                </div>
             </div>
+            <!-- // contents -->
         </div>
     </body> 
     <script>
         //숫자 카운트 애니메이션
         function count() {
-            $('.nums').each(function() {
+            $('.pointNumb').each(function() {
             const   $this = $(this),
                     countTo = $this.attr('data-count');
-                    countDelay = $this.attr('data-dealy'),
-                    delaySeconds = parseInt(countDelay) || 0; //변수에서 얻은 값을 정수로 변환하고, 이 변환이 실패할 경우 또는 값이 없을 경우 0을 반환
+                    countDelay = $this.attr('data-delay'),
+                    delaySeconds = parseInt(countDelay) || 0; 
                     setTimeout(function() {
                         $({
                             countNum: $this.text()
@@ -55,7 +71,6 @@
                             },
                             complete: function() {
                                 $this.text(this.countNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')).append('<span class="one">P</span>');
-                                // 3자리 마다 콤마 표시 적용
                             }
                         });
                     }, delaySeconds); 
