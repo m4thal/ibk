@@ -53,15 +53,15 @@ body{height:100vh;font-size:1.6rem; font-family:'Pretendard', sans-serif; line-h
 .bottom_nav ul li a i {display: block;width: 24px; height: 24px; background-size: 100% auto;}
 .bottom_nav ul li a span{color: #D8D8D8; font-size: 11px; font-weight: 500; margin-top: 4px;}
 .bottom_nav ul li a i.on + span{color: #333;}
-.bottom_nav ul li a i.home{ background: url(../images/nav-home.png) no-repeat center / contain;} 
-.bottom_nav ul li a i.home.on{ background: url(../images/nav-home-on.png) no-repeat center / contain;  } 
-.bottom_nav ul li a i.goods{ background: url(../images/nav-goods.png) no-repeat center / contain;} 
-.bottom_nav ul li a i.goods.on{ background: url(../images/nav-goods-on.png) no-repeat center / contain;} 
-.bottom_nav ul li a i.ai{ width: 52px; height: 52px; background: url(../images/nav-ai.png) no-repeat center / contain; margin-top: -4px;} 
-.bottom_nav ul li a i.ai.on{ background: url(../images/nav-ai-on.gif) no-repeat center / contain;} 
-.bottom_nav ul li a i.lounge{ background: url(../images/nav-lounge.png) no-repeat center / contain;} 
-.bottom_nav ul li a i.lounge.on{ background: url(../images/nav-lounge-on.png) no-repeat center / contain;} 
-.bottom_nav ul li a i.assets{background: url(../images/nav-assets.png) no-repeat center / contain;} 
+.bottom_nav ul li a i.home{ background: url(../images/nav-home.png) no-repeat center / contain;}
+.bottom_nav ul li a i.home.on{ background: url(../images/nav-home-on.png) no-repeat center / contain;  }
+.bottom_nav ul li a i.goods{ background: url(../images/nav-goods.png) no-repeat center / contain;}
+.bottom_nav ul li a i.goods.on{ background: url(../images/nav-goods-on.png) no-repeat center / contain;}
+.bottom_nav ul li a i.ai{ width: 52px; height: 52px; background: url(../images/nav-ai.png) no-repeat center / contain; margin-top: -4px;}
+.bottom_nav ul li a i.ai.on{ background: url(../images/nav-ai-on.gif) no-repeat center / contain;}
+.bottom_nav ul li a i.lounge{ background: url(../images/nav-lounge.png) no-repeat center / contain;}
+.bottom_nav ul li a i.lounge.on{ background: url(../images/nav-lounge-on.png) no-repeat center / contain;}
+.bottom_nav ul li a i.assets{background: url(../images/nav-assets.png) no-repeat center / contain;}
 .bottom_nav ul li a i.assets.on{background: url(../images/nav-assets-on.png) no-repeat center / contain;}
 
 /* animation, 탭 */
