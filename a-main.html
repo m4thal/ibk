@@ -142,10 +142,15 @@
         </div>
         <div class="dim" onclick="drPopupClose('.dim')">
             <img src="./images/A/home/quick_bar.png" alt="">
+            <img src="./images/A/home/quick_icon.png" alt="" class="quick_icon">
         </div>
         <style>
-            .dim{position:fixed;top:0;left:50%;width:376px;height:100%;transform:translateX(-50%);z-index: 101;background-color:#03030399; display: none; transition: .6s all;}
+            .dim{position:fixed;top:0;left:50%;width:376px;height:100%;transform:translateX(-50%);z-index: 101;background-color:#03030399; display: none; }
             .dim img{position:absolute;bottom:0;width:309px;left:50%;transform:translateX(-50%);}
+            .dim .quick_icon{width:30px; animation: quick_icon 0.3s 0.2s ease-in-out forwards; opacity: 0; transform-origin: top;transition: .6s all;}
+            @keyframes quick_icon{
+                100%{width: 80px; opacity: 1;}
+            }
         </style>
     </body> 
     <script>
