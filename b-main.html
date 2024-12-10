@@ -12,27 +12,26 @@
         <style>
             header{position: relative; z-index: 100;}
             .top_menu{z-index: 100; position: relative;}
-            .swiper{
-                top: -40vw;
-                padding: 0 0 100px;
-            }
-            .swiper-slide{
-                width: 100% !important;
-                aspect-ratio: 1/1;
-                border-radius: 150px 150px 150px 150px;
-                transition-property: transform, opacity, height, border-radius !important;
-                position: relative;
-            }
+            .swiper{top: -40vw;}
+            .swiper-slide{width: 100% !important; aspect-ratio: 1/1; border-radius: 150px 150px 150px 150px; transition-property: transform, opacity, height, border-radius !important; position: relative;}
             .swiper-slide-fully-visible{border-radius: 0 0 24px 24px;}
-            .swiper-slide:nth-child(1){background-color: #3671E7;}
-            .swiper-slide:nth-child(2){background-color: #C171E8;}
-            .swiper-slide:nth-child(3){background-color: #F58C34;}
+            .swiper-slide.first{background-color: #3671E7;}
+            .swiper-slide.second{background-color: #C171E8;}
+            .swiper-slide.third{background-color: #F58C34;}
 
             .bankbook{position: absolute; bottom: 139px; left: 24px; color: #fff;}
             .bankbook .balance{font-size: 32px; font-weight: 500; line-height: 42px; margin-top: 8px;}
             .bankbook .balance span{font-size: 30px;}
             .bankbook_num{position: absolute; bottom: 46px; left: 24px; font-weight: 300; color: #fff;}
-            .bankbook_num img{width: 10px; vertical-align: middle ;}
+            .bankbook_num img{width: 10px; vertical-align: inherit; margin-left: 6px;}
+            .bankbook_change{position: absolute; bottom: 46px; left: 24px; font-weight: 300; color: #fff;}
+
+            .view_all{position: relative; top: -40vw; margin-top: 16px; width: 100%; text-align: center; color: #979baa;}
+
+            .quick_transfer{position: relative; top: -40vw; margin-top: 24px; padding-left: 24px; width: 100%; overflow: hidden;}
+            .quick_transfer img{width: 391px; max-width: 391px;}
+
+            .etc{position: relative; top: -40vw; margin-top: 16px; margin-left: 16px;}
         </style>
     </head>
     <body>
@@ -43,19 +42,41 @@
             <div class="main_content">
                 <div class="swiper sample-slider">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide">
+                        <div class="swiper-slide first">
                             <div class="bankbook">
                                 <div class="title">저축예금 (IBK간편한통장)</div>
                                 <div class="balance">13,000,000<span>원</span></div>
                             </div>
                             <div class="bankbook_num">839-009030-02-111 <img src="./images/B/main/icon_copy.png" alt=""></div>
+                            <div class="bankbook_change">test</div>
                         </div>
-                        <div class="swiper-slide"></div>
-                        <div class="swiper-slide"></div>
+                        <div class="swiper-slide second">
+                            <div class="bankbook">
+                                <div class="title">저축예금 (IBK간편한통장)</div>
+                                <div class="balance">13,000,000<span>원</span></div>
+                            </div>
+                            <div class="bankbook_num">839-009030-02-111 <img src="./images/B/main/icon_copy.png" alt=""></div>
+                            <div class="bankbook_change">test</div>
+                        </div>
+                        <div class="swiper-slide third">
+                            <div class="bankbook">
+                                <div class="title">저축예금 (IBK간편한통장)</div>
+                                <div class="balance">13,000,000<span>원</span></div>
+                            </div>
+                            <div class="bankbook_num">839-009030-02-111 <img src="./images/B/main/icon_copy.png" alt=""></div>
+                            <div class="bankbook_change">test</div>
+                        </div>
                     </div>
                     <div class="swiper-pagination"></div>
-                    <!-- <div class="swiper-button-prev"></div>
-                    <div class="swiper-button-next"></div> -->
+                    <!-- <div class="swiper-button-prev"></div> -->
+                    <!-- <div class="swiper-button-next"></div> -->
+                </div>
+                <div class="view_all">전체계좌보기</div>
+                <div class="quick_transfer">
+                    <img src="./images/B/main/quick_transfer.png" alt="">
+                </div>
+                <div class="etc">
+                    <img src="./images/B/main/etc.png" alt="">
                 </div>
             </div>
             <div class="bottom_nav type2">
@@ -71,7 +92,7 @@
     </body>
     <script>
         const swiper = new Swiper('.sample-slider', {
-        loop: false,
+        loop: true,
         speed: 1500,
         slidesPerView: 1,
         autoplay: false,
@@ -97,6 +118,10 @@
                 rotate: [0,0,-45]
             },
         }
-    })
+    });
+
+    function next(){
+        swiper.slideNext();
+    }
     </script>
 </html>
