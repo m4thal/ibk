@@ -14,10 +14,22 @@
             .container::before{content:"";position:fixed;top:0;left:0;right:0;margin:0 auto;width:375px;height:400px;background:url("./images/A/asset/RectangleBg_1.png") no-repeat 0 0 / 100%;}
             .container.active::before{background:url("./images/A/asset/RectangleBg_2.png") no-repeat 0 0 / 100%;}
             .container header, .top_menu{background:#4393F0}
+            .container header,
+            .top_menu,
+            .cont_tit {transition: background-color 0.3s ease, color 0.3s ease;}
             .top_menu{position:fixed;z-index:50;}
             .contents{padding-top:140px;}
-            .alarm_banner{margin:0 auto;padding:20px 20px 0 20px}
-            .alarm_banner{position:relative;}
+            .alarm_banner{position:relative;margin:0 auto;padding:20px 20px 0 20px;opacity: 0;transform: translateY(-20px);animation: slideDown 1s ease-out forwards;}
+            @keyframes slideDown {
+                0% {
+                    opacity: 0;
+                    transform: translateY(-20px);
+                }
+                100% {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
             /***** Content 1 *****/
             .content-1{position:relative;padding:32px 20px 36px}
             /* 아코디언 */
@@ -47,7 +59,6 @@
             .content-2 .cont_tit{font-size:18px;font-weight:700;line-height:26px;color:#30323B;}
             .content-2 .cont_tit + img{margin-top:12px;}
             .content-2 img + .cont_tit{margin-top:36px;}
-
         </style>
         <!-- // css style -->
         
