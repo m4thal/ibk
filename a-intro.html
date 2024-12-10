@@ -167,19 +167,20 @@
 				},4000);
 				setTimeout(function () {
 					$('.slot_machine,.slot_machine2').addClass('scale');
+					if($('.slot_machine,.slot_machine2').hasClass('scale')){
+						$(this).on('click',function(){
+								location.href = 'a-main.html';
+						});
+					}else{
+						console.log('no');
+					}
+
 				},4500);
-				// setTimeout(function () {
-				// 	$('.slot_machine,.slot_machine2').addClass('scale');
-				// 	setTimeout(function () {
-				// 		$('.top_txt, .slot_machine, .slot_machine2, .btm_txt_box,.day.block ').css('transition','1s');
-				// 	$('.top_txt, .slot_machine, .slot_machine2, .btm_txt_box,.day.block ').addClass('move');
-				// 	},1000);
-				// },4500);
 				
 			}, 1000);
 
 		}
-
+		
 	});
 </script>
 
