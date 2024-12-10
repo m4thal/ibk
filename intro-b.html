@@ -6,57 +6,70 @@
         <link rel="stylesheet" href="./res/ibk-com.css">
         <script src="./res/jquery-3.6.4.min.js"></script>
         <script src="./res/ibk-com.js"></script>
+        <link rel="stylesheet" href="https://use.typekit.net/zec7bgf.css">
         <title>intro</title>
         <style>
-           /* body {
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #158463;
-    } */
-    body {background:#158463;overflow:hidden}
-    .container {max-width:100%;overflow:hidden}
-    header {position:relative !important;width:100%}
-    .scene {position:relative;height:100vh;background:#158463;}
-    .person {position:absolute;width:300px;left: 50%;top: 32%;transform: translateX(-50%);z-index: 2;}
-    .ground {position:absolute;bottom:-800px;background:#fff;width:800px;height:800px;left:-200px;border-radius:50%; animation: moveUp .2s ease-in-out forwards, bounce 0.2s ease-in-out .3s;}
-    .person {opacity:0;animation:walk 1s ease-in-out forwards 1s;z-index:50}
-    .scene .text {position:relative;padding-left:24px;width:100%;height:auto;font-family:'Pretendard';font-size:32px;font-weight:300;line-height:40px;color:#fff;z-index:50}
-    .scene .text span {position:absolute;top:24px;display:block;opacity:0;}
-    .text span:nth-child(1) {animation: slideDown1 .4s ease-out 0.5s forwards}
-    .text span:nth-child(2) {animation: slideDown2 .4s ease-out .6s forwards}
-    .text span:nth-child(3) {animation: slideDown3 .4s ease-out .7s forwards}
-    .walking {width:100%}
-
-    @keyframes slideDown1 {
-      0% {opacity:0;}
-      100% {opacity:1;}
-    }
-    @keyframes slideDown2 {
-      0% {opacity:0;}
-      100% {opacity:1;top:60px}
-    }
-    @keyframes slideDown3 {
-      0% {opacity:0;}
-      100% {opacity:1;top:95px}
-    }
-    @keyframes walk {
-        0% {opacity:0}
-        80% {opacity:1}
-        100% {opacity:1}
-    }
-    @keyframes moveUp {
-        0% {bottom:-800px;}
-        100% {bottom:-400px;}
-    }
-    @keyframes bounce {
-      0%, 100% {transform:translateY(0)}
-      50% {transform: translateY(-100px)}
-    }
+            body {background:#158463;overflow:hidden}
+            .container {max-width:100%;overflow:hidden}
+            header {position:relative !important;width:100%}
+            .scene {position:relative;height:100vh;background:#158463;}
+            .person {position:absolute;width:300px;left: 50%;top: 32%;transform: translateX(-50%);z-index: 2;}
+            .ground {position:absolute;bottom:-800px;background:#fff;width:800px;height:800px;left:50%;margin-left:-400px; border-radius:50%;animation:moveUp .2s ease-in-out forwards, bounce 0.2s ease-in-out .3s;}
+            .person {opacity:0;animation:walk 1s ease-in-out forwards 1s;z-index:100}
+            .scene .text {position:relative;padding-left:24px;width:100%;height:auto;font-family:'Pretendard';font-size:32px;font-weight:300;line-height:40px;color:#fff;z-index:70}
+            .scene .text span {position:absolute;top:24px;display:block;opacity:0;}
+            .text span:nth-child(1) {animation: slideDown1 .4s ease-out 0.5s forwards}
+            .text span:nth-child(2) {animation: slideDown2 .4s ease-out .6s forwards}
+            .text span:nth-child(3) {animation: slideDown3 .4s ease-out .7s forwards}
+            .earth {position:absolute;width:849px;height:842px;bottom:-436px;z-index:60;left:50%;margin-left:-421px;opacity:0;animation:round 20s  .5s forwards ;animation-timing-function: linear;}
+            .earth img {width:100%}
+            .walking {width:100%}
+            .bt {position:absolute;display:inline-block;left:50%;transform:translateX(-50%);bottom:33px;text-align:center;font-size:14px;line-height:18px;color:#979BAA;border-bottom:1px solid #979BAA;font-weight:500;line-height: 18px; }
+            .today {width:327px;position:absolute;left:50%;transform:translateX(-50%);bottom:143px;text-align:center}
+            .today .txt {font-size:16px;font-weight:500;line-height:24px;}
+            .today .num {font-size:56px;font-weight:700;letter-spacing:-0.84px;font-family: 'indivisible';}
+            .today .num span {display:inline-block;font-size:20px;font-style:normal;font-weight:500;line-height:28px;color:#979BAA;}
+            .graph {position:absolute;bottom:76px;width:327px;left:50%;transform: translateX(-50%);}
+            .graph .bar {display:block;width:100%;height:20px;background:#f3f4f7;border-radius:15px}
+            .graph .txt {display:block;text-align:right;margin-top:8px;font-size:14px;font-weight:500;line-height:20px;color:#737684}
+            @keyframes slideDown1 {
+            0% {opacity:0;}
+            100% {opacity:1;}
+            }
+            @keyframes slideDown2 {
+            0% {opacity:0;}
+            100% {opacity:1;top:60px}
+            }
+            @keyframes slideDown3 {
+            0% {opacity:0;}
+            100% {opacity:1;top:95px}
+            }
+            @keyframes walk {
+                0% {opacity:0}
+                80% {opacity:1}
+                100% {opacity:1}
+            }
+            @keyframes round {
+                0% {opacity:0; transform:rotateZ(0);}
+            10% {opacity:0; transform:rotateZ(0);}
+            20% {opacity:1; transform:rotateZ(0);}
+            30% {opacity:1; transform:rotateZ(-45deg);}
+            40% {opacity:1;transform:rotateZ(-90deg);}
+            50% {opacity:1;transform:rotateZ(-135deg);}
+            60% {opacity:1;transform:rotateZ(-180deg);}
+            70% {opacity:1;transform:rotateZ(-225deg);}
+            80% {opacity:1;transform:rotateZ(-315deg);}
+            90% {opacity:1;transform:rotateZ(-360deg);}
+            100% {opacity:1;transform:rotateZ(-360deg);}
+            }
+            @keyframes moveUp {
+                0% {bottom:-800px;}
+                100% {bottom:-400px;}
+            }
+            @keyframes bounce {
+            0%, 100% {transform:translateY(0)}
+            50% {transform: translateY(-100px)}
+            }
         </style>
     </head>
     <body>
@@ -71,6 +84,18 @@
             <div class="person">
                 <img src="./images/man_walk.gif" alt="사람" class="walking">
             </div>
+            <div class="earth">
+                <img src="./images/earth.png" alt="" >
+            </div>
+            <div class="today">
+                <p class="txt">오늘의 걸음</p>
+                <p class="num">7,025<span>걸음</span></p>
+            </div>
+            <div class="graph">
+                <p class="bar"><span></span></p>
+                <span class="txt">10,000 걸음</span>
+            </div>
+            <p class="bt">다시 보지 않기</p>
         </div>
     </body>
 
