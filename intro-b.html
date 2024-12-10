@@ -13,7 +13,7 @@
             .container {max-width:100%;overflow:hidden}
             header {position:relative !important;width:100%}
             .scene {position:relative;height:100vh;background:#158463;}
-            .person {position:absolute;width:300px;left: 50%;top: 32%;transform: translateX(-50%);z-index: 2;}
+            .person {position:absolute;width:300px;left: 50%;top: 32%;transform: translateX(-50%);z-index:2}
             .ground {position:absolute;bottom:-800px;background:#fff;width:800px;height:800px;left:50%;margin-left:-400px; border-radius:50%;animation:moveUp .2s ease-in-out forwards, bounce 0.2s ease-in-out .3s;}
             .person {opacity:0;animation:walk 1s ease-in-out forwards 1s;z-index:100}
             .scene .text {position:relative;padding-left:24px;width:100%;height:auto;font-family:'Pretendard';font-size:32px;font-weight:300;line-height:40px;color:#fff;z-index:70}
@@ -30,19 +30,28 @@
             .today .num {font-size:56px;font-weight:700;letter-spacing:-0.84px;font-family: 'indivisible';}
             .today .num span {display:inline-block;font-size:20px;font-style:normal;font-weight:500;line-height:28px;color:#979BAA;}
             .graph {position:absolute;bottom:76px;width:327px;left:50%;transform: translateX(-50%);z-index:100}
-            .graph .bar {display:block;width:100%;height:20px;background:#f3f4f7;border-radius:15px}
+            .graph .bar {position:relative;display:block;width:100%;height:20px;background:#f3f4f7;border-radius:15px}
+            .graph .bar span {position:absolute;top:0;left:0;height:20px;display:inline-block;background:linear-gradient(to left, #ffe695, #ffcd28);border-radius:15px}
             .graph .txt {display:block;text-align:right;margin-top:8px;font-size:14px;font-weight:500;line-height:20px;color:#737684}
+            .balloon {position:absolute;top:-41px;width:143px;height:77px;right:-35px;z-index:50}
+            .balloon div {position:relative;width:100%;height:100%}
+            .balloon .r1 {position:absolute;bottom:0;display:block;width:11px;height:11px;background:#fff;border-radius:50%;opacity:0;animation:tip1 1s linear 1.5s forwards}
+            .balloon .r2 {position:absolute;bottom:7px;left:11px;display:block;width:25px;height:25px;background:#fff;border-radius:50%;opacity:0;animation:tip2 1s linear 1.7s forwards}
+            .balloon .r3 {position:absolute;top:0;left:14px;display:block;width:129px;height:70px;background:#fff;border-radius:40px;text-align:center;padding-top:11px;opacity:0;animation:tip3 1s linear 2s forwards}
+            .balloon .r3 .img1 {display:inline-block;position:absolute;top:11px;left:50%;width:79px;margin-left:-40px;height:48px;opacity:1;font-size:16px;font-weight:500;line-height:24px;animation:fadeInImg1 1s linear 2.3s forwards;}
+            .balloon .r3 .img2 {display:inline-block;position:absolute;top:11px;left:50%;transform:translateX(-50%);width:60px;height:48px;font-size:16px;font-weight:500;line-height:24px;z-index:50;opacity:0;animation: fadeInImg2 1.5s linear 3.5s forwards;background:#fff}
+            .balloon .r3  em {color:#1654d1}
             @keyframes slideDown1 {
-            0% {opacity:0;}
-            100% {opacity:1;}
+                0% {opacity:0;}
+                100% {opacity:1;}
             }
             @keyframes slideDown2 {
-            0% {opacity:0;}
-            100% {opacity:1;top:60px}
+                0% {opacity:0;}
+                100% {opacity:1;top:60px}
             }
             @keyframes slideDown3 {
-            0% {opacity:0;}
-            100% {opacity:1;top:95px}
+                0% {opacity:0;}
+                100% {opacity:1;top:95px}
             }
             @keyframes walk {
                 0% {opacity:0}
@@ -51,25 +60,57 @@
             }
             @keyframes round {
                 0% {opacity:0; transform:rotateZ(0);}
-            10% {opacity:0; transform:rotateZ(0);}
-            20% {opacity:1; transform:rotateZ(0);}
-            30% {opacity:1; transform:rotateZ(-45deg);}
-            40% {opacity:1;transform:rotateZ(-90deg);}
-            50% {opacity:1;transform:rotateZ(-135deg);}
-            60% {opacity:1;transform:rotateZ(-180deg);}
-            70% {opacity:1;transform:rotateZ(-225deg);}
-            80% {opacity:1;transform:rotateZ(-315deg);}
-            90% {opacity:1;transform:rotateZ(-360deg);}
-            100% {opacity:1;transform:rotateZ(-360deg);}
+                10% {opacity:0; transform:rotateZ(0);}
+                20% {opacity:1; transform:rotateZ(0);}
+                30% {opacity:1; transform:rotateZ(-45deg);}
+                40% {opacity:1;transform:rotateZ(-90deg);}
+                50% {opacity:1;transform:rotateZ(-135deg);}
+                60% {opacity:1;transform:rotateZ(-180deg);}
+                70% {opacity:1;transform:rotateZ(-225deg);}
+                80% {opacity:1;transform:rotateZ(-315deg);}
+                90% {opacity:1;transform:rotateZ(-360deg);}
+                100% {opacity:1;transform:rotateZ(-360deg);}
             }
             @keyframes moveUp {
                 0% {bottom:-800px;}
                 100% {bottom:-400px;}
             }
             @keyframes bounce {
-            0%, 100% {transform:translateY(0)}
-            50% {transform: translateY(-100px)}
+                0%, 100% {transform:translateY(0)}
+                50% {transform: translateY(-100px)}
             }
+            @keyframes bounce {
+                0%, 100% {transform:translateY(0)}
+                50% {transform: translateY(-100px)}
+            }
+            @keyframes tip1 {
+                0% {opacity:0;}
+                100% {opacity:1;}
+            }
+            @keyframes tip2 {
+                0% {opacity:0;}
+                100% {opacity:1;}
+            }
+            @keyframes tip3 {
+                0% {opacity:0;}
+                100% {opacity:1;}
+            }
+            @keyframes fadeInImg1 {
+                0%{opacity:1;scale:1;}
+                50% {opacity:1;scale:1.1;}
+                70% {opacity:1;scale:1;}
+                80% {opacity:1;scale:1;}
+                100% {opacity:0;scale:1;}
+            }
+            @keyframes fadeInImg2 {
+                0%{opacity:0;scale:1;}
+                20%{opacity:1;scale:1;}
+                50% {opacity:1;scale:1.1;}
+                70% {opacity:1;scale:1;}
+                90% {opacity:1;scale:1;}
+                100% {opacity:1;scale:1;}
+            }
+
         </style>
     </head>
     <body>
@@ -82,10 +123,20 @@
             <div class="ground">
             </div>
             <div class="person">
-                <img src="./images/man_walk.gif" alt="사람" class="walking">
+                <img src="./images/introB/man_walk.gif" alt="사람" class="walking">
+                <div class="balloon">
+                    <div>
+                        <span class="r1"></span>
+                        <span class="r2"></span>
+                        <span class="r3">
+                            <span class="img1"><em>오늘 3km</em>나<br> 걸었어!</span>
+                            <span class="img2"><em>82kcal</em><br> 불태웠어!</span>
+                        </span>
+                    </div>
+                </div>
             </div>
             <div class="earth">
-                <img src="./images/earth.png" alt="" >
+                <img src="./images/introB/earth.png" alt="" >
             </div>
             <div class="today">
                 <p class="txt">오늘의 걸음</p>
