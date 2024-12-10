@@ -10,11 +10,15 @@
         <link rel="stylesheet" href="./res/swiper-bundle.min.css">
         <title>홈</title>
         <style>
-            .main_content{padding-top: 100px;}
+            .container{background-color: #101116; transition: all ease 1s;}
+            header,.top_menu{background-color: transparent; transition: background-color 0.5s ease, opacity 0.5s ease;}
+            .main_content{padding-top: 100px; position: relative; top: -150px; padding-bottom: 150px;}
 
-            .swiper{top: -40vw; padding-bottom: 40px;}
+            .swiper{padding-bottom: 40px;}
             .swiper-slide{width: 100% !important; aspect-ratio: 1/1; border-radius: 150px 150px 150px 150px; transition-property: transform, opacity, height, border-radius !important; position: relative;}
+            .swiper-slide-visible div{opacity: 0; transition: all ease .5s;}
             .swiper-slide-fully-visible{border-radius: 0 0 24px 24px;}
+            .swiper-slide-fully-visible div{opacity: 1;}
             .swiper-slide.first{background-color: #3671E7;}
             .swiper-slide.second{background-color: #C171E8;}
             .swiper-slide.third{background-color: #F58C34;}
@@ -28,14 +32,14 @@
             .bankbook_num img{width: 10px; vertical-align: inherit; margin-left: 6px;}
             .bankbook_more{position: absolute; width: 64px; bottom: 24px; right: 24px; font-weight: 300; color: #fff;}
 
-            .view_all{position: relative; top: calc(-40vw - 30px); width: 100%; text-align: center; color: #979baa; cursor: pointer;}
+            .view_all{position: relative; top: -30px; width: 100%; text-align: center; color: #979baa; cursor: pointer;}
 
-            .quick_transfer{position: relative; top: -40vw; padding-left: 24px; width: 100%; overflow: hidden;}
+            .quick_transfer{position: relative; padding-left: 24px; width: 100%; overflow: hidden;}
             .quick_transfer img{width: 391px; max-width: 391px;}
 
-            .etc{position: relative; top: -40vw; margin-top: 16px; margin-left: 16px;}
+            .etc{position: relative; margin-top: 16px; margin-left: 16px;}
 
-            .change_button{position: relative; top: -40vw; margin-top: 40px;}
+            .change_button{position: relative; margin-top: 40px;}
         </style>
     </head>
     <body>
