@@ -11,17 +11,27 @@
         <!-- css style -->
         <style>
             .container{position:relative;height:auto;background:#F3F4F7 !important;}
-            .container::before{content:"";position:absolute;top:0;left:0;right:0;width:375px;height:400px;background:url("./images/A/asset/RectangleBg.png") no-repeat 0 0 / 100%;z-index:}
-            header, .top_menu, .contents{position: relative;}
+            .container::before{content:"";position:fixed;top:0;left:0;right:0;margin:0 auto;width:375px;height:400px;background:url("./images/A/asset/RectangleBg_1.png") no-repeat 0 0 / 100%;}
+            .container.on::before{content:"";position:fixed;top:0;left:0;right:0;margin:0 auto;width:375px;height:400px;background:url("./images/A/asset/RectangleBg_2.png") no-repeat 0 0 / 100%;}
+            .top_menu{position:fixed;z-index:50;}
+            header, .top_menu{background:#4393F0 }
+            .contents{padding-top:140px;}
             .alarm_banner{margin:0 auto;padding:20px 20px 0 20px}
+            .alarm_banner{position:relative;}
             .content-1{position:relative;padding:32px 20px 36px}
             .content-2{position:relative;padding:0 20px 52px}
+            .content-2 .cont_tit{font-size:18px;font-weight:700;line-height:26px;color:#30323B;}
+            .cont_tit + img{margin-top:12px;}
+            img + .cont_tit{margin-top:36px;}
             /* 아코디언 */
             .accordion{margin-top:16px;padding:24px 20px 20px 20px;border-radius:16px;background:#FFFFFF;}
-            .accordion h2{display:flex;justify-content:center;padding-top:16px;font-size:14px;font-weight:500;line-height:20px;color:#737684;}
+            .accordion h2{position:relative;display:flex;justify-content:center;margin-top:40px;padding-top:16px;font-size:14px;font-weight:500;line-height:20px;border-top:1px solid #E1E3E4;color:#737684;}
             .accordion h2 a{position:relative;}
-            .accordion h2 a::after{content:"";position:absolute;right:-28px;top:50%;transform:translateY(-50%)rotate(180deg);width:12px;height:12px;background:url("./images/asset/btn_arrow.svg") no-repeat 0 0 / 100%;}
-            .accordion h2 a.open::after{transform: translateY(-50%);}
+            .accordion h2 a::after{content:"";position:absolute;right:-16px;top:50%;transform:translateY(-50%);width:12px;height:12px;background:url("./images/A/asset/btn_arrow.svg") no-repeat 0 0 / 100%;transition:transform 0.3s ease;}
+            .accordion h2 a.open::after{transform:translateY(-50%)  rotate(180deg);}
+            .accordion h2 a.close::after{transform:translateY(-50%) rotate(0deg);}
+            .graph + .accor_contents{margin-top:40px;}
+            .accor_contents{display:none;}
             /* bar graph */
             .graph {overflow:hidden;display:flex;align-items:flex-end;justify-content:center;position:absolute;top:224px;left:40px;width:295px;height:142px;}
             .bar {width:28px;border-radius:8px;background:#E1E3EA;transition:transform 0.5s ease-out;transform:translateY(100%);}
@@ -43,14 +53,14 @@
         <div class="container type">
             <div class="top_menu">
                 <img src="./images/A/asset/gnb_sub.png" alt="">
+                <img class="tab_menu" src="./images/A/asset/2dthMenu.png" alt="">
             </div>
             <!-- contents -->
             <div class="contents">
-                <img src="./images/A/asset/2dthMenu.png" alt="">
                 <img class="alarm_banner" src="./images/A/asset/banner.png" alt="">
                 <div class="content-1">
                     <img src="./images/A/asset/myasset.png" alt="">
-                    <div class="accordion">
+                    <div class="accordion">  
                         <img class="accor_txt" src="./images/A/asset/acc_text.png" alt="">
                         <div class="graph">
                             <div class="bar bar-1"></div>
@@ -62,43 +72,95 @@
                             <img class="graph_txt01" src="./images/A/asset/textbox01.png" alt="">
                             <img class="graph_txt02" src="./images/A/asset/textbox02.png" alt="">
                         </div>
-                        <div class="folding-panel">
+                        <div class="accor_contents">
                             <img src="./images/A/asset/acc_contents.png" alt="">
                         </div>
                         <h2><a href="#none" class="folding-btn close" role="button">상세 열기</a></h2>
                     </div>
-
                 </div>
                 <div class="content-2">
-                    <img src="./images/A/asset/contents.png" alt="">
+                    <p class="cont_tit">유용한 알림을 받고 계신가요?</p>
+                    <img src="./images/A/asset/contents01.png" alt="">
+                    <p class="cont_tit">진행중인 이벤트를 확인해보세요</p>
+                    <img src="./images/A/asset/contents02.png" alt="">
                 </div>
             </div>
             <!-- // contents -->
         </div>
     </body> 
     <script>
-        $(document).ready(function() {
-            const bars = $('.bar');
-            const totalBars = bars.length;
-            const animationDelay = 200;
-            const textDelay = 300;
-    
-            bars.each(function(index) {
-                const bar = $(this);
-                setTimeout(function() {
-                    bar.css('transform', 'translateY(0)');
-                    
-                    if (index === totalBars - 1) {
-                        setTimeout(function() {
-                            $('.graph_txt01').css('opacity', '1');
-                            
-                            setTimeout(function() {
-                                $('.graph_txt02').css('opacity', '1');
-                            }, textDelay);
-                        }, animationDelay);
+$(document).ready(function() {
+    const contTitElements = document.querySelectorAll('.cont_tit');
+    contTitElements.forEach((element, index) => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (document.querySelector('.container').classList.contains('on')) {
+                        entry.target.style.color = 'white';
+                    } else {
+                        entry.target.style.color = '';
                     }
-                }, index * animationDelay);
+                } else {
+                    entry.target.style.color = '';
+                }
             });
-        });
+        }, { threshold: 0.5 });
+
+        observer.observe(element);
+    });
+
+    // 스크롤 이벤트 핸들러
+    $(window).on('scroll', function() {
+        var tabMenuBottom = $('.tab_menu').offset().top + $('.tab_menu').outerHeight();
+        var content2Top = $('.content-2').offset().top;
+        var scrollTop = $(window).scrollTop();
+
+        if (scrollTop + tabMenuBottom >= content2Top) {
+            $('.container').addClass('on');
+            $('header, .top_menu').css('background', '#7A43F0');
+        } else {
+            $('.container').removeClass('on');
+            $('header, .top_menu').css('background', '#4393F0');
+        }
+    });
+
+    // 그래프 애니메이션
+    const bars = $('.bar');
+    const totalBars = bars.length;
+    const animationDelay = 200;
+    const textDelay = 300;
+
+    bars.each(function(index) {
+        const bar = $(this);
+        setTimeout(function() {
+            bar.css('transform', 'translateY(0)');
+            if (index === totalBars - 1) {
+                setTimeout(function() {
+                    $('.graph_txt01').css('opacity', '1');
+                    setTimeout(function() {
+                        $('.graph_txt02').css('opacity', '1');
+                    }, textDelay);
+                }, animationDelay);
+            }
+        }, index * animationDelay);
+    });
+
+    // 아코디언 기능
+    $('.accordion .folding-btn').on('click', function(e) {
+        e.preventDefault();
+        var $this = $(this);
+        var $accordion = $this.closest('.accordion');
+        var $contents = $accordion.find('.accor_contents');
+        if ($contents.is(':hidden')) {
+            $contents.slideDown(300);
+            $this.text('상세 닫기');
+            $this.removeClass('close').addClass('open');
+        } else {
+            $contents.slideUp(300);
+            $this.text('상세 열기');
+            $this.removeClass('open').addClass('close');
+        }
+    });
+});
     </script>
 </html>
