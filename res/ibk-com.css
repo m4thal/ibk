@@ -65,7 +65,7 @@ body{height:100vh;font-size:1.6rem; font-family:'Pretendard', sans-serif; line-h
 .bottom_nav ul li a i.home{ background: url(../images/A/nav/home.png) no-repeat center / contain;}
 .bottom_nav ul li a i.home.on{ background: url(../images/A/nav/home_on.png) no-repeat center / contain;  }
 .bottom_nav ul li a i.asset{ background: url(../images/A/nav/asset.png) no-repeat center / contain;}
-.bottom_nav ul li a i.asset.on{ background: url(../images/A/nav/asset.png) no-repeat center / contain;}
+.bottom_nav ul li a i.asset.on{ background: url(../images/A/nav/asset_on.png) no-repeat center / contain;}
 .bottom_nav ul li a i.goods{ background: url(../images/A/nav/goods.png) no-repeat center / contain; }
 .bottom_nav ul li a i.goods.on{ background: url(../images/A/nav/goods_on.png) no-repeat center / contain;}
 .bottom_nav ul li a i.benefit{ background: url(../images/A/nav/benefit.png) no-repeat center / contain;}
