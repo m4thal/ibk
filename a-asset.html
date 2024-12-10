@@ -20,8 +20,9 @@
             .accordion{margin-top:16px;padding:24px 20px 20px 20px;border-radius:16px;background:#FFFFFF;}
             .accordion h2{display:flex;justify-content:center;padding-top:16px;font-size:14px;font-weight:500;line-height:20px;color:#737684;}
             .accordion h2 a{position:relative;}
-            .accordion h2 a::after{content:"";position:absolute;right:0;top:50%;transform:translateY(-50%)rotate(180deg);width:12px;height:12px;background:url("./images/asset/btn_arrow.svg") no-repeat 0 0 / 100%;}
+            .accordion h2 a::after{content:"";position:absolute;right:-28px;top:50%;transform:translateY(-50%)rotate(180deg);width:12px;height:12px;background:url("./images/asset/btn_arrow.svg") no-repeat 0 0 / 100%;}
             .accordion h2 a.open::after{transform: translateY(-50%);}
+            /* bar graph */
             .graph {overflow:hidden;display:flex;align-items:flex-end;justify-content:center;position:absolute;top:224px;left:40px;width:295px;height:142px;}
             .bar {width:28px;border-radius:8px;background:#E1E3EA;transition:transform 0.5s ease-out;transform:translateY(100%);}
             .bar + .bar{margin-left:20px;}
@@ -34,7 +35,6 @@
             .graph_txt01{position:absolute;top:17px;left:60px;width:107px;height:24px;}
             .graph_txt02{position:absolute;top:0px;right:0;width:78px;height:24px;}
             .graph_txt01, .graph_txt02{opacity:0;transition: opacity 0.5s ease-out;}
-            .accordion a::after{content:"";position:absolute;right:-28px;top:50%;transform:translateY(-50%)rotate(180deg);width:12px;height:12px;background:url("./images/asset/btn_arrow.svg") no-repeat 0 0 / 100%;}
         </style>
         <!-- // css style -->
         
@@ -62,10 +62,10 @@
                             <img class="graph_txt01" src="./images/A/asset/textbox01.png" alt="">
                             <img class="graph_txt02" src="./images/A/asset/textbox02.png" alt="">
                         </div>
-                        <h2><a href="#none" class="folding-btn close" role="button">상세 열기</a></h2>
                         <div class="folding-panel">
                             <img src="./images/A/asset/acc_contents.png" alt="">
                         </div>
+                        <h2><a href="#none" class="folding-btn close" role="button">상세 열기</a></h2>
                     </div>
 
                 </div>
