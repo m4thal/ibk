@@ -113,6 +113,7 @@
                 }
             }, index * animationDelay);
         });
+        
         // 아코디언 기능
         $('.accordion .folding-btn').on('click', function(e) {
             e.preventDefault();
@@ -129,6 +130,7 @@
                 $this.removeClass('open').addClass('close');
             }
         });
+
         // 이미지, 색상 변경
         $(window).on('scroll', function() {
             var content2 = $('.content-2');
