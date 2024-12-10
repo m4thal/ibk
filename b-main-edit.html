@@ -28,7 +28,7 @@
             .swiper-slide.second{background-color: #C171E8;}
             .swiper-slide.third{background-color: #F58C34;}
 
-            .swiper-pagination-fraction{color: #979baa; font-size: 14px; text-align: right; padding-right: 24px; animation: txt2 0.5s 2s cubic-bezier(0, 0, 0.58, 1) forwards; opacity: 0;}
+            .swiper-pagination-fraction{color: #979baa; font-size: 14px; text-align: right; padding-right: 24px; animation: txt2 0.5s 2s cubic-bezier(0, 0, 0.58, 1) forwards; opacity: 0; pointer-events: none;}
 
             .bankbook{position: absolute; bottom: 139px; left: 24px; color: #fff;}
             .bankbook .title{position: relative; bottom: -5px; opacity: 0;}
@@ -73,32 +73,69 @@
                 100%{width: 64px; opacity: 1; bottom: 0;}
             }
 
-            .view_all{position: relative; top: -30px; width: 100%; text-align: center; color: #979baa; cursor: pointer;  animation: txt3 0.5s 2s cubic-bezier(0, 0, 0.58, 1) forwards; opacity: 0;}
+            .toggle_bankbook{position: relative; top: -35px; z-index: 0; transition: all ease .5s; height: 0;}
+            .toggle_bankbook.active{height: 165px;}
+            .toggle_bankbook.active.add_index{z-index: 9;}
+            .toggle_bankbook img{position: absolute; top: -85px; opacity: 0;}
+            .toggle_bankbook img:first-child{margin-bottom: 5px;}
+            .toggle_bankbook.active img:nth-child(1){animation: toggle1 .5s 0s cubic-bezier(0, 0, 0.58, 1) forwards;}
+            .toggle_bankbook.active img:nth-child(2){animation: toggle2 .5s 0s cubic-bezier(0, 0, 0.58, 1) forwards;}
+
+            .toggle_bankbook.not_active img:nth-child(1){animation: toggle1B .5s 0s cubic-bezier(0, 0, 0.58, 1) forwards; opacity: 0;}
+            .toggle_bankbook.not_active img:nth-child(2){animation: toggle2B .5s 0s cubic-bezier(0, 0, 0.58, 1) forwards; opacity: 0;}
+
+            @keyframes toggle1{
+                0%{top: -85px; opacity: 1;}
+                100%{top: 0; opacity: 1;;}
+            }
+
+            @keyframes toggle2{
+                0%{top: -85px; opacity: 1;}
+                100%{top: 85px; opacity: 1;}
+            }
+
+            @keyframes toggle1B{
+                0%{top: 0; opacity: 1;}
+                100%{top: -85px; opacity: 0;}
+            }
+
+            @keyframes toggle2B{
+                0%{top: 85px; opacity: 1;}
+                100%{top: -85px; opacity: 0;}
+            }
+
+            .view_all{position: relative; top: -30px; width: 100%; text-align: center; color: #979baa; cursor: pointer;  animation: txt3 0.5s 2s cubic-bezier(0, 0, 0.58, 1) forwards; opacity: 0; z-index: 98;}
 
             .quick_wrap{width: 375px; overflow: hidden;}
             .quick_transfer{position: relative; margin-left: 16px; width: 391px; overflow: hidden; display: flex; justify-content: center; align-items: center; height: 100px;}
-            .quick_transfer li{margin-right: 5px; width: 78px; position: absolute; right: 0;}
+            .quick_transfer li{margin-right: 5px; width: 78px; position: absolute; right: 0; opacity: 0;}
             .quick_transfer li:nth-child(1){margin-right: 16px; width: 48px; animation: quick1 .5s 2s cubic-bezier(0, 0, 0.58, 1) forwards;}
             .quick_transfer li:nth-child(2){animation: quick2 .5s 2s cubic-bezier(0, 0, 0.58, 1) forwards;}
             .quick_transfer li:nth-child(3){animation: quick3 .5s 2s cubic-bezier(0, 0, 0.58, 1) forwards;}
             .quick_transfer li:nth-child(4){animation: quick4 .5s 2s cubic-bezier(0, 0, 0.58, 1) forwards;}
+            .quick_transfer li:nth-child(5){animation: quick5 .5s 2s cubic-bezier(0, 0, 0.58, 1) forwards;}
 
             @keyframes quick1{
                 0%{right: 0px;}
-                100%{right: 327px;}
+                100%{right: 327px; opacity: 1;}
             }
             @keyframes quick2{
                 0%{right: 0px;}
-                100%{right: 249px;}
+                100%{right: 249px; opacity: 1;}
             }
             @keyframes quick3{
                 0%{right: 0px;}
-                100%{right: 166px;}
+                100%{right: 166px; opacity: 1;}
             }
             @keyframes quick4{
                 0%{right: 0px;}
-                100%{right: 83px;}
+                100%{right: 83px; opacity: 1;}
             }
+            @keyframes quick5{
+                0%{right: 0px;}
+                100%{right: 0px; opacity: 1;}
+            }
+
 
             .etc_edit{position: relative; margin-top: 5px; margin-left: 16px; animation: etc .5s 2.5s cubic-bezier(0, 0, 0.58, 1) forwards; opacity: 0;}
 
@@ -169,6 +206,10 @@
                     <div class="swiper-pagination"></div>
                     <!-- <div class="swiper-button-prev"></div> -->
                     <!-- <div class="swiper-button-next"></div> -->
+                </div>
+                <div class="toggle_bankbook">
+                    <img src="./images/B/main/moim.png" alt="">
+                    <img src="./images/B/main/chaum.png" alt="">
                 </div>
                 <div class="view_all">전체계좌보기</div>
                 <div class="quick_wrap">
@@ -295,6 +336,24 @@
                 setTimeout(() => {
                     $('#popup').removeClass('active'); // 팝업 비활성화
                 }, 500);
+            });
+
+            $('.view_all').on('click', function () {
+                if($(this).hasClass('active')){
+                    $('.toggle_bankbook').removeClass('add_index');
+                    setTimeout(() => {
+                        $(".toggle_bankbook").removeClass('active');
+                        $(".toggle_bankbook").addClass('not_active');
+                        $(this).removeClass('active').text("전체계좌보기")
+                    }, 600);
+                }else{
+                    $(".toggle_bankbook").addClass('active');
+                    $(".toggle_bankbook").removeClass('not_active');
+                    setTimeout(() => {
+                        $('.toggle_bankbook').addClass('add_index');
+                    }, 500);
+                    $(this).addClass('active').text("기본 홈")
+                }
             });
         });
 
