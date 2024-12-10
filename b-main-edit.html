@@ -100,14 +100,15 @@
                 100%{right: 83px;}
             }
 
-            .etc{position: relative; margin-top: 16px; margin-left: 16px; animation: etc .5s 2.5s cubic-bezier(0, 0, 0.58, 1) forwards; opacity: 0;}
+            .etc_edit{position: relative; margin-top: 5px; margin-left: 16px; animation: etc .5s 2.5s cubic-bezier(0, 0, 0.58, 1) forwards; opacity: 0;}
 
             @keyframes etc{
                 0%{top: 20px;}
                 100%{top: 0px; opacity: 1;}
             }
 
-            .change_button{position: relative; margin-top: 40px;}
+            .change_button{position: relative; margin-top: 40px; display: flex; justify-content: space-between;}
+            .change_button img{width: 185px;}
 
             /* 딤 처리와 팝업 기본 스타일 */
             .popup-container {position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: all 0.3s ease; z-index: 100;}
@@ -179,11 +180,12 @@
                         <li><img src="./images/B/main/quick_transfer_04.png" alt=""></li>
                     </ul>
                 </div>
-                <div class="etc">
-                    <img src="./images/B/main/etc.png" alt="">
+                <div class="etc_edit">
+                    <img src="./images/B/main/etc_edit.png" alt="">
                 </div>
                 <div class="change_button">
-                    <a href="b-main-edit.html"><img src="./images/B/main/btn_change.png" alt=""></a>
+                    <a href="b-menu.html"><img src="./images/B/main/menu_add.png" alt=""></a>
+                    <a href="b-main.html"><img src="./images/B/main/complete.png" alt=""></a>
                 </div>
             </div>
             <div class="bottom_nav type2">
