@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./res/ibk-com.css">
+        <script src="./res/jquery-3.6.4.min.js"></script>
+        <script src="./res/ibk-com.js"></script>
+        <title>상품</title>
+        <style>
+           /* body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #158463;
+    } */
+
+    .scene {position:relative;width:100%;height:100vh;background:#158463;}
+    .person {position:absolute;width:300px;left: 50%;top: 32%;transform: translateX(-50%);z-index: 2;}
+/* 
+    .house,
+    .house2,
+    .tree {
+        position: absolute;
+        width: 40px;
+        height: 40px;       
+        border-radius: 50%;
+    }
+
+    .house {
+        top: 5%;
+        left: 50%;
+        transform: translate(-50%);
+        background-color: #824b4b;
+    }
+
+    .house2 {
+        bottom: 5%;
+        left: 50%;
+        transform: translate(-50%);
+        background-color: #951818;
+    }
+
+    .tree {
+        top: 50%;
+        left: 95%;
+        transform: translate(-50%);
+        background-color: #228B22;
+    } */
+
+   
+
+    .walking {
+        width: 100%;
+    }
+
+    @keyframes rotateGround {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }  
+        </style>
+    </head>
+    <body>
+        <div class="scene">
+            <div class="ground">
+                <!-- <div class="house"></div>
+                <div class="house2"></div>
+                <div class="tree"></div> -->
+            </div>
+            <div class="person">
+                <img src="man_walk.gif" alt="사람" class="walking">
+            </div>
+        </div>
+    </body>
+
+</html>
