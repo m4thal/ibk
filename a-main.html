@@ -8,58 +8,64 @@
         <script src="./res/lottie.min.js"></script>
         <script src="./res/ibk-com.js"></script>
         <title>홈</title>
-
         <style>
-            .container{background-color: #DDE8F4;}
-            .page_wrap{padding:10px 20px 0px;}
-            .alram_box{display:flex;align-items:center;justify-content:space-between;}
+            header {position:fixed;top:0;width:375px; background-color:#DDE8F4;z-index:100;}
+            .container{padding-top:90px; background-color:#DDE8F4;}
+            .container::before{width: 100%;content: "";height: 100%;position: fixed;top:0;background-color: #DDE8F4;}
+            .page_wrap{padding:0px 20px 160px;background-color:#DDE8F4;transition:0.3s; background-color:#DDE8F4;}
+            .alram_box{position:fixed;top:44px;display:flex;align-items:center;justify-content:space-between;width:375px;padding:0 20px 20px;background-color:#DDE8F4;overflow:hidden;z-index:100;}
+            .alram_box .txt_class{transform: translateX(-140px); opacity: 0; animation:txt_class 0.5s 0.8s ease-in-out forwards;}
             .alram_box .txt_class img{width:78px;}
-            .alram_box .svg_wrap{display:flex;}
-            .banner_wrap{position:relative;margin-top:32px; overflow: hidden; opacity: 0; animation: banner 1s 0.5s ease-out forwards; transition: 0.5s;}
-            .banner_wrap .play{position:absolute; transition: 0.3s;} 
-            .banner_wrap .play.play1{width:296px;top:14px;left:-180px; animation: txt 0.6s 1s cubic-bezier(0, 0, 0.58, 1) forwards;}
-            .banner_wrap .play.play2{width:46px;top:18px;right:28px; margin-right: -90px; animation: play 0.5s 1s forwards; transition: 0.5s;}
-            .banner_wrap .play.play3{width:15px;top:49px;right:23px; transform: scale(0);opacity: 0; animation: opacity 0.4s 1.5s cubic-bezier(0.075, 0.82, 0.165, 0.5) forwards;}
-            .banner_wrap .play.play4{width:13px;top:38px;right:24px;margin-top: -30px; opacity: 0; animation: opacityTop 9s 1.9s ease infinite;}
-            .banner_wrap .play.play5{width:13px;top:25px;right:19px;margin-top: -30px; opacity: 0; animation: opacityTop 9s 1.9s ease infinite;}
-            .banner_wrap .play.play6{width:17px;top:15px;right:73px; transform: scale(0);opacity: 0; animation: opacity 0.4s 1.6s cubic-bezier(0.075, 0.82, 0.165, 0.5) forwards;}
-            @keyframes banner{
-                0%{opacity:0;}
-                100%{opacity:1;}
-            }
-            @keyframes txt{
-                0%{left: -180px;}
-                100%{left: 20px;}
-            }
-            @keyframes play{
-                0%{margin-right: -90px; transforms: scale(0);}
-                100%{margin-right: 0; transforms: scale(1);}
-            }
-            @keyframes opacity{
-                100%{opacity: 1;transform: scale(1)}
-            }
-            @keyframes opacityTop{
-                0%,50%,100%{margin-top: -30px; opacity: 0; transform: rotate(12deg);}
-                5%,45%,55%,95%{margin-top: 0px; opacity: 1;transform: rotate(0deg);}
-            }
+            .alram_box .svg_wrap{display:flex;animation:alram 0.5s 0.8s ease-in-out forwards;opacity:0;}
+            @keyframes txt_class{100%{opacity: 1; transform: translateX(0);}}
+            @keyframes alram{0%{transform:translateX(140px);}100%{transform:translateX(0);opacity: 1;}}
+            .banner_dim{position:absolute;top:0px;left:0px;animation:banner 0.3s 0.3s forwards;opacity:0;}
+            .banner_wrap{position:relative;overflow:hidden;transition:0.5s;height:90px;margin-bottom:12px}
+            .banner_wrap img:not(.banner_dim){z-index:1;}
+            .banner_bg{position:absolute;animation:banner 1s 0.5s ease-out forwards;opacity:0;}
+            .banner_wrap .play{position:absolute;transition:0.3s;} 
+            .banner_wrap .play.play1{width:296px;top:14px;left:-180px;animation: txt 0.6s 1s cubic-bezier(0, 0, 0.58, 1) forwards;}
+            .banner_wrap .play.play2{width:46px;top:18px;right:28px;margin-right:-90px; animation:play 0.5s 1s forwards; transition: 0.5s;}
+            .banner_wrap .play.play3{width:15px;top:49px;right:23px;transform:scale(0);opacity:0;animation:opacity 0.4s 1.5s cubic-bezier(0.075, 0.82, 0.165, 0.5) forwards;}
+            .banner_wrap .play.play4{width:13px;top:38px;right:24px;margin-top:-30px; opacity:0;animation:opacityTop 6s 1.9s ease infinite;}
+            .banner_wrap .play.play5{width:13px;top:25px;right:19px;margin-top:-30px; opacity:0;animation:opacityTop 6s 1.9s ease infinite;}
+            .banner_wrap .play.play6{width:17px;top:15px;right:73px;transform:scale(0);opacity:0;animation:opacity 0.4s 1.6s cubic-bezier(0.075, 0.82, 0.165, 0.5) forwards;}
+            @keyframes banner{0%{opacity:0;}100%{opacity:1;}}
+            @keyframes txt{0%{left:-180px;}100%{left:20px;}}
+            @keyframes play{0%{margin-right:-90px;transforms:scale(0);}100%{margin-right:0;transforms:scale(1);}}
+            @keyframes opacity{100%{opacity:1;transform:scale(1)}}
+            @keyframes opacityTop{0%,50%,100%{margin-top:-30px;opacity:0;transform:rotate(12deg);}5%,45%,55%,95%{margin-top:0px;opacity:1;transform:rotate(0deg);}}
+            .indicator{text-align:center;}
+            .indicator img{width:52px;animation:indicator 0.3s 0.6s forwards;opacity:0;}
+            @keyframes indicator{0%{transform:translateY(3px);}100%{transform:translateY(0);opacity:1;}}
+            .card_wrap{position:relative;overflow:hidden;margin:0 -20px;background:url('./images/A/home/card_box.png') no-repeat;background-size:contain;padding:20px 20px 0;}
+            .card_wrap .card_txt{transform:translateY(-50px);opacity:0;animation:cardTxt 0.9s 1.8s forwards;}
+            .card_wrap #button{position:absolute;top:65px;right:40px;width:63px;height:36px;animation:cardButton 0.9s 1.8s forwards;opacity:0;}
+            @keyframes cardTxt{100%{transform:translateY(-20px);opacity: 1;}}
+            @keyframes cardButton{100%{top:95px;opacity:1;}}
+            .interaction.off{position:unset;animation:unset;transition:unset;position:relative;top:50px;opacity:0;display:block;transition:all .6s ease-in-out;animation:sadasd 1s 1.1s forwards;}
+            @keyframes sadasd {100%{opacity: 1; top: 0;}}
+            /* bottom_nav */
+            .bottom_nav{width:100%;transition:0.5s all;bottom:-100%;animation:nav 1s 1s forwards;}
+            @keyframes nav{100%{bottom:0;}}
         </style>
     </head>
     <body>
         <div class="container">
-            <div class="page_wrap">
-                <div class="alram_box">
-                    <div class="txt_class">
-                        <img src="./images/A/home/txt.png" alt="">
-                    </div>
-                    <div class="svg_wrap">
-                        <div id="alram" style="width:28px;height:28px;margin-right:16px;"></div>
-                        <div id="box" style="width:28px;height:28px;margin-right:16px;"></div>
-                        <img src="./images/A/home/menu.png" alt="" style="width:28px;height:28px;">
-                        <!-- <div id="button" style="border:1px solid red;width:50px;height:50px"></div> -->
-                    </div>
+            <div class="alram_box">
+                <div class="txt_class">
+                    <img src="./images/A/home/txt.png" alt="">
                 </div>
+                <div class="svg_wrap">
+                    <div id="alram" style="width:28px;height:28px;margin-right:16px;"></div>
+                    <div id="box" style="width:28px;height:28px;margin-right:16px;" onclick="drPopupOpen('.dim')"></div>
+                    <img src="./images/A/home/menu.png" alt="" style="width:28px;height:28px;">
+                </div> 
+            </div>
+            <div class="page_wrap">
                 <div class="banner_wrap">
-                    <img src="./images/A/home/banner.png" alt="">
+                    <img src="./images/A/home/banner.png" alt="" class="banner_bg">
+                    <img src="./images/A/home/banner_dim.png" alt="" class="banner_dim">
                     <img src="./images/A/home/txt1.png" alt="" class="play play1">
                     <img src="./images/A/home/graph.png" alt="" class="play play2">
                     <img src="./images/A/home/coin.png" alt="" class="play play3">
@@ -67,27 +73,80 @@
                     <img src="./images/A/home/coin2.png" alt="" class="play play5">
                     <img src="./images/A/home/checked.png" alt="" class="play play6">
                 </div>
+                <div class="indicator">
+                    <img src="./images/A/home/indicator.png" alt="">
+                </div>
+                <div class="card_wrap">
+                    <img src="./images/A/home/card_txt.png" alt="" class="card_txt">
+                    <div id="button"></div>
+                </div>
+                <div class="indicator">
+                    <img src="./images/A/home/indicator.png" alt="">
+                </div>
+                <div class="interaction off">
+                    <img src="./images/A/home/title1.png" alt="">
+                </div>
+                <div class="interaction off" style="margin-top: 32px;margin-right:-20px;">
+                    <img src="./images/A/home/title2.png" alt="">
+                </div>
+                <div class="interaction" style="margin-top: 32px;">
+                    <img src="./images/A/home/title3.png" alt="">
+                </div>
+                <div class="interaction" style="margin-top: 32px;">
+                    <img src="./images/A/home/title4.png" alt="">
+                </div>
+                <div class="interaction" style="margin-top: 32px;">
+                    <img src="./images/A/home/title5.png" alt="">
+                </div>
+                <div class="interaction" style="margin-top: 32px;">
+                    <img src="./images/A/home/title6.png" alt="">
+                </div>
+                <div class="interaction" style="margin-top: 32px;">
+                    <img src="./images/A/home/title7.png" alt="">
+                </div>
             </div>
             <div class="bottom_nav">
                 <ul>
-                    <li class="home on">
-                        <a href="./c-main.html"></a>
+                    <li>
+                        <a id="home" href="./a-main.html">
+                            <i aria-label="홈 탭" class="home on"></i>
+                            <span>홈</span>
+                        </a>
                     </li>
-                    <li class="point">
-                        <a href="./c-benefit.html"></a>
+                    <li>
+                        <a href="./a-asset.html">
+                            <i aria-label="자산 탭" class="asset"></i>
+                            <span>자산</span>
+                        </a>
                     </li>
-                    <li class="ai">
-                        <a href="./c-ai.html"></a>
+                    <li>
+                        <a href="./a-product.html">
+                            <i aria-label="상품 탭" class="goods"></i>
+                            <span>상품 </span>
+                        </a>
                     </li>
-                    <li class="asset">
-                        <a href="./c-asset.html"></a>
+                    <li>
+                        <a href="./a-benefit.html">
+                            <i aria-label="혜택 탭" class="benefit"></i>
+                            <span>혜택</span>
+                        </a>
                     </li>
-                    <li class="product">
-                        <a href="./c-product.html"></a>
+                    <li>
+                        <a href="#none">
+                            <i aria-label="투자 탭" class="invest"></i>
+                            <span>투자</span>
+                        </a>
                     </li>
                 </ul>
             </div>
         </div>
+        <div class="dim" onclick="drPopupClose('.dim')">
+            <img src="./images/A/home/quick_bar.png" alt="">
+        </div>
+        <style>
+            .dim{position:fixed;top:0;left:50%;width:376px;height:100%;transform:translateX(-50%);z-index: 101;background-color:#03030399; display: none; transition: .6s all;}
+            .dim img{position:absolute;bottom:0;width:309px;left:50%;transform:translateX(-50%);}
+        </style>
     </body> 
     <script>
         const lottieAni1 = bodymovin.loadAnimation({
@@ -107,9 +166,17 @@
         const lottieAni3 = bodymovin.loadAnimation({
             container : document.getElementById('button'),
             renderer : 'svg',
-            loop : false,
+            loop : true,
             autoplay : true,
             path: './images/button.json' 
         })
+
+        const interactionElements = document.querySelectorAll('.interaction');
+        interactionElements.forEach(element => {
+            setTimeout(() => {
+                element.classList.remove('off');
+            }, 2000);
+        });
+
     </script>
 </html>

@@ -10,31 +10,53 @@
 
         <!-- css style -->
         <style>
+            /* bottom_nav */
+            .bottom_nav{width: 100%;}
+            
             .container{position:relative;height:auto;background:#F3F4F7 !important;}
-            .container::before{content:"";position:absolute;top:0;left:0;right:0;width:375px;height:400px;background:url("./images/A/asset/RectangleBg.png") no-repeat 0 0 / 100%;z-index:}
-            header, .top_menu, .contents{position: relative;}
-            .alarm_banner{margin:0 auto;padding:20px 20px 0 20px}
+            .container::before{content:"";position:fixed;top:0;left:0;right:0;margin:0 auto;width:375px;height:400px;background:url("./images/A/asset/RectangleBg_1.png") no-repeat 0 0 / 100%;}
+            .container.active::before{background:url("./images/A/asset/RectangleBg_2.png") no-repeat 0 0 / 100%;}
+            .container header, .top_menu{background:#4393F0}
+            .container header,
+            .top_menu,
+            .cont_tit {transition: background-color 0.3s ease, color 0.3s ease;}
+            .top_menu{position:fixed;z-index:50;}
+            .contents{padding-top:140px;}
+            .alarm_banner{position:relative;margin:0 auto;padding:20px 20px 0 20px;opacity: 0;transform: translateY(-20px);animation: slideDown 1s ease-out forwards;}
+            @keyframes slideDown {
+                0% {
+                    opacity: 0;
+                    transform: translateY(-20px);
+                }
+                100% {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            /***** Content 1 *****/
             .content-1{position:relative;padding:32px 20px 36px}
-            .content-2{position:relative;padding:0 20px 52px}
             /* 아코디언 */
             .accordion{margin-top:16px;padding:24px 20px 20px 20px;border-radius:16px;background:#FFFFFF;}
-            .accordion h2{display:flex;justify-content:center;padding-top:16px;font-size:14px;font-weight:500;line-height:20px;color:#737684;}
-            .accordion h2 a{position:relative;}
-            .accordion h2 a::after{content:"";position:absolute;right:-28px;top:50%;transform:translateY(-50%)rotate(180deg);width:12px;height:12px;background:url("./images/asset/btn_arrow.svg") no-repeat 0 0 / 100%;}
-            .accordion h2 a.open::after{transform: translateY(-50%);}
-            /* bar graph */
+            .accordion a{position:relative;display:flex;justify-content:center;margin-top:40px;padding-top:16px;font-size:14px;font-weight:500;line-height:20px;border-top:1px solid #E1E3E4;color:#737684;}
+            .accordion a::after{content:"";position:absolute;right:106px;top:26px;transform:translateY(-50%);width:12px;height:12px;background:url("./images/A/asset/btn_arrow.svg") no-repeat 0 0 / 100%;transition:transform 0.3s ease;}
+            .accordion a.open::after{transform:translateY(-50%)  rotate(180deg);}
+            .accordion a.close::after{transform:translateY(-50%) rotate(0deg);}
+            .accordion .graph + .accor_contents{margin-top:40px;}
+            .accordion .accor_contents{display:none;}
+            /* 바그래프 */
             .graph {overflow:hidden;display:flex;align-items:flex-end;justify-content:center;position:absolute;top:224px;left:40px;width:295px;height:142px;}
             .bar {width:28px;border-radius:8px;background:#E1E3EA;transition:transform 0.5s ease-out;transform:translateY(100%);}
             .bar + .bar{margin-left:20px;}
-            .bar-1{height:88px;}
-            .bar-2{height:88px;}
-            .bar-3{height:88px;}
-            .bar-4{height:88px;}
-            .bar-5{height:88px;}
+            .bar:nth-child(n+1):nth-child(-n+5){height:88px;}
             .bar-6{height:101px;background:#4393F0}
             .graph_txt01{position:absolute;top:17px;left:60px;width:107px;height:24px;}
             .graph_txt02{position:absolute;top:0px;right:0;width:78px;height:24px;}
             .graph_txt01, .graph_txt02{opacity:0;transition: opacity 0.5s ease-out;}
+            /***** Content 2 *****/
+            .content-2{position:relative;padding:0 20px 184px 20px}
+            .content-2 .cont_tit{font-size:18px;font-weight:700;line-height:26px;color:#30323B;}
+            .content-2 .cont_tit + img{margin-top:12px;}
+            .content-2 img + .cont_tit{margin-top:36px;}
         </style>
         <!-- // css style -->
         
@@ -43,14 +65,14 @@
         <div class="container type">
             <div class="top_menu">
                 <img src="./images/A/asset/gnb_sub.png" alt="">
+                <img class="tab_menu" src="./images/A/asset/2dthMenu.png" alt="">
             </div>
             <!-- contents -->
             <div class="contents">
-                <img src="./images/A/asset/2dthMenu.png" alt="">
                 <img class="alarm_banner" src="./images/A/asset/banner.png" alt="">
                 <div class="content-1">
                     <img src="./images/A/asset/myasset.png" alt="">
-                    <div class="accordion">
+                    <div class="accordion">  
                         <img class="accor_txt" src="./images/A/asset/acc_text.png" alt="">
                         <div class="graph">
                             <div class="bar bar-1"></div>
@@ -62,43 +84,131 @@
                             <img class="graph_txt01" src="./images/A/asset/textbox01.png" alt="">
                             <img class="graph_txt02" src="./images/A/asset/textbox02.png" alt="">
                         </div>
-                        <div class="folding-panel">
+                        <div class="accor_contents">
                             <img src="./images/A/asset/acc_contents.png" alt="">
                         </div>
-                        <h2><a href="#none" class="folding-btn close" role="button">상세 열기</a></h2>
+                        <a href="#none" class="folding-btn close" role="button">상세 열기</a>   
                     </div>
-
                 </div>
                 <div class="content-2">
-                    <img src="./images/A/asset/contents.png" alt="">
+                    <p class="cont_tit cont_tit1">유용한 알림을 받고 계신가요?</p>
+                    <img src="./images/A/asset/contents01.png" alt="">
+                    <p class="cont_tit cont_tit2">진행중인 이벤트를 확인해보세요</p>
+                    <img src="./images/A/asset/contents02.png" alt="">
                 </div>
             </div>
             <!-- // contents -->
+            <div class="bottom_nav">
+                <ul>
+                    <li>
+                        <a id="home" href="./a-main.html">
+                            <i aria-label="홈 탭" class="home"></i>
+                            <span>홈</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./a-asset.html">
+                            <i aria-label="자산 탭" class="asset on"></i>
+                            <span>자산</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./a-product.html">
+                            <i aria-label="상품 탭" class="goods"></i>
+                            <span>상품 </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./a-benefit.html">
+                            <i aria-label="혜택 탭" class="benefit"></i>
+                            <span>혜택</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#none">
+                            <i aria-label="투자 탭" class="invest"></i>
+                            <span>투자</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </body> 
+
     <script>
-        $(document).ready(function() {
-            const bars = $('.bar');
-            const totalBars = bars.length;
-            const animationDelay = 200;
-            const textDelay = 300;
-    
-            bars.each(function(index) {
-                const bar = $(this);
-                setTimeout(function() {
-                    bar.css('transform', 'translateY(0)');
-                    
-                    if (index === totalBars - 1) {
+        // 그래프 애니메이션
+        const bars = $('.bar');
+        const totalBars = bars.length;
+        const animationDelay = 250;
+        const textDelay = 350;
+
+        bars.each(function(index) {
+            const bar = $(this);
+            setTimeout(function() {
+                bar.css('transform', 'translateY(0)');
+                if (index === totalBars - 1) {
+                    setTimeout(function() {
+                        $('.graph_txt01').css('opacity', '1');
                         setTimeout(function() {
-                            $('.graph_txt01').css('opacity', '1');
-                            
-                            setTimeout(function() {
-                                $('.graph_txt02').css('opacity', '1');
-                            }, textDelay);
-                        }, animationDelay);
-                    }
-                }, index * animationDelay);
+                            $('.graph_txt02').css('opacity', '1');
+                        }, textDelay);
+                    }, animationDelay);
+                }
+            }, index * animationDelay);
+        });
+        
+        // 아코디언 기능
+        $('.accordion .folding-btn').on('click', function(e) {
+            e.preventDefault();
+            var $this = $(this);
+            var $accordion = $this.closest('.accordion');
+            var $contents = $accordion.find('.accor_contents');
+            if ($contents.is(':hidden')) {
+                $contents.slideDown(300);
+                $this.text('상세 닫기');
+                $this.removeClass('close').addClass('open');
+            } else {
+                $contents.slideUp(300);
+                $this.text('상세 열기');
+                $this.removeClass('open').addClass('close');
+            }
+        });
+
+        // 이미지, 색상 변경
+        $(window).on('scroll', function() {
+            var content2 = $('.content-2');
+            var container = $('.container');
+            var header = $('.container header');
+            var topMenu = $('.top_menu');
+            var imageBgHeight = 390; 
+
+            var content2Top = content2.offset().top;
+            var windowScrollTop = $(window).scrollTop();
+
+            if (windowScrollTop + imageBgHeight > content2Top) {
+                if (!container.hasClass('active')) {
+                    container.addClass('active');
+                    header.css('background', '#7A43F0');
+                    topMenu.css('background', '#7A43F0');
+                }
+            } else {
+                if (container.hasClass('active')) {
+                    container.removeClass('active');
+                    header.css('background', '#4393F0');
+                    topMenu.css('background', '#4393F0');
+                }
+            }
+
+            $('.cont_tit').each(function() {
+                var titleTop = $(this).offset().top;
+                if (windowScrollTop + imageBgHeight > titleTop) {
+                    $(this).css('color', '#FFFFFF');
+                } else {
+                    $(this).css('color', '#30323B');
+                }
             });
         });
+
     </script>
+
 </html>
