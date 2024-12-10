@@ -56,16 +56,16 @@
                         </div>
                         <div class="swiper-slide second">
                             <div class="bankbook">
-                                <div class="title">저축예금 (IBK간편한통장)</div>
-                                <div class="balance">13,000,000<span>원</span></div>
+                                <div class="title">IBK모임통장</div>
+                                <div class="balance">53,000<span>원</span></div>
                             </div>
                             <div class="bankbook_num">839-009030-02-111 <img src="./images/B/main/icon_copy.png" alt=""></div>
                             <div class="bankbook_more"><img src="./images/B/main/icon_change.png" alt=""></div>
                         </div>
                         <div class="swiper-slide third">
                             <div class="bankbook">
-                                <div class="title">저축예금 (IBK간편한통장)</div>
-                                <div class="balance">13,000,000<span>원</span></div>
+                                <div class="title">NH채움우대통장</div>
+                                <div class="balance">1,402,000<span>원</span></div>
                             </div>
                             <div class="bankbook_num">839-009030-02-111 <img src="./images/B/main/icon_copy.png" alt=""></div>
                             <div class="bankbook_more"><img src="./images/B/main/icon_change.png" alt=""></div>
@@ -127,8 +127,13 @@
         }
     });
 
-    function next(){
-        swiper.slideNext();
-    }
+    window.addEventListener('scroll', function() {
+        const header = document.querySelector('.container');
+        if (window.scrollY > 0) {
+            header.classList.add('dark');
+        } else {
+            header.classList.remove('dark');
+        }
+        });
     </script>
 </html>
