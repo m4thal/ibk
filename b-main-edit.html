@@ -75,13 +75,62 @@
 
             .view_all{position: relative; top: -30px; width: 100%; text-align: center; color: #979baa; cursor: pointer;  animation: txt3 0.5s 2s cubic-bezier(0, 0, 0.58, 1) forwards; opacity: 0;}
 
-            .quick_transfer{position: relative; padding-left: 24px; width: 100%; overflow: hidden;}
-            .quick_transfer img{width: 391px; max-width: 391px;}
+            .quick_wrap{width: 375px; overflow: hidden;}
+            .quick_transfer{position: relative; margin-left: 16px; width: 391px; overflow: hidden; display: flex; justify-content: center; align-items: center; height: 100px;}
+            .quick_transfer li{margin-right: 5px; width: 78px; position: absolute; right: 0;}
+            .quick_transfer li:nth-child(1){margin-right: 16px; width: 48px; animation: quick1 .5s 2s cubic-bezier(0, 0, 0.58, 1) forwards;}
+            .quick_transfer li:nth-child(2){animation: quick2 .5s 2s cubic-bezier(0, 0, 0.58, 1) forwards;}
+            .quick_transfer li:nth-child(3){animation: quick3 .5s 2s cubic-bezier(0, 0, 0.58, 1) forwards;}
+            .quick_transfer li:nth-child(4){animation: quick4 .5s 2s cubic-bezier(0, 0, 0.58, 1) forwards;}
 
-            .etc_edit{position: relative; margin-top: 5px; margin-left: 16px;}
+            @keyframes quick1{
+                0%{right: 0px;}
+                100%{right: 327px;}
+            }
+            @keyframes quick2{
+                0%{right: 0px;}
+                100%{right: 249px;}
+            }
+            @keyframes quick3{
+                0%{right: 0px;}
+                100%{right: 166px;}
+            }
+            @keyframes quick4{
+                0%{right: 0px;}
+                100%{right: 83px;}
+            }
+
+            .etc_edit{position: relative; margin-top: 5px; margin-left: 16px; animation: etc .5s 2.5s cubic-bezier(0, 0, 0.58, 1) forwards; opacity: 0;}
+
+            @keyframes etc{
+                0%{top: 20px;}
+                100%{top: 0px; opacity: 1;}
+            }
 
             .change_button{position: relative; margin-top: 40px; display: flex; justify-content: space-between;}
             .change_button img{width: 185px;}
+
+            /* 딤 처리와 팝업 기본 스타일 */
+            .popup-container {position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: all 0.3s ease; z-index: 100;}
+
+            .popup-container.active {opacity: 1;pointer-events: auto;}
+
+            .dim {position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); transition: all ease 1s;}
+
+            .popup-box {position: relative;z-index: 10; width: 327px; transition: all ease .5s; display: flex; align-items: center; justify-content: center;}
+            .popup-box img{width: 100%; opacity: 0; transition: all ease .5s;}
+            .popup-container.active .popup-box img{animation: wheel .5s .5s cubic-bezier(0, 0, 0.58, 1) forwards;}
+            .popup-container.close .popup-box img{animation: wheelB .5s 0s cubic-bezier(0, 0, 0.58, 1) forwards;}
+
+            @keyframes wheel{
+                0%{width: 0px; transform: rotate(-150deg);}
+                100%{width: 327px; opacity: 1; transform: rotate(0);}
+            }
+
+            @keyframes wheelB{
+                0%{width: 327px; opacity: 1; transform: rotate(0);}
+                100%{width: 0px; opacity: 0; transform: rotate(150deg);}
+            }
         </style>
     </head>
     <body>
@@ -98,7 +147,7 @@
                                 <div class="balance">13,000,000<span>원</span></div>
                             </div>
                             <div class="bankbook_num">839-009030-02-111 <img src="./images/B/main/icon_copy.png" alt=""></div>
-                            <div class="bankbook_more"><img src="./images/B/main/icon_change.png" alt=""></div>
+                            <div class="bankbook_more openPopup"><img src="./images/B/main/icon_change.png" alt=""></div>
                         </div>
                         <div class="swiper-slide second">
                             <div class="bankbook">
@@ -106,7 +155,7 @@
                                 <div class="balance">53,000<span>원</span></div>
                             </div>
                             <div class="bankbook_num">839-009030-02-111 <img src="./images/B/main/icon_copy.png" alt=""></div>
-                            <div class="bankbook_more"><img src="./images/B/main/icon_change.png" alt=""></div>
+                            <div class="bankbook_more openPopup"><img src="./images/B/main/icon_change.png" alt=""></div>
                         </div>
                         <div class="swiper-slide third">
                             <div class="bankbook">
@@ -114,7 +163,7 @@
                                 <div class="balance">1,402,000<span>원</span></div>
                             </div>
                             <div class="bankbook_num">839-009030-02-111 <img src="./images/B/main/icon_copy.png" alt=""></div>
-                            <div class="bankbook_more"><img src="./images/B/main/icon_change.png" alt=""></div>
+                            <div class="bankbook_more openPopup"><img src="./images/B/main/icon_change.png" alt=""></div>
                         </div>
                     </div>
                     <div class="swiper-pagination"></div>
@@ -122,8 +171,14 @@
                     <!-- <div class="swiper-button-next"></div> -->
                 </div>
                 <div class="view_all">전체계좌보기</div>
-                <div class="quick_transfer">
-                    <img src="./images/B/main/quick_transfer.png" alt="">
+                <div class="quick_wrap">
+                    <ul class="quick_transfer">
+                        <li><img src="./images/B/main/quick_transfer_00.png" alt=""></li>
+                        <li><img src="./images/B/main/quick_transfer_01.png" alt=""></li>
+                        <li><img src="./images/B/main/quick_transfer_02.png" alt=""></li>
+                        <li><img src="./images/B/main/quick_transfer_03.png" alt=""></li>
+                        <li><img src="./images/B/main/quick_transfer_04.png" alt=""></li>
+                    </ul>
                 </div>
                 <div class="etc_edit">
                     <img src="./images/B/main/etc_edit.png" alt="">
@@ -141,6 +196,12 @@
                     <a href="./b-product.html" class="go3"></a>
                     <a href="./b-benefit.html" class="go4"></a>
                 </div>
+            </div>
+        </div>
+        <div id="popup" class="popup-container">
+            <div class="dim"></div>
+            <div class="popup-box">
+                <img src="./images/B/main/wheel.png" alt="">
             </div>
         </div>
     </body>
@@ -205,6 +266,38 @@
                 header.classList.remove('active');
             }
         });
+
+        $(document).ready(function () {
+            // 팝업 열기 버튼 클릭 이벤트
+            $('.openPopup').on('click', function () {
+                $("#popup").removeClass('close');
+                $('#popup').addClass('active'); // 팝업 활성화
+            });
+
+            // 팝업 닫기 버튼 클릭 이벤트
+            $('#closePopup').on('click', function () {
+                $("#popup").addClass('close');
+                setTimeout(() => {
+                    $('#popup').removeClass('active'); // 팝업 비활성화
+                }, 500);
+            });
+
+            // 딤 영역 클릭 시 팝업 닫기
+            $('.dim').on('click', function () {
+                $("#popup").addClass('close');
+                setTimeout(() => {
+                    $('#popup').removeClass('active'); // 팝업 비활성화
+                }, 500);
+            });
+
+            $('.popup-box').on('click', function () {
+                $("#popup").addClass('close');
+                setTimeout(() => {
+                    $('#popup').removeClass('active'); // 팝업 비활성화
+                }, 500);
+            });
+        });
+
 
     </script>
 </html>

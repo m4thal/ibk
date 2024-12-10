@@ -75,10 +75,37 @@
 
             .view_all{position: relative; top: -30px; width: 100%; text-align: center; color: #979baa; cursor: pointer;  animation: txt3 0.5s 2s cubic-bezier(0, 0, 0.58, 1) forwards; opacity: 0;}
 
-            .quick_transfer{position: relative; padding-left: 24px; width: 100%; overflow: hidden;}
-            .quick_transfer img{width: 391px; max-width: 391px;}
+            .quick_wrap{width: 375px; overflow: hidden;}
+            .quick_transfer{position: relative; margin-left: 16px; width: 391px; overflow: hidden; display: flex; justify-content: center; align-items: center; height: 100px;}
+            .quick_transfer li{margin-right: 5px; width: 78px; position: absolute; right: 0;}
+            .quick_transfer li:nth-child(1){margin-right: 16px; width: 48px; animation: quick1 .5s 2s cubic-bezier(0, 0, 0.58, 1) forwards;}
+            .quick_transfer li:nth-child(2){animation: quick2 .5s 2s cubic-bezier(0, 0, 0.58, 1) forwards;}
+            .quick_transfer li:nth-child(3){animation: quick3 .5s 2s cubic-bezier(0, 0, 0.58, 1) forwards;}
+            .quick_transfer li:nth-child(4){animation: quick4 .5s 2s cubic-bezier(0, 0, 0.58, 1) forwards;}
 
-            .etc{position: relative; margin-top: 16px; margin-left: 16px;}
+            @keyframes quick1{
+                0%{right: 0px;}
+                100%{right: 327px;}
+            }
+            @keyframes quick2{
+                0%{right: 0px;}
+                100%{right: 249px;}
+            }
+            @keyframes quick3{
+                0%{right: 0px;}
+                100%{right: 166px;}
+            }
+            @keyframes quick4{
+                0%{right: 0px;}
+                100%{right: 83px;}
+            }
+
+            .etc{position: relative; margin-top: 16px; margin-left: 16px; animation: etc .5s 2.5s cubic-bezier(0, 0, 0.58, 1) forwards; opacity: 0;}
+
+            @keyframes etc{
+                0%{top: 20px;}
+                100%{top: 0px; opacity: 1;}
+            }
 
             .change_button{position: relative; margin-top: 40px;}
 
@@ -143,8 +170,14 @@
                     <!-- <div class="swiper-button-next"></div> -->
                 </div>
                 <div class="view_all">전체계좌보기</div>
-                <div class="quick_transfer">
-                    <img src="./images/B/main/quick_transfer.png" alt="">
+                <div class="quick_wrap">
+                    <ul class="quick_transfer">
+                        <li><img src="./images/B/main/quick_transfer_00.png" alt=""></li>
+                        <li><img src="./images/B/main/quick_transfer_01.png" alt=""></li>
+                        <li><img src="./images/B/main/quick_transfer_02.png" alt=""></li>
+                        <li><img src="./images/B/main/quick_transfer_03.png" alt=""></li>
+                        <li><img src="./images/B/main/quick_transfer_04.png" alt=""></li>
+                    </ul>
                 </div>
                 <div class="etc">
                     <img src="./images/B/main/etc.png" alt="">
