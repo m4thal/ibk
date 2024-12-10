@@ -21,9 +21,9 @@
     body {background:#158463;}
     .scene {position:relative;width:100%;height:100vh;background:#158463;}
     .person {position:absolute;width:300px;left: 50%;top: 32%;transform: translateX(-50%);z-index: 2;}
-    .ground {position:absolute;bottom:-800px;background:#fff;width:800px;height:800px;left:-50%;border-radius:50%; animation: moveUp .2s ease-in-out forwards, bounce 0.2s ease-in-out .3s;}
+    .ground {position:absolute;bottom:-800px;background:#fff;width:800px;height:800px;left:-215px;border-radius:50%; animation: moveUp .2s ease-in-out forwards, bounce 0.2s ease-in-out .3s;}
     .person {opacity:0;animation:walk .2s ease-in-out forwards,}
-    .scene .text {position:absolute;top:68px;left:24px;font-family:'Pretendard';font-size:32px;font-weight:300;line-height:40px;color:#fff;opacity:0;animation: text .4s ease-in-out forwards}
+    .scene .text {position:absolute;top:68px;left:24px;font-family:'Pretendard';font-size:32px;font-weight:300;line-height:40px;color:#fff;opacity:0;animation: text .5s ease-in-out .5s forwards}
     .scene .text span {display:block}
 /* 
     .house,
@@ -62,15 +62,15 @@
     @keyframes text {
         0% {opacity:0}
         100% {opacity:1}
-    } 
+    }
     @keyframes walk {
         0% {opacity:0}
         100% {opacity:1}
-    } 
+    }
     @keyframes moveUp {
         0% {bottom:-800px;}
         100% {bottom:-400px;}
-    } 
+    }
     @keyframes bounce {
       0%, 100% {transform:translateY(0)}
       50% {transform: translateY(-100px)}
