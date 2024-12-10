@@ -31,7 +31,7 @@
 		.day { display:none; } 
 		.day.block {display:block;color:#fff;font-size: 24px;font-family: 'indivisible', 'pretandard', sans-serif;font-weight: 300;line-height: normal;position: absolute;z-index: 3;left: 50%;top: 435px;animation: dayUp 0.5s 1; transform:translate(-50%, 0)}
 		.number {font-family: 'indivisible', 'pretandard', sans-serif;height: 25%;display: flex;justify-content: center;align-items: center;font-size: 250px;font-weight: 900;text-shadow: -4.4px 0px 8.8px rgba(0, 0, 0, 0.05);background: linear-gradient(to bottom, #fff 0%, #fff 64%, #333 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;}
-		.scale {animation: scaleUp 1s 1 ease !important; } 
+		.scale {animation: scaleUp 1s 1 ease !important; cursor:pointer;} 
 		
 		/*txt*/
 		.top_txt {color: #fff;font-size: 32px;opacity: 0;top: 50px;position: relative;width: 100%;height: 50%;left: 26px;/* transition: .4s; */
@@ -168,8 +168,8 @@
 				setTimeout(function () {
 					$('.slot_machine,.slot_machine2').addClass('scale');
 					if($('.slot_machine,.slot_machine2').hasClass('scale')){
-						$(this).on('click',function(){
-								location.href = 'a-main.html';
+						$('.slot_machine,.slot_machine2').on('click',function(){
+							location.href = 'a-main.html';
 						});
 					}else{
 						console.log('no');
@@ -217,10 +217,10 @@
 			<div class="day">DAY</div>
 			<div class="btm_txt_box">
 				<p class="btm_txt">통장 잔액을 미리 확인해보는 건 어떨까요?
-					<br /><a href="" title="바로가기" class="btm_txt_link">바로가기 &gt;</a>
+					<br /><a href="a-main.html" title="바로가기" class="btm_txt_link">바로가기 &gt;</a>
 				</p>
 			</div>
-			<div class="nomore_btn"><a href="#none">다시 보지 않기</a></div>
+			<div class="nomore_btn"><a href="a-main.html">다시 보지 않기</a></div>
 		</div>
 	</div>
 </body>
