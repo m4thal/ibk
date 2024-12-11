@@ -58,7 +58,7 @@
                 </div>
                 <div class="svg_wrap">
                     <div id="alram" style="width:28px;height:28px;margin-right:16px;"></div>
-                    <div id="box" style="width:28px;height:28px;margin-right:16px;" onclick="drPopupOpen('.dim')"></div>
+                    <div id="box" style="width:28px;height:28px;margin-right:16px;" onclick="drPopupOpenTwo('.dim')"></div>
                     <img src="./images/A/home/menu.png" alt="" style="width:28px;height:28px;">
                 </div> 
             </div> 
@@ -143,16 +143,32 @@
                 </ul>
             </div>
         </div>
-        <div class="dim" onclick="drPopupClose('.dim')">
-            <img src="./images/A/home/quick_bar.png" alt="">
+        <div class="dim" onclick="drPopupCloseTwo('.dim')">
+            <img src="./images/A/home/quick_bar.png" alt="" class="quick_bar">
             <img src="./images/A/home/quick_icon.png" alt="" class="quick_icon">
         </div>
         <style>
             .dim{position:fixed;top:0;left:50%;width:376px;height:100%;transform:translateX(-50%);z-index: 101;background-color:#03030399; display: none; }
-            .dim img{position:absolute;bottom:0;width:309px;left:50%;transform:translateX(-50%);}
-            .dim .quick_icon{width:30px; animation: quick_icon 0.3s 0.2s ease-in-out forwards; opacity: 0; transform-origin: top;transition: .6s all;}
-            @keyframes quick_icon{
+            .dim img{position:absolute;bottom:0;width:309px;left:50%;transform:translateX(-50%); transition: .6s all;}
+            .dim .quick_bar{ bottom: -120px;  transform-origin:center; transform: translateX(-50%)rotateZ(0deg);opacity: 0; }
+            .dim .quick_bar.on{animation: quick_bar_on 0.6s forwards;}
+            .dim .quick_bar.off{animation: quick_bar_off 0.6s forwards;opacity: 1}
+            .dim .quick_icon{width:0;transform-origin: top;}
+            .dim .quick_icon.on{ animation: quick_icon_on 0.3s 0.4s ease-in forwards;}
+            .dim .quick_icon.off{ animation: quick_icon_off 0.1s ease-in forwards;}
+            @keyframes quick_bar_on{
+                0%{width: 0px;}
+                100%{width: 309px;transform: translateX(-50%)rotateZ(360deg); bottom: -120px; opacity: 1;}
+            }
+            @keyframes quick_bar_off{
+                100%{transform: translateX(-50%)rotateZ(-120deg); bottom: -120px; opacity: 0;}
+            }
+            @keyframes quick_icon_on{
                 100%{width: 80px; opacity: 1;}
+            }
+            @keyframes quick_icon_off{
+                0%{width: 80px;}
+                100%{width: 0px; opacity: 0;}
             }
         </style>
     </body> 
@@ -186,5 +202,21 @@
             }, 2000);
         });
 
+        function drPopupOpenTwo(popName){
+            $('body').css('overflow','hidden');
+            $('.dim').css('display','block');
+            $(popName).css('display','block')
+            $(popName).stop().animate({ scrollTop: 0 }, 300);
+            $(".quick_bar, .quick_icon").addClass('on').removeClass('off')
+        }
+
+        function drPopupCloseTwo(pop){
+            $('body').css('overflow','auto');
+            $(".quick_bar, .quick_icon").addClass('off').removeClass('on')
+            setTimeout(function(){
+                $('.dim').css('display','none');
+            },500)
+
+        }
     </script>
 </html>
