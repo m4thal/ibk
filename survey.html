@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./res/ibk-com.css">
+	<script src="./res/jquery-3.6.4.min.js"></script>
+	<title>IBK App Design</title>
+	<style>
+		body {
+			height: 100vh
+		}
+
+		.container {
+			height: 812px;
+			min-height: 812px;
+			margin: 0;
+			transform: translate(-50%, -50%);
+			top: 50%;
+			left: 50%;
+			background-color: #f8f8f8;
+		}
+
+		.container .page-wrap {
+			padding: 34px 20px 17px 20px;
+		}
+
+		.mid {
+			width: 346px;
+			max-width: 346px;
+		}
+
+		.a-wrap {
+			position: relative;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin: 20px 0 30px;
+		}
+
+		.a-wrap a {
+			display: block;
+			
+			width: 30%;
+			height:76px;
+			background-color: #4C99FF;
+			border-radius: 15px;
+			color:#fff;
+			font-weight:600;
+			display:flex;
+			align-items:center;
+			text-align: center;
+			justify-content: center;
+		}
+
+		.a-wrap img {
+			width: 155px;
+
+		}
+
+		.btm {
+			margin: 0 16px 0 16px;
+			width: 303px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<img src="./images/survey/top.png" alt="" />
+		<div class="page-wrap">
+			<img src="./images/survey/mid_txt.png" class="mid" alt="">
+			<div class="a-wrap">
+				<a href="https://figmashort.link/tWjY8C"
+					onclick="window.open(this.href, '_blank', 'width=1420 height=1080'); return false;">
+					A안<br />보기
+				</a>
+				<a href="https://figmashort.link/zF4B6F"
+					onclick="window.open(this.href, '_blank', 'width=1420 height=1080'); return false;">
+					A-1안<br />보기
+				</a>
+				<a href="https://figmashort.link/Sw3EjT"
+					onclick="window.open(this.href, '_blank', 'width=1420 height=1080'); return false;">
+					B안<br />보기
+				</a>
+			</div>
+
+			<!-- <a href="https://docs.google.com/forms/d/e/1FAIpQLSc_aizUFT1OfAWlPCWW407ELruEN0pwXt7hj3dEQVEoTpKv5g/viewform?usp=header"
+				onclick="window.open(this.href, '_blank', 'width=1420 height=1080'); return false;">
+				<img src="./images/survey/btn_go.png" alt="" />
+			</a> -->
+			<img src="./images/survey/btm_txt.png" alt="" class="btm" />
+		</div>
+	</div>
+</body>
+
+</html>
