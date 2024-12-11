@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="./res/ibk-com.css">
         <link rel="stylesheet" href="https://use.typekit.net/zec7bgf.css">
 		<script src="./res/jquery-3.6.4.min.js"></script>
-		<title>IBK App A안</title>
+		<title>IBK App Design A안</title>
 		<style>
 			@import url("https://use.typekit.net/zec7bgf.css");
 			
@@ -31,7 +31,7 @@
 			.day { display:none; } 
 			.day.block {display:block;color:#fff;font-size: 24px;font-family: 'indivisible', 'pretandard', sans-serif;font-weight: 300;line-height: normal;position: absolute;z-index: 3;left: 50%;top: 435px;animation: dayUp 0.5s 1; transform:translate(-50%, 0)}
 			.number {font-family: 'indivisible', 'pretandard', sans-serif;height: 25%;display: flex;justify-content: center;align-items: center;font-size: 250px;font-weight: 900;text-shadow: -4.4px 0px 8.8px rgba(0, 0, 0, 0.05);background: linear-gradient(to bottom, #fff 0%, #fff 64%, #333 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;}
-			.scale {animation: scaleUp 1s 1 ease !important; cursor:pointer;} 
+			.scale {animation: scaleUp 1s 1 ease !important; } 
 			
 			/*txt*/
 			.top_txt {color: #fff;font-size: 32px;opacity: 0;top: 50px;position: relative;width: 100%;height: 50%;left: 26px;/* transition: .4s; */
@@ -41,15 +41,12 @@
 			.btm_txt .btm_txt_link {font-size: 14px;font-style: normal;font-weight: 400;line-height: 36px;color:#D3D6DE; } 
 			.top_txt.block {opacity: 1; } 
 			.btm_txt.block {top: 0; } 
-			.card {display: inline-block;width: 0;vertical-align: middle;margin: 0 4px 0 8px; } 
+			.card {display: inline-block;width: 0;vertical-align: middle;margin: 0 0px 0 8px; } 
 			.none {display: none; } 
 			.cardline {display: inline-block;width: 0;height: 0;position: absolute;z-index: 3;top: -50%;left: 0px; } 
-			.cardbg {display: inline-block;width: 46px;height:0;position: absolute;z-index: 3;top: 47px;left: 63px;background: url(./images/A/intro/card.png) no-repeat center/ 46px 28px;
-				} 
-			.open{height: 28px;-webkit-animation: scale-in-ver-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-				animation: scale-in-ver-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both; }
-			/* .cardbg {display: inline-block;width: 46px;height: 28px;position: absolute;top: 47px;left: 61px;background: url(./images/card.png) no-repeat center/ 46px 28px;transform: scale(1, 0); }  */
-			.nomore_btn{position:absolute;z-index: 3; bottom:-34px; left:50%; transform:translate(-50%, 0);color:#979BAA; font-size:14px; font-style: normal;font-weight: 500;line-height: 18px;border-bottom:1px solid #979BAA; opacity:0; transition:1.5s;}
+			.cardbg {display: inline-block;width: 46px;height:0;position: absolute;z-index: 3;top: 47px;left: 63px;background: url(./images/A/intro/card.png) no-repeat center/ 46px 28px;} 
+			.open{height: 28px;-webkit-animation: scale-in-ver-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both; animation: scale-in-ver-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both; }
+			.nomore_btn{position:fixed;z-index: 3; bottom:34px; left:50%; transform:translate(-50%, 0);color:#979BAA; font-size:14px; font-style: normal;font-weight: 500;line-height: 18px;border-bottom:1px solid #979BAA; opacity:0; transition:1.5s;}
 			.nomore_btn.active{opacity:1;}
 			.nomore_btn a{display:block;}
 
@@ -93,99 +90,47 @@
 				-webkit-animation: scale-in-ver-center 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 				animation: scale-in-ver-center 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;}
 
-			/**
-	* ----------------------------------------
-	* animation scale-in-ver-center
-	* ----------------------------------------
-	*/
-	@-webkit-keyframes scale-in-ver-center {
-	0% {
-		-webkit-transform: scaleY(0);
-				transform: scaleY(0);
-		opacity: 1;
-	}
-	100% {
-		-webkit-transform: scaleY(1);
-				transform: scaleY(1);
-		opacity: 1;
-	}
-	}
-	@keyframes scale-in-ver-center {
-	0% {
-		-webkit-transform: scaleY(0);
-				transform: scaleY(0);
-		opacity: 1;
-	}
-	100% {
-		-webkit-transform: scaleY(1);
-				transform: scaleY(1);
-		opacity: 1;
-	}
-	}
-
-	.top_txt.move{left:-500px !important;}
-	.btm_txt_box.move{left:200%;}
-	.slot_machine2.move{left:200%;}
-	.slot_machine.move{left:200%;}
-	.day.block.move{left:200%;}
-
+			/* animation scale-in-ver-center*/
+			@-webkit-keyframes scale-in-ver-center {
+				0% {
+					-webkit-transform: scaleY(0);
+					transform: scaleY(0);
+					opacity: 1;
+				}
+				100% {
+					-webkit-transform: scaleY(1);
+					transform: scaleY(1);
+					opacity: 1;
+				}
+			}
+			@keyframes scale-in-ver-center {
+				0% {
+					-webkit-transform: scaleY(0);
+					transform: scaleY(0);
+					opacity: 1;
+				}
+				100% {
+					-webkit-transform: scaleY(1);
+					transform: scaleY(1);
+					opacity: 1;
+				}
+			}
 		</style>
-</head>
-<script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
-<!-- <script src="./res/jquery.transform2d.js"></script> -->
-<script>
-	$(function () {
- 
-		$('.round_wrap').addClass('one', callBack);
+	</head>
 
-		function callBack() {
-			setTimeout(function () {
-				$('.btm_txt').addClass('block');
-				$('.top_txt').addClass('block', 500);
-				$('.card').animate({
-					width: '50px',
-					height: '1px',
-					backgroundColor: 'white',
-				}, 500,function(){
-							setTimeout(function () {
-								$('.card').css('height','0');
-								$('.cardbg').addClass('open');
-							},200);
-						}
-				);
-				setTimeout(function () {
-					$('.rolling-number,.rolling-number2').addClass('active');
-				},1600);
-				setTimeout(function () {
-					$('.nomore_btn').addClass('active');
-				},2000);
-				setTimeout(function () {
-					$('.day').addClass('block');
-				},4000);
-				setTimeout(function () {
-					$('.slot_machine,.slot_machine2').addClass('scale');
-					if($('.slot_machine,.slot_machine2').hasClass('scale')){
-						$('.slot_machine,.slot_machine2').on('click',function(){
-							location.href = 'a-main.html';
-						});
-					}else{
-						console.log('no');
-					}
-				},4500);
-			}, 1000);
-
-		}
-		
-	});
-</script>
 
 <body>
 	<div class="container">
-		<header class="intro"><img src="./images/A/intro/status_bar.png" alt=""></header>
 		<div class="round_wrap"></div>
 		<div class="cont_wrap">
-			<div class="top_txt">기운센 님,<br />카드<span class="card"><span class="cardline"></span><span
-						class="cardbg"></span></span><span class="top_r">결제일이</span><br>다가왔습니다!
+			<div class="top_txt">
+				기운센 님,
+				<br />카드
+				<span class="card">
+					<span class="cardbg"></span>
+				</span>
+				<span class="top_r">결제일이</span>
+				<br>다가왔습니다!
 			</div>
 			<div class="slot_machine">
 				<div class="rolling-number">
@@ -212,12 +157,53 @@
 			<div class="day">DAY</div>
 			<div class="btm_txt_box">
 				<p class="btm_txt">통장 잔액을 미리 확인해보는 건 어떨까요?
-					<br /><a href="a-main.html" title="바로가기" class="btm_txt_link">바로가기 &gt;</a>
+					<br /><a href="" title="바로가기" class="btm_txt_link">바로가기 &gt;</a>
 				</p>
 			</div>
-			<div class="nomore_btn"><a href="a-main.html">다시 보지 않기</a></div>
 		</div>
+		<div class="nomore_btn"><a href="#none">다시 보지 않기</a></div>
 	</div>
 </body>
 
+
+<script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
+<script>
+	$(function () {
+ 
+		$('.round_wrap').addClass('one', callBack);
+
+		function callBack() {
+			setTimeout(function () {
+				$('.btm_txt').addClass('block');
+				$('.top_txt').addClass('block', 500);
+				$('.card').animate({
+					width: '45px',
+					height: '1px',
+					backgroundColor: 'white',
+				}, 500,function(){
+					setTimeout(function () {
+						$('.card').css({'height':'0'});
+						$('.cardbg').addClass('open');
+					},200);
+				});
+				setTimeout(function () {
+					$('.rolling-number,.rolling-number2').addClass('active');
+					
+				},1600);
+				setTimeout(function () {
+					$('.nomore_btn').addClass('active');
+				},2000);
+				setTimeout(function () {
+					$('.day').addClass('block');
+				},4000);
+				setTimeout(function () {
+					$('.slot_machine,.slot_machine2').addClass('scale');
+				},4500);
+				
+			}, 1000);
+
+		}
+
+	});
+</script>
 </html>
