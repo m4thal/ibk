@@ -1,28 +1,3 @@
-
-/* header 넣기 */
-document.addEventListener('DOMContentLoaded', function() {
-    const header = document.createElement('header');
-    const img = document.createElement('img');
-    const container = document.querySelector('.container');
-    
-    if (container) {
-        if (container.classList.contains('type')) {
-            img.src = './images/header-white.png'; // type 클래스가 있으면 이 경로 사용
-        } else {
-            img.src = './images/header.png';
-        }
-        
-        img.alt = '';
-        header.appendChild(img);
-        
-    // container의 첫 번째 자식 요소로 header 요소를 추가
-        container.insertBefore(header, container.firstChild);
-    } else {
-        console.error('Container element with class "container" not found.');
-    }
-});
-
-
 // 탭버튼
 function jqTab() {
     $('.ui-tab a').click(function (e) {
