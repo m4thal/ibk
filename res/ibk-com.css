@@ -80,9 +80,9 @@ body{height:100vh;font-size:1.6rem; font-family:'Pretendard', sans-serif; line-h
 .tab-panel.active{display: block;}
 
 header {position:fixed;z-index:50;width:375px}
-.top_menu {position:fixed;z-index:50;width:375px}
+.top_menu {position:fixed;top:0;z-index:50;width:375px}
 .top_menu img {width:100%}
-.contents {padding-top:52px}
+.contents {padding-top:56px}
 .container.type.dark header {background:#101116}
 .container.type.dark .top_menu {background:#101116}
 .container.type.dark .contents {padding-top:100px}
