@@ -85,7 +85,7 @@ header {position:fixed;z-index:50;width:375px}
 .contents {padding-top:56px}
 .container.type.dark header {background:#101116}
 .container.type.dark .top_menu {background:#101116}
-.container.type.dark .contents {padding-top:100px}
+.container.type.dark .contents {padding-top:56px}
 .container.type.dark {background:#101116}
 
 
