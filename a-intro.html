@@ -46,7 +46,7 @@
 			.cardline {display: inline-block;width: 0;height: 0;position: absolute;z-index: 3;top: -50%;left: 0px; } 
 			.cardbg {display: inline-block;width: 46px;height:0;position: absolute;z-index: 3;top: 47px;left: 63px;background: url(./images/A/intro/card.png) no-repeat center/ 46px 28px;} 
 			.open{height: 28px;-webkit-animation: scale-in-ver-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both; animation: scale-in-ver-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both; }
-			.nomore_btn{position:fixed;z-index: 3; bottom:34px; left:50%; transform:translate(-50%, 0);color:#979BAA; font-size:14px; font-style: normal;font-weight: 500;line-height: 18px;border-bottom:1px solid #979BAA; opacity:0; transition:1.5s;}
+			.nomore_btn{position:absolute; z-index:3; top:670px; left:50%; color:#979BAA; font-size:14px; font-style: normal;font-weight: 500;line-height: 18px;border-bottom:1px solid #979BAA; opacity:0; transition:1.5s;transform: translateX(-50%);}
 			.nomore_btn.active{opacity:1;}
 			.nomore_btn a{display:block;}
 
@@ -160,8 +160,8 @@
 					<br /><a href="a-main.html" title="바로가기" class="btm_txt_link">바로가기 &gt;</a>
 				</p>
 			</div>
+			<div class="nomore_btn"><a href="a-main.html">다시 보지 않기</a></div>
 		</div>
-		<div class="nomore_btn"><a href="a-main.html">다시 보지 않기</a></div>
 	</div>
 </body>
 
