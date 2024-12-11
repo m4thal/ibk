@@ -35,7 +35,7 @@
             /***** Content 1 *****/
             .content-1{position:relative;padding:32px 20px 36px}
             /* 아코디언 */
-            .accordion{margin-top:16px;padding:24px 20px 20px 20px;border-radius:16px;background:#FFFFFF;}
+            .accordion{position:relative;margin-top:16px;padding:24px 20px 20px 20px;border-radius:16px;background:#FFFFFF;}
             .accordion a{position:relative;display:flex;justify-content:center;margin-top:40px;padding-top:16px;font-size:14px;font-weight:500;line-height:20px;border-top:1px solid #E1E3E4;color:#737684;}
             .accordion a::after{content:"";position:absolute;right:106px;top:26px;transform:translateY(-50%);width:12px;height:12px;background:url("./images/A/asset/btn_arrow.svg") no-repeat 0 0 / 100%;transition:transform 0.3s ease;}
             .accordion a.open::after{transform:translateY(-50%)  rotate(180deg);}
@@ -43,7 +43,7 @@
             .accordion .graph + .accor_contents{margin-top:40px;}
             .accordion .accor_contents{display:none;}
             /* 바그래프 */
-            .graph {overflow:hidden;display:flex;align-items:flex-end;justify-content:center;position:absolute;top:224px;left:40px;width:295px;height:142px;}
+            .graph {overflow:hidden;display:flex;align-items:flex-end;justify-content:center;position:absolute;top:112px;left:50%;width:295px;height:142px;transform:translateX(-50%);}
             .bar {width:28px;border-radius:8px;background:#E1E3EA;transition:transform 0.5s ease-out;transform:translateY(100%);}
             .bar + .bar{margin-left:20px;}
             .bar:nth-child(n+1):nth-child(-n+5){height:88px;}
