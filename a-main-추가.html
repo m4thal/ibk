@@ -79,7 +79,7 @@
 			.intro_wrap ::-webkit-scrollbar {display: none;}
 			.round_wrap {width: 654px;height: 654px;background-color: #2873E3;border-radius: 0;position: absolute;/* transform: translate(-50%, -50%);left: 40%; */left: 0%;top: calc(50% - 10px);z-index:1;margin-left: -196px;transition: .4s;opacity: 0; } 
 			.round_wrap.one {border-radius: 50%;opacity: 1;-webkit-animation: bounce-in-bck 1.1s ease-in-out both;animation: bounce-in-bck 1.1s ease-in-out both; } 
-			.cont_wrap{height:650px;width:100%;max-width:375px;position:fixed;z-index:3;left: 50%;top: calc(50% - 10px);transform: translate(-50%, -50%);overflow-x:hidden;}
+			.cont_wrap{height:650px;width:100%;max-width:375px;position:fixed;z-index:3;left: 50%;top: calc(50% - 10px);transform: translate(-50%, -50%);}
 			/*number*/
 			.slot_machine,
 			.slot_machine2 {display: flex;justify-content: center;align-items: center;width: 149px;height: 247px;color: #fff;border-radius: 10px;overflow: hidden;position: absolute;z-index:3; } 
@@ -416,6 +416,7 @@
 				},4000);
 				setTimeout(function () {
 					$('.slot_machine,.slot_machine2').addClass('scale' , 500, function(){
+						$('.cont_wrap').css('overflow-x','hidden');
 						$('.slot_machine,.slot_machine2,.day,.btm_txt_box,.nomore_btn,.round_wrap,.top_txt').css('transition','.4s');
 						$('.slot_machine,.slot_machine2,.day,.btm_txt_box,.nomore_btn').addClass('Rmove');
 						$('.top_txt').addClass('Lmove');
