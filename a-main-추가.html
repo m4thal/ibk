@@ -38,11 +38,15 @@
             .indicator{text-align:center;height: 6px;}
             .indicator img{width:52px;animation:indicator 0.3s 0.6s forwards;opacity:0;}
             @keyframes indicator{0%{transform:translateY(3px);}100%{transform:translateY(0);opacity:1;}}
-            .card_wrap{position:relative;overflow:hidden;margin:32px -20px 0;background:url('./images/A/home/card_box.png') no-repeat;background-size:contain;padding:20px 20px 0;}
+            .card_wrap{position:relative;overflow:hidden;height:224px;margin:32px -20px 0;padding:20px 20px 0;z-index: 101;}
+            .card_wrap::before{content: "";position:absolute;top:0;left:-10px;width:41px;height:204px;background: url('./images/A/home/bar_left.png') no-repeat;background-size:contain;animation: cardWrapLeft 0.3s 0.3s forwards;}
+            .card_wrap::after{content: ""; position: absolute;top:0;right:-42px;width:41px;height:204px;background: url('./images/A/home/bar_right.png') no-repeat;background-size:contain;animation: cardWrapRight 0.3s 0.3s forwards;}
             .card_wrap .card_txt{transform:translateY(-50px);opacity:0;animation:cardTxt 0.9s 1.8s forwards;}
             .card_wrap #button{position:absolute;top:65px;right:40px;width:63px;height:36px;animation:cardButton 0.9s 1.8s forwards;opacity:0;}
             @keyframes cardTxt{100%{transform:translateY(-20px);opacity: 1;}}
             @keyframes cardButton{100%{top:95px;opacity:1;}}
+            @keyframes cardWrapLeft{100%{left: 0;}}
+            @keyframes cardWrapRight{100%{right: -32px;}}
             .interaction.off{position:unset;animation:unset;transition:unset;position:relative;top:50px;opacity:0;display:block;transition:all .6s ease-in-out;animation:sadasd 1s 1.1s forwards;}
             @keyframes sadasd {100%{opacity: 1; top: 0;}}
             /* 독바 */
@@ -221,6 +225,13 @@
 				<div class="nomore_btn"><a href="a-main.html">다시 보지 않기</a></div>
 			</div>
 		</div>
+        <div class="card_box"></div>
+        <style>
+            .card_box{position:absolute;width:180px;top:212px;left:50%;transform:translateX(-50%);height:140px;background-color:#4393F0;border-radius:50%;animation:card_box .5s 8s forwards;transition:0.4s;z-index:100;opacity:0;}
+            @keyframes card_box{
+                100%{width:335px;height:204px;border-radius:16px;top:212px;opacity:1;}
+            }
+        </style>
         <div class="container none">
             <div class="alram_box">
                 <div class="txt_class">
@@ -247,9 +258,16 @@
                     <img src="./images/A/home/indicator.png" alt="">
                 </div>
                 <div class="card_wrap">
+                    <!-- <div class="card_box"></div>-->
                     <img src="./images/A/home/card_txt.png" alt="" class="card_txt">
-                    <div id="button"></div>
+                    <div id="button"></div> 
                 </div>
+                <!-- <style>
+                    .card_box{position:absolute;width:180px;top:0;left:97px;height:140px;background-color:#4393F0; border-radius: 50%; animation: card_box .5s forwards; transition: 0.4s;}
+                    @keyframes card_box{
+                        100%{width: 335px; height: 204px; border-radius: 16px; left: 20px;}
+                    }
+                </style> -->
                 <div class="indicator">
                     <img src="./images/A/home/indicator.png" alt="">
                 </div>
@@ -406,12 +424,15 @@
 							// $('.round_wrap').addClass('tosqaure');
 							// width:100px; height:100px; opacity:0 !important;top:50% !important; left:50% !important; margin-left:0 !important; 
 							$('.round_wrap').animate({
-								width: '100px',
-								height: '100px',
-								left : '38%',
-								top: '300px',
+								width: '180px',
+								height: '140px',
+								left : '97px',
+								top: '282px',
 								marginLeft : 0,
-							}, 500).animate({opacity: '0',},500);
+                                backgroundColor: '#4393F0',
+							}, 450).animate({opacity: '1',},500, function(){
+                                $(this).css("display", "none");
+                            });
 						},500);
 						setTimeout(function () {
 							$('.container').removeClass('none');
