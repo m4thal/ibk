@@ -8,27 +8,10 @@
         <script src="./res/ibk-com.js"></script>
         <title>혜택</title>
         <style>
-            .img_wrap {position:relative}
+            .img_wrap {position:relative;margin-top:8px}
             .img_wrap img {width:100%}
             .img_wrap {padding:0 0 106px ;box-sizing:border-box}
-            .mt {margin-top:8px}
-            .fade {
-    opacity: 0; /* 초기 상태 */
-    transform: translateY(100%); /* 밑에서 시작 */
-    animation: fadeUp 0.8s ease-out forwards;
-}
 
-/* 애니메이션 효과 */
-@keyframes fadeUp {
-    0% {
-        transform: translateY(100%);
-        opacity: 0;
-    }
-    100% {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
         </style>
     </head>
     <body>
@@ -37,7 +20,7 @@
                 <img src="./images/B/benefit/gnb_benefit.png" alt="">
             </div>
             <div class="contents">
-                <div class="img_wrap ">
+                <div class="img_wrap fade">
                     <img src="./images/B/benefit/benefit_img0.png" alt="">
                     <img src="./images/B/benefit/benefit_img1.png" alt="">
                     <img src="./images/B/benefit/benefit_img2.png" alt="">
