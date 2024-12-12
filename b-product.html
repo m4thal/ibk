@@ -12,6 +12,18 @@
             .img_wrap img {width:100%}
             .img_wrap.cont {padding:0 16px 106px;box-sizing:border-box}
             .img_wrap.cont img + img {margin-top:5px}
+            .fade {animation:fade .8s ease-out forwards;}
+            @keyframes fade {
+                0% {
+                    transform: translateY(100%);
+                    opacity: 0;
+                }
+                /* 100% {
+                    transform: translateY(0);
+                    opacity: 1;
+                } */
+            }
+        </style>
         </style>
     </head>
     <body>
@@ -23,7 +35,7 @@
                 <div class="img_wrap">
                     <img src="./images/B/product/product_img1.png" alt="">
                 </div>
-                <div class="img_wrap cont">
+                <div class="img_wrap cont fade">
                     <img src="./images/B/product/product_img2.png" alt="">
                     <img src="./images/B/product/product_img3.png" alt="">
                 </div>

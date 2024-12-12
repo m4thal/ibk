@@ -12,6 +12,28 @@
             .img_wrap img {width:100%}
             .img_wrap.cont {padding:0 16px 106px;box-sizing:border-box}
             .img_wrap.cont img + img {margin-top:5px}
+            .slideimg {animation: slideInFromRight .8s ease-out;}
+            @keyframes slideInFromRight {
+                0% {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                100% {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            .fade {animation:fade .8s ease-out;}
+            @keyframes fade {
+                0% {
+                    transform: translateY(100%);
+                    opacity: 0;
+                }
+                100% {
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+            }
         </style>
     </head>
     <body>
@@ -20,12 +42,15 @@
                 <img src="./images/B/asset/gnb_asset.png" alt="">
             </div>
             <div class="contents">
-                <div class="img_wrap">
+                <div class="img_wrap slideimg">
                     <img src="./images/B/asset/asset_img1.png" alt="">
                 </div>
-                <div class="img_wrap cont">
+                <div class="img_wrap cont fade">
                     <img src="./images/B/asset/asset_img2.png" alt="">
                     <img src="./images/B/asset/asset_img3.png" alt="">
+                    <img src="./images/B/asset/asset_img4.png" alt="">
+                    <img src="./images/B/asset/asset_img5.png" alt="">
+                    <img src="./images/B/asset/asset_img6.png" alt="">
                 </div>
             </div>
             <div class="bottom_nav type2">
