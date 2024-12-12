@@ -179,6 +179,12 @@
 			.Lmove{left: -100% !important; opacity:0; visibility: hidden;}
 			.Rmove{left: 200% !important; opacity:0; visibility: hidden;}
 			.tosqaure{}
+
+            /* 카드박스추가 */
+            .card_box{position:absolute;width:180px;top:212px;left:50%;transform:translateX(-50%);height:140px;background-color:#4393F0;border-radius:50%;animation:card_box .5s 8s forwards;transition:0.4s;z-index:100;opacity:0;}
+            @keyframes card_box{
+                100%{width:335px;height:204px;border-radius:16px;top:212px;opacity:1;}
+            }
 		</style>
     </head>
     <body>
@@ -226,12 +232,6 @@
 			</div>
 		</div>
         <div class="card_box"></div>
-        <style>
-            .card_box{position:absolute;width:180px;top:212px;left:50%;transform:translateX(-50%);height:140px;background-color:#4393F0;border-radius:50%;animation:card_box .5s 8s forwards;transition:0.4s;z-index:100;opacity:0;}
-            @keyframes card_box{
-                100%{width:335px;height:204px;border-radius:16px;top:212px;opacity:1;}
-            }
-        </style>
         <div class="container none">
             <div class="alram_box">
                 <div class="txt_class">
@@ -239,7 +239,7 @@
                 </div>
                 <div class="svg_wrap">
                     <div id="alram" style="width:28px;height:28px;margin-right:16px;"></div>
-                    <div id="box" style="width:28px;height:28px;margin-right:16px;" onclick="drPopupOpenTwo('.dim')"></div>
+                    <div id="wallet" style="width:28px;height:28px;margin-right:16px;" onclick="drPopupOpenTwo('.dim')"></div>
                     <img src="./images/A/home/menu.png" alt="" style="width:28px;height:28px;">
                 </div> 
             </div> 
@@ -345,11 +345,11 @@
             path: './images/alram.json' 
         })
         const lottieAni2 = bodymovin.loadAnimation({
-            container : document.getElementById('box'),
+            container : document.getElementById('wallet'),
             renderer : 'svg',
             loop : false,
             autoplay : true,
-            path: './images/box.json' 
+            path: './images/wallet.json' 
         })
         const lottieAni3 = bodymovin.loadAnimation({
             container : document.getElementById('button'),
