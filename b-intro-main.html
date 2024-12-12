@@ -15,7 +15,7 @@
             .container {background:#158463;height:812px;}
             .scene {position:relative;background:#158463;}
             .person {position:absolute;width:340px;height:391px;left:50%;bottom:253px;opacity:0;animation:walk 1s linear forwards 1.6s;z-index:100;transform:translateX(-50%) scale(0);transform-origin: center}
-            .ground {position:absolute;bottom:-800px;background:#fff;width:800px;height:800px;left:50%;margin-left:-400px; border-radius:50%;animation:moveUp .1s ease-in-out forwards, bounce .2s ease-in-out .3s;}
+            .ground {position:absolute;bottom:-800px;background:#fff;width:800px;height:800px;left:50%;margin-left:-400px; border-radius:50%;top:auto;transition: top 1s ease, height 1s ease;animation:moveUp .1s ease-in-out forwards, bounce .2s ease-in-out .3s;}
             .scene .text {position:relative;padding-left:24px;width:100%;height:auto;font-family:'Pretendard';font-size:32px;font-weight:300;line-height:40px;color:#fff;z-index:70}
             .scene .text span {position:absolute;top:28px;display:block;opacity:0;}
             .text span:nth-child(1) {animation: slideDown1 .5s ease-out 0.5s forwards}
@@ -180,5 +180,24 @@
             autoplay : true,
             path: './images/introB/man_walk.json'
         })
+        setTimeout(() => {
+        // 모든 요소를 선택하여 opacity를 0으로 설정
+        document.querySelectorAll('.scene > *:not(.ground)').forEach((el) => {
+            el.style.transition = 'opacity 1s ease';
+            el.style.opacity = 0;
+        });
+
+        // ground 애니메이션 (top: 0, height: 100%, border-radius: 0)
+        const ground = document.querySelector('.ground');
+        ground.style.transition = 'top 1s ease, height 1s ease, border-radius 1s ease';
+        ground.style.top = '0';
+        ground.style.height = '100%';
+        ground.style.borderRadius = '0';
+        ground.style.zIndex = 300;
+
+        // container 배경색 변경
+        const container = document.querySelector('.container');
+        container.style.transition = 'background-color 1s ease';
+    }, 8000); // 8000ms = 8초
     </script>
 </html>
