@@ -167,7 +167,7 @@
             renderer : 'svg',
             loop : false,
             autoplay : true,
-            path: './images/alram.json' 
+            path: './images/alram.json',
         })
         const lottieAni2 = bodymovin.loadAnimation({
             container : document.getElementById('wallet'),
@@ -183,6 +183,11 @@
             autoplay : true,
             path: './images/button.json' 
         })
+
+        // 알람 lottie 수동실행
+        setTimeout(() => {
+            lottieAni1.play();
+        }, 1500); 
 
         const interactionElements = document.querySelectorAll('.interaction');
         interactionElements.forEach(element => {

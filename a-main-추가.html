@@ -340,14 +340,14 @@
             container : document.getElementById('alram'),
             renderer : 'svg',
             loop : false,
-            autoplay : true,
+            autoplay : false,
             path: './images/alram.json' 
         })
         const lottieAni2 = bodymovin.loadAnimation({
             container : document.getElementById('wallet'),
             renderer : 'svg',
             loop : false,
-            autoplay : true,
+            autoplay : false,
             path: './images/wallet.json' 
         })
         const lottieAni3 = bodymovin.loadAnimation({
@@ -357,6 +357,7 @@
             autoplay : true,
             path: './images/button.json' 
         })
+
 
         const interactionElements = document.querySelectorAll('.interaction');
         interactionElements.forEach(element => {
@@ -380,6 +381,14 @@
                 $('.dim').css('display','none');
             },500)
 
+        }
+        // lottie 수동실행
+        const container = document.querySelector('.container')
+        if(!!container.classList.contains('none')){
+            setTimeout(() => {
+                lottieAni1.play();
+                lottieAni2.play();
+            }, 10000); 
         }
     </script>
 
