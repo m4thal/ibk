@@ -10,37 +10,43 @@
         <link rel="stylesheet" href="https://use.typekit.net/zec7bgf.css">
         <title>intro</title>
         <style>
-            .container {overflow:hidden;height:812px;background:#DDE8F4}
+            .container2{position: relative;max-width: 375px;height: 100vh;margin: 0 auto;overflow:hidden; z-index: 9999;}
             header {display:none}
-            .container.scene {background:#158463;}
+            .container2.scene {background:#158463;}
             .person {position:absolute;width:340px;height:391px;left:50%;bottom:253px;opacity:0;animation:walk 1s linear 1s forwards ;z-index:100;transform:translateX(-50%) scale(0);transform-origin: center}
-            .ground {position:absolute;bottom:-800px;background:#fff;width:800px;height:800px;left:50%;margin-left:-400px; border-radius:50%;z-index:50;transition: all .5s;animation:moveUp .1s ease-in-out forwards, bounce .2s ease-in-out .3s;}
+            .ground {position:absolute;bottom:-800px;background:#fff;width:800px;height:800px;left:50%;margin-left:-400px; border-radius:50%;z-index:50;transition: all .5s;animation:moveUp .1s ease-in-out forwards, bounce .5s ease-in-out .3s;}
             .introb .text {position:relative;padding-left:24px;width:100%;height:auto;font-family:'Pretendard';font-size:32px;font-weight:300;line-height:40px;color:#fff;z-index:70}
-            .ground.on {height:100vh;bottom:150%;z-index:300;transition: all .5s;}
+            .ground.on {z-index:300;transition: all .5s; animation: groundOn 0.7s ease-in-out forwards;}
+            @keyframes groundOn{
+                0%{bottom:-400px }
+                50%{height:120vh;bottom:0; transform: scale(2); }
+                100%{height:120vh;bottom:0; transform: scale(1);background-color: #4393F0;}
+            }
             .introb .text span {position:absolute;top:28px;display:block;opacity:0;}
             .text span:nth-child(1) {animation: slideDown1 .3s ease-out .8s forwards;}
             .text span:nth-child(2) {animation: slideDown2 .3s ease-out .8s forwards}
             .text span:nth-child(3) {animation: slideDown3 .3s ease-out .8s forwards}
-            .earth {position:absolute;width:900px;height:900px;bottom:-450px;z-index:45;left:50%;margin-left:-450px;opacity:0;animation:round 16s linear .8s forwards}
+            .earth {position:absolute;width:900px;height:900px;bottom:-450px;z-index:45;left:50%;margin-left:-450px;opacity:0;animation:round 20s linear forwards}
             .earth img {width:100%}
+            .earth.on {animation:rotate .3s linear forwards}
             #walk {width:340px;height:391px;}
-            .bt {position:absolute;display:inline-block;left:50%;transform:translateX(-50%);bottom:21px;text-align:center;font-size:14px;line-height:24px;color:#979BAA;border-bottom:1px solid #979BAA;font-weight:500;line-height:18px;z-index:60;animation:bts 1s ease-in-out 1.5s; forwards opacity:0}
-            .bt.on {opacity:1}
+            .bt {position:absolute;display:inline-block;left:50%;transform:translateX(-50%);bottom:21px;opacity:0;text-align:center;font-size:14px;line-height:24px;color:#979BAA;border-bottom:1px solid #979BAA;font-weight:500;line-height:18px;z-index:60;animation:bts 1s ease-in-out 1.5s forwards}
+            .bt.on {opacity:1;animation:fadeout .3s linear .3s forwards;}
             .today {width:327px;position:absolute;left:50%;bottom:131px;transform:translateX(-50%);text-align:center;z-index:100;overflow:hidden}
             .today .txt {font-size:16px;font-weight:500;animation:totxt .5s linear 2.5s forwards;overflow:hidden;opacity:0;height:20px;}
             .today .num {font-size:56px;font-weight:700;letter-spacing:-0.84px;font-family: 'indivisible';height:67px;animation:number .5s linear 2.5s forwards;overflow:hidden;opacity:0;}
             .today .num span {display:inline-block;font-size:20px;font-style:normal;font-weight:500;line-height:28px;color:#979BAA;}
-            .today.on {opacity:1}
-            .graph.on {opacity:1}
+            .today.on {opacity:1;animation:fadeout .3s linear .3s forwards;overflow:visible}
+            .graph.on {opacity:1;animation:fadeout .3s linear .3s forwards;overflow:visible;height:auto}
             .graph {position:absolute;bottom:94px;width:327px;left:50%;transform: translateX(-50%);z-index:100;animation:graph .7s linear 1.6s forwards ;opacity:0}
             .graph .bar {position:relative;display:block;width:100%;height:20px;background:#f3f4f7;border-radius:15px;}
-            .graph .bar span {position:absolute;top:0;left:0;height:20px;display:inline-block;background:linear-gradient(to left, #ffe695, #ffcd28);border-radius:15px;animation:graphbar .7s linear 2.5s forwards;z-index:60}
+            .graph .bar span {position:absolute;top:0;left:0;height:20px;display:inline-block;background:linear-gradient(to left, #ffe695, #ffcd28);border-radius:15px;animation:graphbar 1.2s 2.5s ease-in-out forwards;z-index:60;transition: 0.5s all; opacity: 0;}
             .graph .txt {display:block;position:absolute;top:0;right:0;text-align:right;margin-top:8px;font-size:14px;font-weight:500;line-height:20px;color:#737684;opacity:0;animation:graphtxt .5s linear 2.8s forwards;z-index:50}
             .balloon {position:absolute;top:-6px;width:143px;height:77px;right:5px;z-index:50}
             .balloon div {position:relative;width:100%;height:100%}
-            .balloon .r1.on,
-            .balloon .r2.on,
-            .balloon .r3.on {opacity:1}
+            .balloon .r1.on {opacity:1;animation:fadeOutBalloon .2s linear .9s forwards}
+            .balloon .r2.on {opacity:1;animation:fadeOutBalloon .2s linear .7s forwards}
+            .balloon .r3.on {opacity:1;animation:fadeOutBalloon .2s linear .5s forwards}
             .balloon .r1 {position:absolute;bottom:0;display:block;width:11px;height:11px;background:#fff;border-radius:50%;opacity:0;animation:tip1 .5s linear 3.5s forwards}
             .balloon .r2 {position:absolute;bottom:7px;left:11px;display:block;width:25px;height:25px;background:#fff;border-radius:50%;opacity:0;animation:tip2 .5s linear 4s forwards}
             .balloon .r3 {position:absolute;top:0;right:0;display:block;width:129px;height:70px;background:#fff;border-radius:40px;text-align:center;padding-top:11px;opacity:0;animation:tip3 .5s linear 4.5s forwards}
@@ -80,8 +86,11 @@
                 100% {bottom:-400px;}
             }
             @keyframes bounce {
-                0%, 100% {transform:translateY(0)}
-                50% {transform: translateY(-100px)}
+                0%,100%{transform:translateY(0)}
+                20% {transform: translateY(-100px)}
+                40%{transform: translateY(30px)}
+                60%{transform: translateY(-20px)}
+                80%{transform: translateY(10px)}
             }
             @keyframes tip1 {
                 0% {opacity:0;}
@@ -112,7 +121,6 @@
             }
             @keyframes bts {
                 0% {opacity:0}
-                80% {opacity:1}
                 100% {opacity:1}
             }
             @keyframes graph{
@@ -121,9 +129,9 @@
                 100% {opacity:1}
             }
             @keyframes graphbar {
-                0% {opacity:1;width:0}
-                70% {opacity:1;width:100%}
-                100% {opacity:1;width:80%}
+                0% {width:0;}
+                50%,65% {width:100%;opacity:1;}
+                100% {width:80%;opacity:1;}
             }
             @keyframes graphtxt {
                 0% {opacity:0;top:0}
@@ -137,10 +145,27 @@
                 from {opacity:0;transform: translateY(15px);}
                 to {opacity:1;transform: translateY(0)}
             }
+            @keyframes fadeOutBalloon {
+                0% {visibility: visible;}
+                50% {opacity: 0.5;visibility: visible;}
+                100% { opacity: 0; visibility: hidden}
+            }
+            @keyframes shrinkWalk {
+                0% { opacity:1; transform:scale(1); }
+                100% { opacity:0; transform:scale(0); }
+            }
+            @keyframes fadeout {
+                0% {opacity:1;}
+                100% {opacity:0;bottom:0}
+            }
+            @keyframes rotate {
+                0% {opacity:1;}
+                100% {opacity:0;transform:rotateZ(90deg)}
+            }
         </style>
     </head>
     <body>
-        <div class="container type scene">
+        <div class="container2 type scene">
             <div class="introb">
                 <div class="text">
                     <span>기운센 님,</span>
@@ -179,15 +204,12 @@
         </div>
     </body>
     <script>
-        const lottieAni1 = bodymovin.loadAnimation({
+        const lottieAni = bodymovin.loadAnimation({
             container : document.getElementById('walk'),
             renderer : 'svg',
             loop : true,
             autoplay : true,
             path: './images/introB/man_walk.json'
         })
-   
-</script>
-
     </script>
 </html>
