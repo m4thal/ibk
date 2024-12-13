@@ -18,9 +18,15 @@
             .introb .text {position:relative;padding-left:24px;width:100%;height:auto;font-family:'Pretendard';font-size:32px;font-weight:300;line-height:40px;color:#fff;z-index:70}
             .ground.on {height:100vh;bottom:150%;z-index:300;transition: all .5s;}
             .introb .text span {position:absolute;top:28px;display:block;opacity:0;}
-            .text span:nth-child(1) {animation: slideDown1 .3s ease-out .8s forwards;}
-            .text span:nth-child(2) {animation: slideDown2 .3s ease-out .8s forwards}
-            .text span:nth-child(3) {animation: slideDown3 .3s ease-out .8s forwards}
+            .text span.tt1 {animation:slideDown1 .3s ease-out .8s forwards;}
+            .text span.tt2 {animation:slideDown2 .3s ease-out .8s forwards}
+            .text span.tt3 {animation:slideDown3 .3s ease-out .8s forwards}
+            .text span.tt1.on {opacity:1}
+            .text span.tt2.on {opacity:1}
+            .text span.tt3.on {opacity:1}
+            .text span.tt1.active {animation:slideup1 .3s ease-out .3s forwards;}
+            .text span.tt2.active {animation:slideup2 .3s ease-out .3s forwards;}
+            .text span.tt3.active {animation:slideup3 .3s ease-out .3s forwards;}
             .earth {position:absolute;width:900px;height:900px;bottom:-450px;z-index:45;left:50%;margin-left:-450px;opacity:0;animation:round 20s linear forwards}
             .earth img {width:100%}
             .earth.on {animation:rotate .3s linear forwards}
@@ -154,15 +160,27 @@
                 0% {opacity:1;}
                 100% {opacity:0;transform:rotateZ(90deg)}
             }
+            @keyframes slideup1 {
+                0% {opacity:1;}
+                100% {opacity:0;top:28px}
+            }
+            @keyframes slideup2 {
+                0% {opacity:1;top:69px}
+                100% {opacity:0;top:28px}
+            }
+            @keyframes slideup3 {
+                0% {opacity:1;top:110px}
+                100% {opacity:0 ;top:28px}
+            }
         </style>
     </head>
     <body>
         <div class="container type scene">
             <div class="introb">
                 <div class="text">
-                    <span>기운센 님,</span>
-                    <span>목표까지 걷고</span>
-                    <span>혜택도 챙기세요!</span>
+                    <span class="tt1">기운센 님,</span>
+                    <span class="tt2">목표까지 걷고</span>
+                    <span class="tt3">혜택도 챙기세요!</span>
                 </div>
                 <div class="ground">
                 </div>
@@ -202,33 +220,42 @@
             autoplay : true,
             path: './images/introB/man_walk.json'
         })
-
         setTimeout(function() {
             const balloonSpans = document.querySelectorAll('.balloon .r1, .balloon .r2, .balloon .r3');
             balloonSpans.forEach(span => {
                 span.classList.add('on');
             });
-        }, 5500);
+            const txtspans = document.querySelectorAll('.text span');
+            txtspans.forEach(span => {
+                span.classList.add('on');
+            });
+
+        }, 6500);
         setTimeout(function() {
             document.getElementById('walk').style.animation = 'shrinkWalk .3s linear .3s forwards';
             document.querySelector('.earth').classList.add('on');
             document.querySelector('.today').classList.add('on');
             document.querySelector('.graph').classList.add('on');
             document.querySelector('.bt').classList.add('on');
-        }, 7000);
-        setTimeout(function() {
-            const ground = document.querySelector('.ground');
-            ground.classList.add('on');
+            const txtspans = document.querySelectorAll('.text span');
+            txtspans.forEach(span => {
+                span.classList.add('active');
+            });
+           
         }, 7500);
         setTimeout(function() {
             const ground = document.querySelector('.ground');
+            ground.classList.add('on');
+        }, 8500);
+        setTimeout(function() {
+            const ground = document.querySelector('.ground');
             ground.style.borderRadius = '0';
-        }, 7600);
+        }, 8700);
         setTimeout(function() {
             const container = document.querySelector('.container');
             container.classList.remove('scene');
             const introb = document.querySelector('.introb');
             introb.style.display = 'none';
-        }, 8000);
+        }, 9000);
     </script>
 </html>
