@@ -14,8 +14,9 @@
             header {display:none}
             .container.scene {background:#158463;}
             .person {position:absolute;width:340px;height:391px;left:50%;bottom:253px;opacity:0;animation:walk 2s linear forwards 1.6s;z-index:100;transform:translateX(-50%) scale(0);transform-origin: center}
-            .ground {position:absolute;bottom:-800px;background:#fff;width:800px;height:800px;left:50%;margin-left:-400px; border-radius:50%;animation:moveUp .1s ease-in-out forwards, bounce .2s ease-in-out .3s;}
+            .ground {position:absolute;bottom:-800px;background:#fff;width:800px;height:800px;left:50%;margin-left:-400px; border-radius:50%;transition: all .5s;animation:moveUp .1s ease-in-out forwards, bounce .2s ease-in-out .3s;}
             .introb .text {position:relative;padding-left:24px;width:100%;height:auto;font-family:'Pretendard';font-size:32px;font-weight:300;line-height:40px;color:#fff;z-index:70}
+            .ground.on {height:100vh;bottom:150%;z-index:300;transition: all .5s;}
             .introb .text span {position:absolute;top:28px;display:block;opacity:0;}
             .text span:nth-child(1) {animation: slideDown1 .5s ease-out 0.5s forwards}
             .text span:nth-child(2) {animation: slideDown2 .5s ease-out .7s forwards}
@@ -34,11 +35,14 @@
             .graph .txt {display:block;position:absolute;top:0;right:0;text-align:right;margin-top:8px;font-size:14px;font-weight:500;line-height:20px;color:#737684;opacity:0;animation:graphtxt .5s linear 2.8s forwards;z-index:50}
             .balloon {position:absolute;top:-6px;width:143px;height:77px;right:5px;z-index:50}
             .balloon div {position:relative;width:100%;height:100%}
-            .balloon .r1 {position:absolute;bottom:0;display:block;width:11px;height:11px;background:#fff;border-radius:50%;opacity:0;animation:tip1 1s linear 3.5s forwards}
-            .balloon .r2 {position:absolute;bottom:7px;left:11px;display:block;width:25px;height:25px;background:#fff;border-radius:50%;opacity:0;animation:tip2 1s linear 4s forwards}
-            .balloon .r3 {position:absolute;top:0;right:0;display:block;width:129px;height:70px;background:#fff;border-radius:40px;text-align:center;padding-top:11px;opacity:0;animation:tip3 1s linear 4.5s forwards}
-            .balloon .r3 .img1 {display:inline-block;position:absolute;top:11px;left:50%;width:79px;margin-left:-40px;height:48px;opacity:1;font-size:16px;font-weight:500;line-height:24px;animation:fadeInImg1 1s linear 2.3s forwards;}
-            .balloon .r3 .img2 {display:inline-block;position:absolute;top:11px;left:50%;transform:translateX(-50%);width:60px;height:48px;font-size:16px;font-weight:500;line-height:24px;z-index:50;opacity:0;animation: fadeInImg2 1.5s linear 3.5s forwards;background:#fff}
+            .balloon .r1.on,
+            .balloon .r2.on,
+            .balloon .r3.on {opacity:1}
+            .balloon .r1 {position:absolute;bottom:0;display:block;width:11px;height:11px;background:#fff;border-radius:50%;opacity:0;animation:tip1 .5s linear 3.5s forwards}
+            .balloon .r2 {position:absolute;bottom:7px;left:11px;display:block;width:25px;height:25px;background:#fff;border-radius:50%;opacity:0;animation:tip2 .5s linear 4s forwards}
+            .balloon .r3 {position:absolute;top:0;right:0;display:block;width:129px;height:70px;background:#fff;border-radius:40px;text-align:center;padding-top:11px;opacity:0;animation:tip3 .5s linear 4.5s forwards}
+            .balloon .r3 .img1 {display:inline-block;position:absolute;top:11px;left:50%;width:79px;margin-left:-40px;height:48px;opacity:1;font-size:16px;font-weight:500;line-height:24px;animation:fadeInImg1 1s linear 4.5s forwards;}
+            .balloon .r3 .img2 {display:inline-block;position:absolute;top:11px;left:50%;transform:translateX(-50%);width:60px;height:48px;font-size:16px;font-weight:500;line-height:24px;z-index:50;opacity:0;animation: fadeInImg2 1s linear 5.5s forwards;background:#fff}
             .balloon .r3  em {color:#1654d1}
             .gomain {position:absolute;top:0;left:0;width:100%;height:100%;z-index:90}
             @keyframes slideDown1 {
@@ -191,17 +195,34 @@
             autoplay : true,
             path: './images/introB/man_walk.json'
         })
-        
-        setTimeout(function() {
-        // balloon 안의 span 요소들 fade out
-        document.querySelector('.balloon .r1').style.animation = 'fadeOutBalloon .5s linear .9s forwards';
-        document.querySelector('.balloon .r2').style.animation = 'fadeOutBalloon .5s linear .6s forwards';
-        document.querySelector('.balloon .r3').style.animation = 'fadeOutBalloon .5s linear .3s forwards';
 
-        // walk 요소 shrink (작아지며 fade out)
-        document.getElementById('walk').style.animation = 'shrinkWalk .3s linear 1s forwards';
-    }, 6000); // 6초 후에 실행
-     
+        setTimeout(function() {
+            const balloonSpans = document.querySelectorAll('.balloon .r1, .balloon .r2, .balloon .r3');
+            balloonSpans.forEach(span => {
+                span.classList.add('on');
+            });
+        }, 5500);
+
+        setTimeout(function() {
+            document.querySelector('.balloon .r1').style.animation = 'fadeOutBalloon .2s linear .9s forwards';
+            document.querySelector('.balloon .r2').style.animation = 'fadeOutBalloon .2s linear .7s forwards';
+            document.querySelector('.balloon .r3').style.animation = 'fadeOutBalloon .2s linear .5s forwards';
+            document.getElementById('walk').style.animation = 'shrinkWalk .3s linear 1s forwards';
+        }, 6500);
+        setTimeout(function() {
+            const ground = document.querySelector('.ground');
+            ground.classList.add('on');
+        }, 7600);
+        setTimeout(function() {
+            const ground = document.querySelector('.ground');
+            ground.style.borderRadius = '0';
+        }, 7700);
+        setTimeout(function() {
+            const container = document.querySelector('.container');
+            container.classList.remove('scene');
+            const introb = document.querySelector('.introb');
+            introb.style.display = 'none';
+        }, 8000);
 </script>
     </script>
 </html>
