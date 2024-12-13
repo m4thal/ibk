@@ -21,26 +21,27 @@
             .text span:nth-child(1) {animation: slideDown1 .3s ease-out .8s forwards;}
             .text span:nth-child(2) {animation: slideDown2 .3s ease-out .8s forwards}
             .text span:nth-child(3) {animation: slideDown3 .3s ease-out .8s forwards}
-            .earth {position:absolute;width:900px;height:900px;bottom:-450px;z-index:45;left:50%;margin-left:-450px;opacity:0;animation:round 16s linear .8s forwards}
+            .earth {position:absolute;width:900px;height:900px;bottom:-450px;z-index:45;left:50%;margin-left:-450px;opacity:0;animation:round 20s linear forwards}
             .earth img {width:100%}
+            .earth.on {animation:rotate .3s linear forwards}
             #walk {width:340px;height:391px;}
-            .bt {position:absolute;display:inline-block;left:50%;transform:translateX(-50%);bottom:21px;text-align:center;font-size:14px;line-height:24px;color:#979BAA;border-bottom:1px solid #979BAA;font-weight:500;line-height:18px;z-index:60;animation:bts 1s ease-in-out 1.5s; forwards opacity:0}
-            .bt.on {opacity:1}
+            .bt {position:absolute;display:inline-block;left:50%;transform:translateX(-50%);bottom:21px;opacity:0;text-align:center;font-size:14px;line-height:24px;color:#979BAA;border-bottom:1px solid #979BAA;font-weight:500;line-height:18px;z-index:60;animation:bts 1s ease-in-out 1.5s forwards}
+            .bt.on {opacity:1;animation:fadeout .3s linear .3s forwards;}
             .today {width:327px;position:absolute;left:50%;bottom:131px;transform:translateX(-50%);text-align:center;z-index:100;overflow:hidden}
             .today .txt {font-size:16px;font-weight:500;animation:totxt .5s linear 2.5s forwards;overflow:hidden;opacity:0;height:20px;}
             .today .num {font-size:56px;font-weight:700;letter-spacing:-0.84px;font-family: 'indivisible';height:67px;animation:number .5s linear 2.5s forwards;overflow:hidden;opacity:0;}
             .today .num span {display:inline-block;font-size:20px;font-style:normal;font-weight:500;line-height:28px;color:#979BAA;}
-            .today.on {opacity:1}
-            .graph.on {opacity:1}
+            .today.on {opacity:1;animation:fadeout .3s linear .3s forwards;overflow:visible}
+            .graph.on {opacity:1;animation:fadeout .3s linear .3s forwards;overflow:visible;height:auto}
             .graph {position:absolute;bottom:94px;width:327px;left:50%;transform: translateX(-50%);z-index:100;animation:graph .7s linear 1.6s forwards ;opacity:0}
             .graph .bar {position:relative;display:block;width:100%;height:20px;background:#f3f4f7;border-radius:15px;}
             .graph .bar span {position:absolute;top:0;left:0;height:20px;display:inline-block;background:linear-gradient(to left, #ffe695, #ffcd28);border-radius:15px;animation:graphbar .7s linear 2.5s forwards;z-index:60}
             .graph .txt {display:block;position:absolute;top:0;right:0;text-align:right;margin-top:8px;font-size:14px;font-weight:500;line-height:20px;color:#737684;opacity:0;animation:graphtxt .5s linear 2.8s forwards;z-index:50}
             .balloon {position:absolute;top:-6px;width:143px;height:77px;right:5px;z-index:50}
             .balloon div {position:relative;width:100%;height:100%}
-            .balloon .r1.on,
-            .balloon .r2.on,
-            .balloon .r3.on {opacity:1}
+            .balloon .r1.on {opacity:1;animation:fadeOutBalloon .2s linear .9s forwards}
+            .balloon .r2.on {opacity:1;animation:fadeOutBalloon .2s linear .7s forwards}
+            .balloon .r3.on {opacity:1;animation:fadeOutBalloon .2s linear .5s forwards}
             .balloon .r1 {position:absolute;bottom:0;display:block;width:11px;height:11px;background:#fff;border-radius:50%;opacity:0;animation:tip1 .5s linear 3.5s forwards}
             .balloon .r2 {position:absolute;bottom:7px;left:11px;display:block;width:25px;height:25px;background:#fff;border-radius:50%;opacity:0;animation:tip2 .5s linear 4s forwards}
             .balloon .r3 {position:absolute;top:0;right:0;display:block;width:129px;height:70px;background:#fff;border-radius:40px;text-align:center;padding-top:11px;opacity:0;animation:tip3 .5s linear 4.5s forwards}
@@ -112,7 +113,6 @@
             }
             @keyframes bts {
                 0% {opacity:0}
-                80% {opacity:1}
                 100% {opacity:1}
             }
             @keyframes graph{
@@ -143,14 +143,17 @@
                 100% { opacity: 0; visibility: hidden}
             }
             @keyframes shrinkWalk {
-                0% { opacity: 1; transform: scale(1); }
-                100% { opacity: 0; transform: scale(0); }
+                0% { opacity:1; transform:scale(1); }
+                100% { opacity:0; transform:scale(0); }
             }
             @keyframes fadeout {
-                0% {opacity:1;transform:translate(-50% 0);}
-                100% {opacity:0;transform:translateY(-50% -200px)}
+                0% {opacity:1;}
+                100% {opacity:0;bottom:0}
             }
-            
+            @keyframes rotate {
+                0% {opacity:1;}
+                100% {opacity:0;transform:rotateZ(90deg)}
+            }
         </style>
     </head>
     <body>
@@ -205,38 +208,28 @@
             balloonSpans.forEach(span => {
                 span.classList.add('on');
             });
-        }, 6500);
-
+        }, 5500);
         setTimeout(function() {
-            document.querySelector('.balloon .r1').style.animation = 'fadeOutBalloon .2s linear .9s forwards';
-            document.querySelector('.balloon .r2').style.animation = 'fadeOutBalloon .2s linear .7s forwards';
-            document.querySelector('.balloon .r3').style.animation = 'fadeOutBalloon .2s linear .5s forwards';
-            document.getElementById('walk').style.animation = 'shrinkWalk .3s linear 1s forwards';
+            document.getElementById('walk').style.animation = 'shrinkWalk .3s linear .3s forwards';
+            document.querySelector('.earth').classList.add('on');
             document.querySelector('.today').classList.add('on');
             document.querySelector('.graph').classList.add('on');
             document.querySelector('.bt').classList.add('on');
         }, 7000);
-        
         setTimeout(function() {
-            document.querySelector('.toady').style.animation = 'fadeout .5s linear 1s forwards';
-            document.querySelector('.graph').style.animation = 'fadeout .5s linear 1s forwards';
-            document.querySelector('.bt').style.animation = 'fadeout .5s linear 1s forwards';
-        }, 7100);
-        // setTimeout(function() {
-        //     const ground = document.querySelector('.ground');
-        //     ground.style.borderRadius = '0';
-        // }, 8200);
-        // setTimeout(function() {
-        //     const ground = document.querySelector('.ground');
-        //     ground.classList.add('on');
-        // }, 8000);
-       
-        // setTimeout(function() {
-        //     const container = document.querySelector('.container');
-        //     container.classList.remove('scene');
-        //     const introb = document.querySelector('.introb');
-        //     introb.style.display = 'none';
-        // }, 9000);
+            const ground = document.querySelector('.ground');
+            ground.classList.add('on');
+        }, 8100);
+        setTimeout(function() {
+            const ground = document.querySelector('.ground');
+            ground.style.borderRadius = '0';
+        }, 8200);
+        setTimeout(function() {
+            const container = document.querySelector('.container');
+            container.classList.remove('scene');
+            const introb = document.querySelector('.introb');
+            introb.style.display = 'none';
+        }, 9000);
 </script>
     </script>
 </html>
